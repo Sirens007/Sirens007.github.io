@@ -371,6 +371,203 @@ hint: not have locally. ...
 &lt;li&gt;你本地分支对应的上游分支&lt;/li&gt;
 &lt;li&gt;是否有可推送或拉取的内容&lt;/li&gt;
 &lt;/ul&gt;
+</content:encoded></item><item><title>GitHub Pages配置</title><link>https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/</link><guid isPermaLink="true">https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/</guid><description>一篇关于建立GitHub Pages博客的文章.</description><pubDate>Wed, 27 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;环境依赖&lt;/h1&gt;
+&lt;p&gt;在开始使用 Mizuki 之前，您需要确保系统满足以下要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Node.js &amp;gt;= 20&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pnpm &amp;gt;= 9&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;安装Node.js&lt;/h2&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js 官网&lt;/a&gt; 下载并安装最新版本的 Node.js。建议使用 LTS 版本。&lt;/p&gt;
+&lt;p&gt;安装完成后，打开终端或命令提示符，运行以下命令验证 Node.js 是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;node -v
+npm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，则表示安装成功。&lt;/p&gt;
+&lt;h2&gt;安装pnpm&lt;/h2&gt;
+&lt;p&gt;如果您尚未安装 pnpm，可以通过 npm 安装：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g pnpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装完成后，打开终端或命令提示符，运行以下命令验证 pnpm 是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，则表示安装成功。&lt;/p&gt;
+&lt;h2&gt;安装Git&lt;/h2&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;Git 官网&lt;/a&gt; 下载并安装适合您操作系统的 Git 版本。&lt;/p&gt;
+&lt;p&gt;安装完成后，打开终端或命令提示符，运行以下命令验证 Git 是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，则表示安装成功。&lt;/p&gt;
+&lt;h1&gt;项目启动&lt;/h1&gt;
+&lt;h2&gt;1.克隆项目&lt;/h2&gt;
+&lt;p&gt;首先将模板拉下到本地仓库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/matsuzaka-yuki/Mizuki.git
+cd ...//cd到项目地址处
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;2.安装依赖&lt;/h2&gt;
+&lt;p&gt;使用 pnpm 安装项目依赖：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.配置博客&lt;/h2&gt;
+&lt;p&gt;在启动项目之前，您需要根据自己的需求进行配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编辑 &lt;code&gt;src/config.ts&lt;/code&gt; 文件来自定义博客设置&lt;/li&gt;
+&lt;li&gt;更新站点信息、主题颜色、横幅图片和社交链接&lt;/li&gt;
+&lt;li&gt;配置翻译设置和特殊页面功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4.启动开发服务器&lt;/h2&gt;
+&lt;p&gt;运行以下命令启动开发服务器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动成功后，您可以在浏览器中访问 &lt;code&gt;http://localhost:4321&lt;/code&gt; 查看您的博客。&lt;/p&gt;
+&lt;h2&gt;5.打包网站&lt;/h2&gt;
+&lt;p&gt;在本地项目处运行以下命令将网站打包成静态文件，生成到 &lt;code&gt;dist&lt;/code&gt; 目录中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;生成的 &lt;code&gt;dist&lt;/code&gt; 目录可以部署到您自己的服务器上。&lt;/p&gt;
+&lt;h1&gt;部署到GitHub Pages&lt;/h1&gt;
+&lt;p&gt;如果您希望将博客托管在 GitHub Pages 上，Mizuki 项目通常会包含一个 GitHub Actions 工作流，可以帮助您自动化部署过程。您需要确保在 &lt;code&gt;astro.config.mjs&lt;/code&gt; 中配置正确的 &lt;code&gt;base&lt;/code&gt; 路径。&lt;/p&gt;
+&lt;p&gt;还有将&lt;code&gt;package.json&lt;/code&gt;的script中加入&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;vite build&quot;,  
+    &quot;deploy&quot;: &quot;gh-pages -d dist -r https://github.com/&amp;lt;你的用户名&amp;gt;/&amp;lt;你的仓库名&amp;gt;.git&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总共要改的配置文件为&lt;code&gt;astro.config.mjs&lt;/code&gt;、&lt;code&gt;package.json&lt;/code&gt;、&lt;code&gt;src/config.ts&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;部署到 github.io 网址&lt;/h2&gt;
+&lt;p&gt;在 &lt;code&gt;astro.config.mjs&lt;/code&gt; 中配置文件设置 &lt;code&gt;site&lt;/code&gt; 和 &lt;code&gt;base&lt;/code&gt; 选项。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { defineConfig } from &apos;astro/config&apos;
+
+export default defineConfig({
+  site: &apos;https://sirens007.github.io/&apos;,
+  base: &apos;/&apos;,
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Site&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;site&lt;/code&gt; 的值必须是以下之一：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于你的用户名的以下网址: &lt;code&gt;https://&amp;lt;username&amp;gt;.github.io&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;为 GitHub 组织的私有页面 自动生成的随机网址：&lt;code&gt;https://&amp;lt;random-string&amp;gt;.pages.github.io/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;提示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果出现了以下情况，则不要设置 base 参数：&lt;/p&gt;
+&lt;p&gt;你的页面是由根文件夹所提供。&lt;/p&gt;
+&lt;p&gt;你的源码存储库是位于 https://github.com/&amp;lt;USERNAME&amp;gt;/&amp;lt;USERNAME&amp;gt;.github.io。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Base&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;base&lt;/code&gt; 的值应该是你的仓库名称，以正斜杠开头，例如 &lt;code&gt;/my-blog&lt;/code&gt;。这样做是为了让 Astro 理解你的网站根目录是 &lt;code&gt;/my-repo&lt;/code&gt;，而不是默认的 &lt;code&gt;/&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当配置了这个值后，你所有的内部页面链接都必须以你的 base 值作为前缀：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=&quot;/my-repo/about&quot;&amp;gt;关于本站&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查看更多关于配置 &lt;a href=&quot;https://docs.astro.build/zh-cn/reference/configuration-reference/#base&quot;&gt;base&lt;/a&gt; 值的信息。&lt;/p&gt;
+&lt;h2&gt;（可选）在GitHub Pages上使用自定义域名&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;设置一个自定义域&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;你可以选择通过将一个 ./public/CNAME 文件添加到你的项目中，来设置自定义域&lt;/p&gt;
+&lt;p&gt;这会将你的站点部署在你的自定义域而不是 &amp;lt;YOUR_USERNAME&amp;gt;.github.io。&lt;/p&gt;
+&lt;p&gt;不要忘记为你的域名提供商配置 DNS。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;要配置 Astro 以在 GitHub Pages 上使用自定义域名，请将你的域名设置为 site 的值。不要为 &lt;code&gt;base&lt;/code&gt; 设置值：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { defineConfig } from &apos;astro/config&apos;
+
+export default defineConfig({
+    site: &apos;https://example.com&apos;,
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;方法一：配置GitHub Action&lt;/h2&gt;
+&lt;p&gt;在你的项目中的 &lt;code&gt;.github/workflows/&lt;/code&gt; 目录创建一个新文件 &lt;code&gt;deploy.yml&lt;/code&gt;，并粘贴以下 YAML 配置信息。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;name: Deploy to GitHub Pages
+
+on:
+# 每次推送到 `main` 分支时触发这个“工作流程”
+# 如果你使用了别的分支名，请按需将 `main` 替换成你的分支名
+push:
+    branches: [ main ]
+# 允许你在 GitHub 上的 Actions 标签中手动触发此“工作流程”
+workflow_dispatch:
+
+# 允许 job 克隆 repo 并创建一个 page deployment
+permissions:
+contents: read
+pages: write
+id-token: write
+
+jobs:
+build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout your repository using git
+        uses: actions/checkout@v4
+    - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        # with:
+        # path: . # 存储库中 Astro 项目的根位置。（可选）
+        # node-version: 20 # 用于构建站点的特定 Node.js 版本，默认为 20。（可选）
+        # package-manager: pnpm@latest # 应使用哪个 Node.js 包管理器来安装依赖项和构建站点。会根据存储库中的 lockfile 自动检测。（可选）
+
+deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+    name: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（可选）如果你在本地开发期间或预览构建期间，将环境变量传入给 Astro 项目，则需要定义 deploy.yml 文件中的任何公共变量，以便在部署到 Github 页面时处理它们。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;jobs:
+build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout your repository using git
+        uses: actions/checkout@v4
+    - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        env:
+        # 使用单引号来包裹变量值
+        PUBLIC_EVM_WALLET_ADDRESS: &apos;0x4bFc229A40d41698154336aFF864f61083E76659&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;在 GitHub 上，跳转到存储库的 Settings 选项卡并找到设置的 Pages 部分。&lt;/li&gt;
+&lt;li&gt;选择 GitHub Actions 作为你网站的 Source，然后按 Save。&lt;/li&gt;
+&lt;li&gt;选择 GitHub Actions 作为你网站的 Source，然后按 Save。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;你的网站现在应该已完成发布了！当你将更改推送到 Astro 项目的存储库时，GitHub Action 将自动为你部署它们。&lt;/p&gt;
+&lt;h2&gt;方法二：增加gh-pages分支&lt;/h2&gt;
+&lt;h2&gt;安装部署&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;pnpm add -D gh-pages
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装 &lt;code&gt;gh-pages&lt;/code&gt; 包，它会帮你把 &lt;code&gt;dist/&lt;/code&gt; 目录推送到 GitHub 仓库的 &lt;code&gt;gh-pages&lt;/code&gt; （自动创建）分支。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;运行命令&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pnpm run build&lt;/code&gt; → 生成 &lt;code&gt;dist/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pnpm run deploy&lt;/code&gt; → 自动把 &lt;code&gt;dist/&lt;/code&gt; 上传到 GitHub Pages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;日常维护&lt;/h1&gt;
+&lt;h4&gt;1.修改/新增文章或页面&lt;/h4&gt;
+&lt;p&gt;在本地项目里（比如 &lt;code&gt;src/content&lt;/code&gt;、&lt;code&gt;posts&lt;/code&gt;、&lt;code&gt;pages&lt;/code&gt; 等目录），新建或修改 Markdown/HTML/JSX 文件。&lt;/p&gt;
+&lt;h4&gt;2. 重新构建&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;pnpm build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;作用&lt;/strong&gt;：把修改后的源代码再打包到 &lt;code&gt;dist/&lt;/code&gt; 目录。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原因&lt;/strong&gt;：GitHub Pages 只会展示 &lt;code&gt;dist&lt;/code&gt; 文件夹里的内容，而不会读取你的源代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. 部署到 GitHub Pages&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;pnpm run deploy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;作用&lt;/strong&gt;：自动运行 &lt;code&gt;gh-pages -d dist&lt;/code&gt;，把最新的 &lt;code&gt;dist/&lt;/code&gt; 推送到 &lt;code&gt;gh-pages&lt;/code&gt; 分支。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原因&lt;/strong&gt;：GitHub Pages 是根据 &lt;code&gt;gh-pages&lt;/code&gt; 分支的内容来渲染你的网站的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.mizuki.mysqil.com/guide/deployment/#%E9%85%8D%E7%BD%AE-github-action&quot;&gt;部署 | Mizuki主题官方文档&lt;/a&gt;&lt;/p&gt;
 </content:encoded></item><item><title>Git基础命令</title><link>https://sirens007.github.io/posts/git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</link><guid isPermaLink="true">https://sirens007.github.io/posts/git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</guid><description>一篇关于 Git基础命令的笔记.</description><pubDate>Wed, 20 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;📝Git工作流程&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;assets%5Cphoto1.png&quot; alt=&quot;photo1&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;1.克隆仓库&lt;/h3&gt;
