@@ -155,7 +155,7 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "GitHub",
-					url: "https://gitee.com/Sirens007",
+					url: "https://github.com/Sirens007",
 					external: true,
 					icon: "fa6-brands:github",
 				},
