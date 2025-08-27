@@ -13,7 +13,8 @@
 		"new-post": "node scripts/new-post.js",
 		"format": "biome format --write ./src",
 		"lint": "biome check --write ./src",
-		"deploy": "astro build && gh-pages -d dist",
+		"predeploy": "pnpm build",
+  		"deploy": "gh-pages -d dist -r https://github.com/Sirens007/Sirens007.github.io.git",
 		"preinstall": "npx only-allow pnpm"
 	},
 	"dependencies": {
