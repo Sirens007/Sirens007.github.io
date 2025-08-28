@@ -369,7 +369,25 @@ if (document.readyState === 'loading') {
         before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
         before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="">公告</div> <div id="announcement" class="collapse-wrapper px-4 overflow-hidden" data-astro-cid-ucso7hve style="">  <div> <!-- 公告栏内容 --> <div class="text-neutral-600 dark:text-neutral-300 leading-relaxed mb-3"> 欢迎来到我的博客！ </div> <!-- 可选链接和关闭按钮 --> <div class="flex items-center justify-between gap-3"> <div> <a href="/about/" target="_self" class="btn-regular rounded-lg px-3 py-1.5 text-sm font-medium active:scale-95 transition-transform"> 了解更多 </a> </div> <button class="btn-regular rounded-lg h-8 w-8 text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors" onclick="closeAnnouncement()" aria-label="关闭"> <svg width="0.75em" height="1em" class="text-sm" data-icon="fa6-solid:xmark">   <symbol id="ai:fa6-solid:xmark" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7L86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256L41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256z"/></symbol><use href="#ai:fa6-solid:xmark"></use>  </svg> </button> </div> </div>  </div>  </widget-layout>  <script type="module">class d extends HTMLElement{constructor(){if(super(),this.dataset.isCollapsed!=="true")return;const e=this.dataset.id,t=this.querySelector(".expand-btn"),s=this.querySelector(`#${e}`);t.addEventListener("click",()=>{s.classList.remove("collapsed"),t.classList.add("hidden")})}}customElements.get("widget-layout")||customElements.define("widget-layout",d);</script> <script type="module">function n(){const e=document.querySelector('widget-layout[data-id="announcement"]');e&&(e.style.display="none",localStorage.setItem("announcementClosed","true"))}document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector('widget-layout[data-id="announcement"]');e&&localStorage.getItem("announcementClosed")==="true"&&(e.style.display="none")});window.closeAnnouncement=n;</script> </div> <!-- 粘性组件区域 --> <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4" data-astro-cid-gfmxq3pg> <widget-layout data-id="categories" data-is-collapsed="false" class="pb-4 card-base onload-animation" style="animation-delay: 150ms; --collapsedHeight: 7.5rem;" data-astro-cid-ucso7hve="true"> <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
         before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
-        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">分类</div> <div id="categories" class="collapse-wrapper px-4 overflow-hidden" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <a href="/archive/?category=%E6%95%99%E7%A8%8B" aria-label="View all posts in the 教程 category"> <button class="
+        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">分类</div> <div id="categories" class="collapse-wrapper px-4 overflow-hidden" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <a href="/archive/?category=%E5%BC%80%E5%8F%91" aria-label="View all posts in the 开发 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 开发 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 2 </div> </div> </button> </a><a href="/archive/?category=%E6%95%99%E7%A8%8B" aria-label="View all posts in the 教程 category"> <button class="
             w-full
             h-10
             rounded-lg
@@ -387,9 +405,9 @@ if (document.readyState === 'loading') {
         "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 教程 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
                     text-[var(--btn-content)] dark:text-[var(--deep-text)]
                     bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
-                    flex items-center justify-center"> 3 </div> </div> </button> </a> </div>  </widget-layout>  <widget-layout data-id="tags" data-is-collapsed="false" class="pb-4 card-base onload-animation" style="animation-delay: 200ms; --collapsedHeight: 7.5rem;" data-astro-cid-ucso7hve="true"> <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+                    flex items-center justify-center"> 1 </div> </div> </button> </a> </div>  </widget-layout>  <widget-layout data-id="tags" data-is-collapsed="false" class="pb-4 card-base onload-animation" style="animation-delay: 200ms; --collapsedHeight: 7.5rem;" data-astro-cid-ucso7hve="true"> <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
         before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
-        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">标签</div> <div id="tags" class="collapse-wrapper px-4 overflow-hidden" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">  <div class="flex gap-2 flex-wrap"> <a href="/archive/?tag=bash" aria-label="View all posts with the bash tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  bash </a><a href="/archive/?tag=Git" aria-label="View all posts with the Git tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Git </a><a href="/archive/?tag=GitHub" aria-label="View all posts with the GitHub tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  GitHub </a><a href="/archive/?tag=GitHub%20Pages" aria-label="View all posts with the GitHub Pages tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  GitHub Pages </a><a href="/archive/?tag=JavaScript" aria-label="View all posts with the JavaScript tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  JavaScript </a><a href="/archive/?tag=%E7%AC%94%E8%AE%B0" aria-label="View all posts with the 笔记 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  笔记 </a> </div>  </div>  </widget-layout>   </div> </div> <!-- 响应式样式和JavaScript -->  <script type="module" src="/_astro/SideBar.astro_astro_type_script_index_0_lang.C0oBqujT.js"></script> <main id="swup-container" class="transition-swup-fade overflow-hidden w-full col-span-2 md:col-start-2 md:col-end-3 lg:col-start-2 lg:col-end-3" data-astro-cid-haiuh7kc> <div id="content-wrapper" class="onload-animation" data-astro-cid-haiuh7kc> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property -->   <!-- Iconify图标库加载器 --><script>(function(){const preloadIcons = ["material-symbols:work","material-symbols:code","material-symbols:work","material-symbols:verified","material-symbols:school","material-symbols:work","material-symbols:emoji-events","material-symbols:code"];
+        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">标签</div> <div id="tags" class="collapse-wrapper px-4 overflow-hidden" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">  <div class="flex gap-2 flex-wrap"> <a href="/archive/?tag=bash" aria-label="View all posts with the bash tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  bash </a><a href="/archive/?tag=Git" aria-label="View all posts with the Git tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Git </a><a href="/archive/?tag=GitHub" aria-label="View all posts with the GitHub tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  GitHub </a><a href="/archive/?tag=GitHub%20Pages" aria-label="View all posts with the GitHub Pages tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  GitHub Pages </a><a href="/archive/?tag=JavaScript" aria-label="View all posts with the JavaScript tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  JavaScript </a><a href="/archive/?tag=%E7%AC%94%E8%AE%B0" aria-label="View all posts with the 笔记 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  笔记 </a> </div>  </div>  </widget-layout>   </div> </div> <!-- 响应式样式和JavaScript -->  <script type="module" src="/_astro/SideBar.astro_astro_type_script_index_0_lang.C0oBqujT.js"></script> <main id="swup-container" class="transition-swup-fade overflow-hidden w-full col-span-2 md:col-start-2 md:col-end-3 lg:col-start-2 lg:col-end-3" data-astro-cid-haiuh7kc> <div id="content-wrapper" class="onload-animation" data-astro-cid-haiuh7kc> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property -->   <!-- Iconify图标库加载器 --><script>(function(){const preloadIcons = ["material-symbols:code","material-symbols:work","material-symbols:school","material-symbols:code"];
 const timeout = 10000;
 const retryCount = 3;
 
@@ -642,759 +660,8 @@ const retryCount = 3;
     .icon-fallback {
       display: inline-block;
     }
-  </style></noscript> <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32" data-astro-cid-qlh7ngej> <div class="card-base z-10 px-9 py-6 relative w-full" data-astro-cid-qlh7ngej> <!-- 页面标题 --> <div class="flex flex-col items-start justify-center mb-8" data-astro-cid-qlh7ngej> <h1 class="text-4xl font-bold text-black/90 dark:text-white/90 mb-2" data-astro-cid-qlh7ngej> 时间线 </h1> <p class="text-lg text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> 我的成长历程和重要里程碑 </p> </div> <!-- 统计信息 --> <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8" data-astro-cid-qlh7ngej> <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-blue-600 dark:text-blue-400" data-astro-cid-qlh7ngej>8</div> <div class="text-sm text-blue-600/70 dark:text-blue-400/70" data-astro-cid-qlh7ngej>总计</div> </div> <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-green-600 dark:text-green-400" data-astro-cid-qlh7ngej>3</div> <div class="text-sm text-green-600/70 dark:text-green-400/70" data-astro-cid-qlh7ngej>工作经历</div> </div> <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" data-astro-cid-qlh7ngej>1</div> <div class="text-sm text-purple-600/70 dark:text-purple-400/70" data-astro-cid-qlh7ngej>项目数</div> </div> <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-orange-600 dark:text-orange-400" data-astro-cid-qlh7ngej> 4+
-</div> <div class="text-sm text-orange-600/70 dark:text-orange-400/70" data-astro-cid-qlh7ngej>工作经验</div> </div> </div> <!-- 当前进行中的项目 --> <div class="mb-8" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-4" data-astro-cid-qlh7ngej> 当前状态 </h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-astro-cid-qlh7ngej> <div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start gap-4" data-astro-cid-qlh7ngej> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: #2563EB20" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-2xl" style="color: #2563EB;" data-icon-container="icon-cfplj40la" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 全 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:work" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-cfplj40la";
-const icon = "material-symbols:work";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <div class="flex-1" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-2" data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 全栈开发工程师 </h3> <span class="px-2 py-1 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full" data-astro-cid-qlh7ngej> 当前状态 </span> </div> <div class="text-sm text-black/70 dark:text-white/70 mb-1" data-astro-cid-qlh7ngej> TechCorp Inc. • Senior Full Stack Developer </div> <div class="text-sm text-black/60 dark:text-white/60 mb-2" data-astro-cid-qlh7ngej>
-📍 北京 </div> <p class="text-black/60 dark:text-white/60 mb-3 text-sm" data-astro-cid-qlh7ngej> 负责Web应用的前后端开发，参与产品架构设计和技术选型，带领团队完成多个重要项目。 </p> <div class="text-sm text-black/70 dark:text-white/70 mb-3" data-astro-cid-qlh7ngej> 2023年6月 - 至今 (2 年 4 个月)
-</div> <div class="flex flex-wrap gap-1 mb-3" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> React </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> Node.js </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> TypeScript </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> PostgreSQL </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> AWS </span> </div>  </div> </div> </div><div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start gap-4" data-astro-cid-qlh7ngej> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: #7C3AED20" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-2xl" style="color: #7C3AED;" data-icon-container="icon-rpyvss6d5" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> R </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:verified" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-rpyvss6d5";
-const icon = "material-symbols:verified";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <div class="flex-1" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-2" data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> React开发者认证 </h3> <span class="px-2 py-1 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full" data-astro-cid-qlh7ngej> 当前状态 </span> </div> <div class="text-sm text-black/70 dark:text-white/70 mb-1" data-astro-cid-qlh7ngej> Meta (Facebook)  </div>  <p class="text-black/60 dark:text-white/60 mb-3 text-sm" data-astro-cid-qlh7ngej> 通过了React官方认证考试，证明了在React开发方面的专业能力。 </p> <div class="text-sm text-black/70 dark:text-white/70 mb-3" data-astro-cid-qlh7ngej> 2022年8月 - 至今 (3 年 1 个月)
-</div>  <div class="flex gap-3" data-astro-cid-qlh7ngej> <a href="https://certificates.example.com/react-cert" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium" data-astro-cid-qlh7ngej> Certificate </a> </div> </div> </div> </div><div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start gap-4" data-astro-cid-qlh7ngej> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: #7C3AED20" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-2xl" style="color: #7C3AED;" data-icon-container="icon-m1o1j0bin" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 开 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-m1o1j0bin";
-const icon = "material-symbols:code";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <div class="flex-1" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-2" data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 开始编程学习 </h3> <span class="px-2 py-1 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full" data-astro-cid-qlh7ngej> 当前状态 </span> </div>   <p class="text-black/60 dark:text-white/60 mb-3 text-sm" data-astro-cid-qlh7ngej> 第一次接触编程，从HTML和CSS开始，逐步学习JavaScript和其他技术。 </p> <div class="text-sm text-black/70 dark:text-white/70 mb-3" data-astro-cid-qlh7ngej> 2018年1月 - 至今 (7 年 10 个月)
-</div> <div class="flex flex-wrap gap-1 mb-3" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> HTML </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> CSS </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> JavaScript </span> </div>  </div> </div> </div> </div> </div> <!-- 时间线 --> <div class="mb-8" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-6" data-astro-cid-qlh7ngej> 历史记录 </h2> <div class="relative" data-astro-cid-qlh7ngej> <!-- 时间线主轴 --> <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" data-astro-cid-qlh7ngej></div> <div class="space-y-8" data-astro-cid-qlh7ngej> <div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #059669" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-y4hn1w47o" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> M </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-y4hn1w47o";
-const icon = "material-symbols:code";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> Mizuki博客主题开源项目 </h3>  </div> <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" data-astro-cid-qlh7ngej> 项目经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2024年1月 - 2024年6月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>6 个月</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 基于Astro框架开发的现代化博客主题，获得了社区的广泛认可和使用。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>GitHub获得500+ Stars</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>支持多语言和主题切换</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>完善的文档和示例</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Astro </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> TypeScript </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Tailwind CSS </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Svelte </span> </div> </div> <div class="flex gap-4" data-astro-cid-qlh7ngej> <a href="https://github.com/example/mizuki" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej>  🔗  GitHub Repository </a><a href="https://mizuki-demo.example.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej>   🌐 Live Demo </a> </div> </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #2563EB" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-rl0ngepg9" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 全 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:work" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-rl0ngepg9";
-const icon = "material-symbols:work";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 全栈开发工程师 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> TechCorp Inc. • Senior Full Stack Developer </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" data-astro-cid-qlh7ngej> 工作经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2023年6月 - 至今 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>2 年 4 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 北京</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 负责Web应用的前后端开发，参与产品架构设计和技术选型，带领团队完成多个重要项目。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>主导开发了公司核心产品的前端架构重构</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>优化系统性能，页面加载速度提升40%</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>建立了完善的代码审查和测试流程</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> React </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Node.js </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> TypeScript </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> PostgreSQL </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> AWS </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #7C3AED" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-4quhcl4ag" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> R </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:verified" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-4quhcl4ag";
-const icon = "material-symbols:verified";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> React开发者认证 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> Meta (Facebook)  </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400" data-astro-cid-qlh7ngej> 成就荣誉 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2022年8月 - 至今 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>3 年 1 个月</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 通过了React官方认证考试，证明了在React开发方面的专业能力。 </p>   <div class="flex gap-4" data-astro-cid-qlh7ngej> <a href="https://certificates.example.com/react-cert" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej> 🏆   Certificate </a> </div> </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #DC2626" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-3yi3w8ys4" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 前 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:work" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-3yi3w8ys4";
-const icon = "material-symbols:work";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 前端开发工程师 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> WebTech Solutions • Frontend Developer </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" data-astro-cid-qlh7ngej> 工作经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2022年3月 - 2023年5月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>1 年 4 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 上海</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 专注于React生态系统开发，负责多个企业级Web应用的前端架构和开发。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>开发了公司主要产品的用户界面</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>建立了组件库和设计系统</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>提升了团队的开发效率和代码质量</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> React </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> JavaScript </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> CSS3 </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Webpack </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Jest </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #DC2626" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-u250rx3gi" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 黑 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:emoji-events" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-u250rx3gi";
-const icon = "material-symbols:emoji-events";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 黑客马拉松比赛获奖 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> TechHackathon 2021  </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400" data-astro-cid-qlh7ngej> 成就荣誉 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2021年11月 - 2021年11月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>1 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 上海</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 在48小时内开发了一个创新的Web应用，获得了最佳技术实现奖。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>获得最佳技术实现奖</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>团队协作完成复杂项目</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>在短时间内学习新技术</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> React </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Express.js </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> MongoDB </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Socket.io </span> </div> </div> <div class="flex gap-4" data-astro-cid-qlh7ngej> <a href="https://hackathon-project.example.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej>  🔗  Project Demo </a> </div> </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #EA580C" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-1kib5hjk9" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 软 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:work" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-1kib5hjk9";
-const icon = "material-symbols:work";
-
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator || !iconElement) return;
-
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
-
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
-
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
-    }
-
-    // 初始状态
-    showLoading();
-
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
-
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
-
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
-
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
-
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
-
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 软件开发实习生 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> StartupTech • Software Development Intern </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" data-astro-cid-qlh7ngej> 工作经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2021年7月 - 2021年9月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>4 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 北京</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 在大学期间的实习经历，参与了Web应用开发和数据库设计工作。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>完成了用户管理系统的开发</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>学习了敏捷开发流程</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>获得了实习优秀表现奖</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> JavaScript </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Vue.js </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Node.js </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> MySQL </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #059669" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-qqn8eglxm" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 计 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:school" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-qqn8eglxm";
+  </style></noscript> <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32" data-astro-cid-qlh7ngej> <div class="card-base z-10 px-9 py-6 relative w-full" data-astro-cid-qlh7ngej> <!-- 页面标题 --> <div class="flex flex-col items-start justify-center mb-8" data-astro-cid-qlh7ngej> <h1 class="text-4xl font-bold text-black/90 dark:text-white/90 mb-2" data-astro-cid-qlh7ngej> 时间线 </h1> <p class="text-lg text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> 我的成长历程和重要里程碑 </p> </div> <!-- 统计信息 --> <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8" data-astro-cid-qlh7ngej> <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-blue-600 dark:text-blue-400" data-astro-cid-qlh7ngej>4</div> <div class="text-sm text-blue-600/70 dark:text-blue-400/70" data-astro-cid-qlh7ngej>总计</div> </div> <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-green-600 dark:text-green-400" data-astro-cid-qlh7ngej>0</div> <div class="text-sm text-green-600/70 dark:text-green-400/70" data-astro-cid-qlh7ngej>工作经历</div> </div> <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" data-astro-cid-qlh7ngej>1</div> <div class="text-sm text-purple-600/70 dark:text-purple-400/70" data-astro-cid-qlh7ngej>项目数</div> </div> <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-4" data-astro-cid-qlh7ngej> <div class="text-2xl font-bold text-orange-600 dark:text-orange-400" data-astro-cid-qlh7ngej> 0+
+</div> <div class="text-sm text-orange-600/70 dark:text-orange-400/70" data-astro-cid-qlh7ngej>工作经验</div> </div> </div> <!-- 当前进行中的项目 --> <div class="mb-8" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-4" data-astro-cid-qlh7ngej> 当前状态 </h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-astro-cid-qlh7ngej> <div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start gap-4" data-astro-cid-qlh7ngej> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: #05966920" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-2xl" style="color: #059669;" data-icon-container="icon-4rq30wrc1" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 计 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:school" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-4rq30wrc1";
 const icon = "material-symbols:school";
 
   // 图标加载和显示逻辑
@@ -1477,7 +744,9 @@ const icon = "material-symbols:school";
       checkIconLoaded();
     }, 100);
   })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 计算机科学与技术学士学位 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 北京理工大学  </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" data-astro-cid-qlh7ngej> 教育经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2018年9月 - 2022年6月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>3 年 11 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 北京</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 系统学习了计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>GPA: 3.8/4.0</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>获得校级优秀学生奖学金</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>参与多个课程项目和实习</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Java </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Python </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> MySQL </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Linux </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #7C3AED" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-sy9peqs8g" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 开 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-sy9peqs8g";
+})();</script>  </div> <div class="flex-1" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-2" data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 计算机科学与技术学士学位(在学) </h3> <span class="px-2 py-1 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full" data-astro-cid-qlh7ngej> 当前状态 </span> </div> <div class="text-sm text-black/70 dark:text-white/70 mb-1" data-astro-cid-qlh7ngej> 长春理工大学  </div> <div class="text-sm text-black/60 dark:text-white/60 mb-2" data-astro-cid-qlh7ngej>
+📍 长春 </div> <p class="text-black/60 dark:text-white/60 mb-3 text-sm" data-astro-cid-qlh7ngej> 系统学习计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。 </p> <div class="text-sm text-black/70 dark:text-white/70 mb-3" data-astro-cid-qlh7ngej> 2024年9月 - 至今 (1 年 1 个月)
+</div> <div class="flex flex-wrap gap-1 mb-3" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> Java </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> Python </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> MySQL </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> Linux </span> </div>  </div> </div> </div><div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start gap-4" data-astro-cid-qlh7ngej> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: #7C3AED20" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-2xl" style="color: #7C3AED;" data-icon-container="icon-vxoff02go" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 开 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-vxoff02go";
 const icon = "material-symbols:code";
 
   // 图标加载和显示逻辑
@@ -1560,7 +829,340 @@ const icon = "material-symbols:code";
       checkIconLoaded();
     }, 100);
   })();
-})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 开始编程学习 </h3>  </div> <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" data-astro-cid-qlh7ngej> 教育经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2018年1月 - 至今 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>7 年 10 个月</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 第一次接触编程，从HTML和CSS开始，逐步学习JavaScript和其他技术。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>完成了第一个个人网站</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>掌握了Web开发基础</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>培养了对编程的兴趣</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> HTML </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> CSS </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> JavaScript </span> </div> </div>  </div> </div> </div> </div> </div> <!-- 类型统计 --> <div class="mt-12 pt-8 border-t border-black/10 dark:border-white/10" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-6" data-astro-cid-qlh7ngej> 统计信息 </h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-astro-cid-qlh7ngej> <!-- 按类型分布 --> <div data-astro-cid-qlh7ngej> <h3 class="text-lg font-semibold text-black/80 dark:text-white/80 mb-4" data-astro-cid-qlh7ngej> 按类型分组 </h3> <div class="space-y-3" data-astro-cid-qlh7ngej> <div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 教育经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-blue-500" style="width: 25%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 2 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 工作经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-green-500" style="width: 38%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 3 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 项目经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-purple-500" style="width: 13%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 1 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 成就荣誉 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-orange-500" style="width: 25%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 2 </div> </div> </div> </div> <!-- 工作经验详情 --> <div data-astro-cid-qlh7ngej> <h3 class="text-lg font-semibold text-black/80 dark:text-white/80 mb-4" data-astro-cid-qlh7ngej> 工作经验 </h3> <div class="space-y-3" data-astro-cid-qlh7ngej> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>总工作经验</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 4 年 0 个月 </span> </div> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>工作岗位数</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej>3</span> </div> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>当前状态</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 在职 </span> </div> </div> </div> </div> </div> </div> </div>  <div class="footer col-span-2 onload-animation hidden lg:block" data-astro-cid-haiuh7kc> <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">--><div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">--> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="transition text-50 text-sm text-center"> 
+})();</script>  </div> <div class="flex-1" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-2" data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 开始编程学习 </h3> <span class="px-2 py-1 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full" data-astro-cid-qlh7ngej> 当前状态 </span> </div>   <p class="text-black/60 dark:text-white/60 mb-3 text-sm" data-astro-cid-qlh7ngej> 第一次接触编程，从C语言和C++开始，逐步学习Java和其他技术。 </p> <div class="text-sm text-black/70 dark:text-white/70 mb-3" data-astro-cid-qlh7ngej> 2024年7月 - 至今 (1 年 3 个月)
+</div> <div class="flex flex-wrap gap-1 mb-3" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> C语言 </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded" data-astro-cid-qlh7ngej> Java </span> </div>  </div> </div> </div> </div> </div> <!-- 时间线 --> <div class="mb-8" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-6" data-astro-cid-qlh7ngej> 历史记录 </h2> <div class="relative" data-astro-cid-qlh7ngej> <!-- 时间线主轴 --> <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" data-astro-cid-qlh7ngej></div> <div class="space-y-8" data-astro-cid-qlh7ngej> <div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #059669" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-orfxxqgyk" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> M </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-orfxxqgyk";
+const icon = "material-symbols:code";
+
+  // 图标加载和显示逻辑
+  (function() {
+    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
+    if (!container) return;
+    
+    const loadingIndicator = container.querySelector('[data-loading-indicator]');
+    const iconElement = container.querySelector('[data-icon-element]');
+    
+    if (!loadingIndicator || !iconElement) return;
+
+    // 检查图标是否已经加载
+    function checkIconLoaded() {
+      // 检查iconify-icon元素是否已经渲染
+      const hasContent = iconElement.shadowRoot && 
+                        iconElement.shadowRoot.children.length > 0;
+      
+      if (hasContent) {
+        showIcon();
+        return true;
+      }
+      return false;
+    }
+
+    // 显示图标，隐藏加载指示器
+    function showIcon() {
+      loadingIndicator.style.display = 'none';
+      iconElement.classList.remove('opacity-0');
+      iconElement.classList.add('opacity-100');
+    }
+
+    // 显示加载指示器，隐藏图标
+    function showLoading() {
+      loadingIndicator.style.display = 'inline-flex';
+      iconElement.classList.remove('opacity-100');
+      iconElement.classList.add('opacity-0');
+    }
+
+    // 初始状态
+    showLoading();
+
+    // 监听图标加载事件
+    iconElement.addEventListener('load', () => {
+      showIcon();
+    });
+
+    // 监听图标加载错误
+    iconElement.addEventListener('error', () => {
+      // 保持显示fallback
+      console.warn(`Failed to load icon: ${icon}`);
+    });
+
+    // 使用MutationObserver监听shadow DOM变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        if (checkIconLoaded()) {
+          observer.disconnect();
+        }
+      });
+
+      // 监听iconify-icon元素的变化
+      observer.observe(iconElement, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+
+      // 设置超时，避免无限等待
+      setTimeout(() => {
+        observer.disconnect();
+        if (!checkIconLoaded()) {
+          console.warn(`Icon load timeout: ${icon}`);
+        }
+      }, 5000);
+    }
+
+    // 立即检查一次（可能已经加载完成）
+    setTimeout(() => {
+      checkIconLoaded();
+    }, 100);
+  })();
+})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> Mizuki博客主题开源项目 </h3>  </div> <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" data-astro-cid-qlh7ngej> 项目经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2025年6月 - 2025年8月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>3 个月</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 基于Astro框架开发的现代化博客主题，在此基础上不断优化。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>GitHub获得500+ Stars</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>支持多语言和主题切换</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>完善的文档和示例</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Astro </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> TypeScript </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Tailwind CSS </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Svelte </span> </div> </div> <div class="flex gap-4" data-astro-cid-qlh7ngej> <a href="https://github.com/Sirens007/MyStorage" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej>  🔗  GitHub Repository </a><a href="https://sirens007.github.io/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1" data-astro-cid-qlh7ngej>   🌐 Live Demo </a> </div> </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #2563EB" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-gmso3uev5" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 全 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:work" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-gmso3uev5";
+const icon = "material-symbols:work";
+
+  // 图标加载和显示逻辑
+  (function() {
+    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
+    if (!container) return;
+    
+    const loadingIndicator = container.querySelector('[data-loading-indicator]');
+    const iconElement = container.querySelector('[data-icon-element]');
+    
+    if (!loadingIndicator || !iconElement) return;
+
+    // 检查图标是否已经加载
+    function checkIconLoaded() {
+      // 检查iconify-icon元素是否已经渲染
+      const hasContent = iconElement.shadowRoot && 
+                        iconElement.shadowRoot.children.length > 0;
+      
+      if (hasContent) {
+        showIcon();
+        return true;
+      }
+      return false;
+    }
+
+    // 显示图标，隐藏加载指示器
+    function showIcon() {
+      loadingIndicator.style.display = 'none';
+      iconElement.classList.remove('opacity-0');
+      iconElement.classList.add('opacity-100');
+    }
+
+    // 显示加载指示器，隐藏图标
+    function showLoading() {
+      loadingIndicator.style.display = 'inline-flex';
+      iconElement.classList.remove('opacity-100');
+      iconElement.classList.add('opacity-0');
+    }
+
+    // 初始状态
+    showLoading();
+
+    // 监听图标加载事件
+    iconElement.addEventListener('load', () => {
+      showIcon();
+    });
+
+    // 监听图标加载错误
+    iconElement.addEventListener('error', () => {
+      // 保持显示fallback
+      console.warn(`Failed to load icon: ${icon}`);
+    });
+
+    // 使用MutationObserver监听shadow DOM变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        if (checkIconLoaded()) {
+          observer.disconnect();
+        }
+      });
+
+      // 监听iconify-icon元素的变化
+      observer.observe(iconElement, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+
+      // 设置超时，避免无限等待
+      setTimeout(() => {
+        observer.disconnect();
+        if (!checkIconLoaded()) {
+          console.warn(`Icon load timeout: ${icon}`);
+        }
+      }, 5000);
+    }
+
+    // 立即检查一次（可能已经加载完成）
+    setTimeout(() => {
+      checkIconLoaded();
+    }, 100);
+  })();
+})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 全国大学生信息安全竞赛 </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 北京理工大学 • Web direction. </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400" data-astro-cid-qlh7ngej> 成就荣誉 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2025年5月 - 2025年7月 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>3 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 长春</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 负责Web方向题目的flag获取。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>调试脚本与分析源码</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>积累了信息搜集、加密算法绕过与身份认证测试</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>带领团队拿到web方向题目的flag</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> PHP反序列化 </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Python </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> MySQL </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> 图片上传 </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #059669" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-30rrk4i2n" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 计 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:school" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-30rrk4i2n";
+const icon = "material-symbols:school";
+
+  // 图标加载和显示逻辑
+  (function() {
+    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
+    if (!container) return;
+    
+    const loadingIndicator = container.querySelector('[data-loading-indicator]');
+    const iconElement = container.querySelector('[data-icon-element]');
+    
+    if (!loadingIndicator || !iconElement) return;
+
+    // 检查图标是否已经加载
+    function checkIconLoaded() {
+      // 检查iconify-icon元素是否已经渲染
+      const hasContent = iconElement.shadowRoot && 
+                        iconElement.shadowRoot.children.length > 0;
+      
+      if (hasContent) {
+        showIcon();
+        return true;
+      }
+      return false;
+    }
+
+    // 显示图标，隐藏加载指示器
+    function showIcon() {
+      loadingIndicator.style.display = 'none';
+      iconElement.classList.remove('opacity-0');
+      iconElement.classList.add('opacity-100');
+    }
+
+    // 显示加载指示器，隐藏图标
+    function showLoading() {
+      loadingIndicator.style.display = 'inline-flex';
+      iconElement.classList.remove('opacity-100');
+      iconElement.classList.add('opacity-0');
+    }
+
+    // 初始状态
+    showLoading();
+
+    // 监听图标加载事件
+    iconElement.addEventListener('load', () => {
+      showIcon();
+    });
+
+    // 监听图标加载错误
+    iconElement.addEventListener('error', () => {
+      // 保持显示fallback
+      console.warn(`Failed to load icon: ${icon}`);
+    });
+
+    // 使用MutationObserver监听shadow DOM变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        if (checkIconLoaded()) {
+          observer.disconnect();
+        }
+      });
+
+      // 监听iconify-icon元素的变化
+      observer.observe(iconElement, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+
+      // 设置超时，避免无限等待
+      setTimeout(() => {
+        observer.disconnect();
+        if (!checkIconLoaded()) {
+          console.warn(`Icon load timeout: ${icon}`);
+        }
+      }, 5000);
+    }
+
+    // 立即检查一次（可能已经加载完成）
+    setTimeout(() => {
+      checkIconLoaded();
+    }, 100);
+  })();
+})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 计算机科学与技术学士学位(在学) </h3> <div class="text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 长春理工大学  </div> </div> <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" data-astro-cid-qlh7ngej> 教育经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2024年9月 - 至今 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>1 年 1 个月</div>  <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>📍 长春</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 系统学习计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>GPA: 3.14/5.0</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>获得校级优秀学生奖学金</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>参与多个课程项目和实习</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Java </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Python </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> MySQL </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Linux </span> </div> </div>  </div> </div><div class="relative flex items-start gap-6" data-astro-cid-qlh7ngej> <!-- 时间线节点 --> <div class="relative z-10 w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #7C3AED" data-astro-cid-qlh7ngej> <span class="inline-flex items-center justify-center text-base text-xl text-white" style="color: white;" data-icon-container="icon-f3247llns" data-astro-cid-qpfihmil> <!-- 加载状态指示器 --> <span class="icon-loading animate-pulse opacity-50" data-loading-indicator data-astro-cid-qpfihmil> 开 </span> <!-- 实际图标 --> <iconify-icon icon="material-symbols:code" class="icon-content opacity-0 transition-opacity duration-200" data-icon-element="true" loading="eager" data-astro-cid-qpfihmil="true"></iconify-icon> </span> <script>(function(){const iconId = "icon-f3247llns";
+const icon = "material-symbols:code";
+
+  // 图标加载和显示逻辑
+  (function() {
+    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
+    if (!container) return;
+    
+    const loadingIndicator = container.querySelector('[data-loading-indicator]');
+    const iconElement = container.querySelector('[data-icon-element]');
+    
+    if (!loadingIndicator || !iconElement) return;
+
+    // 检查图标是否已经加载
+    function checkIconLoaded() {
+      // 检查iconify-icon元素是否已经渲染
+      const hasContent = iconElement.shadowRoot && 
+                        iconElement.shadowRoot.children.length > 0;
+      
+      if (hasContent) {
+        showIcon();
+        return true;
+      }
+      return false;
+    }
+
+    // 显示图标，隐藏加载指示器
+    function showIcon() {
+      loadingIndicator.style.display = 'none';
+      iconElement.classList.remove('opacity-0');
+      iconElement.classList.add('opacity-100');
+    }
+
+    // 显示加载指示器，隐藏图标
+    function showLoading() {
+      loadingIndicator.style.display = 'inline-flex';
+      iconElement.classList.remove('opacity-100');
+      iconElement.classList.add('opacity-0');
+    }
+
+    // 初始状态
+    showLoading();
+
+    // 监听图标加载事件
+    iconElement.addEventListener('load', () => {
+      showIcon();
+    });
+
+    // 监听图标加载错误
+    iconElement.addEventListener('error', () => {
+      // 保持显示fallback
+      console.warn(`Failed to load icon: ${icon}`);
+    });
+
+    // 使用MutationObserver监听shadow DOM变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        if (checkIconLoaded()) {
+          observer.disconnect();
+        }
+      });
+
+      // 监听iconify-icon元素的变化
+      observer.observe(iconElement, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+
+      // 设置超时，避免无限等待
+      setTimeout(() => {
+        observer.disconnect();
+        if (!checkIconLoaded()) {
+          console.warn(`Icon load timeout: ${icon}`);
+        }
+      }, 5000);
+    }
+
+    // 立即检查一次（可能已经加载完成）
+    setTimeout(() => {
+      checkIconLoaded();
+    }, 100);
+  })();
+})();</script>  </div> <!-- 内容卡片 --> <div class="flex-1 bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg transition-shadow duration-300" data-astro-cid-qlh7ngej> <div class="flex items-start justify-between mb-3" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> <h3 class="text-xl font-semibold text-black/90 dark:text-white/90 mb-1" data-astro-cid-qlh7ngej> 开始编程学习 </h3>  </div> <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" data-astro-cid-qlh7ngej> 教育经历 </span> </div> <div class="flex items-center gap-4 mb-3 text-sm text-black/60 dark:text-white/60" data-astro-cid-qlh7ngej> <div data-astro-cid-qlh7ngej> 2024年7月 - 至今 </div> <div data-astro-cid-qlh7ngej>•</div> <div data-astro-cid-qlh7ngej>1 年 3 个月</div>  </div> <p class="text-black/70 dark:text-white/70 mb-4" data-astro-cid-qlh7ngej> 第一次接触编程，从C语言和C++开始，逐步学习Java和其他技术。 </p> <div class="mb-4" data-astro-cid-qlh7ngej> <h4 class="text-sm font-semibold text-black/80 dark:text-white/80 mb-2" data-astro-cid-qlh7ngej> 成就荣誉 </h4> <ul class="space-y-1" data-astro-cid-qlh7ngej> <li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>完成了第一个编程语法学习</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>掌握了C/C++基本语法</span> </li><li class="text-sm text-black/70 dark:text-white/70 flex items-start gap-2" data-astro-cid-qlh7ngej> <span class="text-green-500 mt-1" data-astro-cid-qlh7ngej>•</span> <span data-astro-cid-qlh7ngej>培养了对编程的兴趣</span> </li> </ul> </div> <div class="mb-4" data-astro-cid-qlh7ngej> <div class="flex flex-wrap gap-1" data-astro-cid-qlh7ngej> <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> C语言 </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> C++ </span><span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 rounded" data-astro-cid-qlh7ngej> Java </span> </div> </div>  </div> </div> </div> </div> </div> <!-- 类型统计 --> <div class="mt-12 pt-8 border-t border-black/10 dark:border-white/10" data-astro-cid-qlh7ngej> <h2 class="text-2xl font-bold text-black/90 dark:text-white/90 mb-6" data-astro-cid-qlh7ngej> 统计信息 </h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-astro-cid-qlh7ngej> <!-- 按类型分布 --> <div data-astro-cid-qlh7ngej> <h3 class="text-lg font-semibold text-black/80 dark:text-white/80 mb-4" data-astro-cid-qlh7ngej> 按类型分组 </h3> <div class="space-y-3" data-astro-cid-qlh7ngej> <div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 教育经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-blue-500" style="width: 50%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 2 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 工作经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-green-500" style="width: 0%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 0 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 项目经历 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-purple-500" style="width: 25%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 1 </div> </div><div class="flex items-center gap-3" data-astro-cid-qlh7ngej> <div class="w-20 text-sm text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej> 成就荣誉 </div> <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2" data-astro-cid-qlh7ngej> <div class="h-2 rounded-full transition-all duration-500 bg-orange-500" style="width: 25%" data-astro-cid-qlh7ngej></div> </div> <div class="w-12 text-sm text-black/70 dark:text-white/70 text-right" data-astro-cid-qlh7ngej> 1 </div> </div> </div> </div> <!-- 工作经验详情 --> <div data-astro-cid-qlh7ngej> <h3 class="text-lg font-semibold text-black/80 dark:text-white/80 mb-4" data-astro-cid-qlh7ngej> 工作经验 </h3> <div class="space-y-3" data-astro-cid-qlh7ngej> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>总工作经验</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 0 年 0 个月 </span> </div> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>工作岗位数</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej>0</span> </div> <div class="flex justify-between items-center" data-astro-cid-qlh7ngej> <span class="text-black/70 dark:text-white/70" data-astro-cid-qlh7ngej>当前状态</span> <span class="font-semibold text-black/90 dark:text-white/90" data-astro-cid-qlh7ngej> 可入职 </span> </div> </div> </div> </div> </div> </div> </div>  <div class="footer col-span-2 onload-animation hidden lg:block" data-astro-cid-haiuh7kc> <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">--><div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">--> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="transition text-50 text-sm text-center"> 
 &copy; <span id="copyright-year">2025</span> Sirens007. All Rights Reserved. /
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/rss.xml">RSS</a> /
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
