@@ -14,8 +14,7 @@
 		"format": "biome format --write ./src",
 		"lint": "biome check --write ./src",
 		"predeploy": "pnpm build",
-  		"deploy": "gh-pages -d dist -r https://github.com/Sirens007/Sirens007.github.io.git",
-		"preinstall": "npx only-allow pnpm"
+  		"deploy": "gh-pages -d dist -r https://github.com/Sirens007/Sirens007.github.io.git"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
