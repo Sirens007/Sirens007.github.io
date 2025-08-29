@@ -569,7 +569,7 @@ build:
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.mizuki.mysqil.com/guide/deployment/#%E9%85%8D%E7%BD%AE-github-action&quot;&gt;部署 | Mizuki主题官方文档&lt;/a&gt;&lt;/p&gt;
 </content:encoded></item><item><title>Git基础命令</title><link>https://sirens007.github.io/posts/git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</link><guid isPermaLink="true">https://sirens007.github.io/posts/git%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</guid><description>一篇关于 Git基础命令的笔记.</description><pubDate>Wed, 20 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;📝Git工作流程&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;assets%5Cphoto1.png&quot; alt=&quot;photo1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/photo1.png&quot; alt=&quot;photo1&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;1.克隆仓库&lt;/h3&gt;
 &lt;p&gt;如果你要参与一个已有的项目，通常会创建一个新的分支：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git clone https://github.com/username/repo.git
@@ -690,7 +690,7 @@ git config --global user.email &quot;2921646312@qq.com&quot;
 &lt;p&gt;&amp;lt;font style=&quot;color:rgb(51, 51, 51);&quot;&amp;gt;Git 的工作就是创建和保存你项目的快照及与之后的快照进行对比。&amp;lt;/font&amp;gt;&lt;/p&gt;
 &lt;p&gt;&amp;lt;font style=&quot;color:rgb(51, 51, 51);&quot;&amp;gt;本章将对有关创建与提交你的项目快照的命令作介绍。&amp;lt;/font&amp;gt;&lt;/p&gt;
 &lt;p&gt;&amp;lt;font style=&quot;color:rgb(51, 51, 51);&quot;&amp;gt;Git常用的是以下6个命令：git clone、git push、git add、git commit、git checkout、git pull，之后会详细介绍&amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;assets/photo2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/photo2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;说明：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;workplace：工作区&lt;/li&gt;
