@@ -24,32 +24,32 @@ export interface TimelineItem {
 }
 
 export const timelineData: TimelineItem[] = [
-	{
-		id: 'current-work',
-		title: '全栈开发工程师',
-		description: '负责Web应用的前后端开发，参与产品架构设计和技术选型，带领团队完成多个重要项目。',
-		type: 'work',
-		startDate: '2023-06-01',
-		location: '北京',
-		organization: 'TechCorp Inc.',
-		position: 'Senior Full Stack Developer',
-		skills: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'AWS'],
-		achievements: [
-			'主导开发了公司核心产品的前端架构重构',
-			'优化系统性能，页面加载速度提升40%',
-			'建立了完善的代码审查和测试流程'
-		],
-		icon: 'material-symbols:work',
-		color: '#2563EB',
-		featured: true
-	},
+	// {
+	// 	id: 'current-work',
+	// 	title: '全栈开发工程师',
+	// 	description: '负责Web应用的前后端开发，参与产品架构设计和技术选型，带领团队完成多个重要项目。',
+	// 	type: 'work',
+	// 	startDate: '2023-06-01',
+	// 	location: '北京',
+	// 	organization: 'TechCorp Inc.',
+	// 	position: 'Senior Full Stack Developer',
+	// 	skills: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'AWS'],
+	// 	achievements: [
+	// 		'主导开发了公司核心产品的前端架构重构',
+	// 		'优化系统性能，页面加载速度提升40%',
+	// 		'建立了完善的代码审查和测试流程'
+	// 	],
+	// 	icon: 'material-symbols:work',
+	// 	color: '#2563EB',
+	// 	featured: true
+	// },
 	{
 		id: 'mizuki-project',
 		title: 'Mizuki博客主题开源项目',
-		description: '基于Astro框架开发的现代化博客主题，获得了社区的广泛认可和使用。',
+		description: '基于Astro框架开发的现代化博客主题，在此基础上不断优化。',
 		type: 'project',
-		startDate: '2024-01-01',
-		endDate: '2024-06-01',
+		startDate: '2025-06-27',
+		endDate: '2025-08-27',
 		skills: ['Astro', 'TypeScript', 'Tailwind CSS', 'Svelte'],
 		achievements: [
 			'GitHub获得500+ Stars',
@@ -59,12 +59,12 @@ export const timelineData: TimelineItem[] = [
 		links: [
 			{
 				name: 'GitHub Repository',
-				url: 'https://github.com/example/mizuki',
+				url: 'https://github.com/Sirens007/MyStorage',
 				type: 'project'
 			},
 			{
 				name: 'Live Demo',
-				url: 'https://mizuki-demo.example.com',
+				url: 'https://sirens007.github.io/',
 				type: 'website'
 			}
 		],
@@ -72,54 +72,73 @@ export const timelineData: TimelineItem[] = [
 		color: '#059669',
 		featured: true
 	},
+	// {
+	// 	id: 'frontend-developer',
+	// 	title: '前端开发工程师',
+	// 	description: '专注于React生态系统开发，负责多个企业级Web应用的前端架构和开发。',
+	// 	type: 'work',
+	// 	startDate: '2022-03-01',
+	// 	endDate: '2023-05-31',
+	// 	location: '上海',
+	// 	organization: 'WebTech Solutions',
+	// 	position: 'Frontend Developer',
+	// 	skills: ['React', 'JavaScript', 'CSS3', 'Webpack', 'Jest'],
+	// 	achievements: [
+	// 		'开发了公司主要产品的用户界面',
+	// 		'建立了组件库和设计系统',
+	// 		'提升了团队的开发效率和代码质量'
+	// 	],
+	// 	icon: 'material-symbols:work',
+	// 	color: '#DC2626'
+	// },
+	// {
+	// 	id: 'react-certification',
+	// 	title: 'React开发者认证',
+	// 	description: '通过了React官方认证考试，证明了在React开发方面的专业能力。',
+	// 	type: 'achievement',
+	// 	startDate: '2022-08-15',
+	// 	organization: 'Meta (Facebook)',
+	// 	links: [
+	// 		{
+	// 			name: 'Certificate',
+	// 			url: 'https://certificates.example.com/react-cert',
+	// 			type: 'certificate'
+	// 		}
+	// 	],
+	// 	icon: 'material-symbols:verified',
+	// 	color: '#7C3AED'
+	// },
 	{
-		id: 'frontend-developer',
-		title: '前端开发工程师',
-		description: '专注于React生态系统开发，负责多个企业级Web应用的前端架构和开发。',
-		type: 'work',
-		startDate: '2022-03-01',
-		endDate: '2023-05-31',
-		location: '上海',
-		organization: 'WebTech Solutions',
-		position: 'Frontend Developer',
-		skills: ['React', 'JavaScript', 'CSS3', 'Webpack', 'Jest'],
+		id: 'information-security-competition',
+		title: '全国大学生信息安全竞赛',
+		description: '负责Web方向题目的flag获取。',
+		type: 'achievement',
+		startDate: '2025-05-01',
+		endDate: '2025-07-02',
+		location: '长春',
+		organization: '北京理工大学',
+		position: 'Web direction.',
+		skills: ['PHP反序列化', 'Python', 'C++', 'MySQL', '图片上传'],
 		achievements: [
-			'开发了公司主要产品的用户界面',
-			'建立了组件库和设计系统',
-			'提升了团队的开发效率和代码质量'
+			'调试脚本与分析源码',
+			'积累了信息搜集、加密算法绕过与身份认证测试',
+			'带领团队拿到web方向题目的flag'
 		],
 		icon: 'material-symbols:work',
-		color: '#DC2626'
-	},
-	{
-		id: 'react-certification',
-		title: 'React开发者认证',
-		description: '通过了React官方认证考试，证明了在React开发方面的专业能力。',
-		type: 'achievement',
-		startDate: '2022-08-15',
-		organization: 'Meta (Facebook)',
-		links: [
-			{
-				name: 'Certificate',
-				url: 'https://certificates.example.com/react-cert',
-				type: 'certificate'
-			}
-		],
-		icon: 'material-symbols:verified',
-		color: '#7C3AED'
+		color: '#2563EB',
+		featured: true
 	},
 	{
 		id: 'computer-science-degree',
-		title: '计算机科学与技术学士学位',
-		description: '系统学习了计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。',
+		title: '计算机科学与技术学士学位(在学)',
+		description: '系统学习计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。',
 		type: 'education',
-		startDate: '2018-09-01',
-		endDate: '2022-06-30',
-		location: '北京',
-		organization: '北京理工大学',
+		startDate: '2024-09-01',
+		location: '长春',
+		organization: '长春理工大学',
 		skills: ['Java', 'C++', 'Python', 'MySQL', 'Linux'],
 		achievements: [
-			'GPA: 3.8/4.0',
+			'GPA: 3.14/5.0',
 			'获得校级优秀学生奖学金',
 			'参与多个课程项目和实习'
 		],
@@ -127,60 +146,60 @@ export const timelineData: TimelineItem[] = [
 		color: '#059669',
 		featured: true
 	},
-	{
-		id: 'internship-experience',
-		title: '软件开发实习生',
-		description: '在大学期间的实习经历，参与了Web应用开发和数据库设计工作。',
-		type: 'work',
-		startDate: '2021-07-01',
-		endDate: '2021-09-30',
-		location: '北京',
-		organization: 'StartupTech',
-		position: 'Software Development Intern',
-		skills: ['JavaScript', 'Vue.js', 'Node.js', 'MySQL'],
-		achievements: [
-			'完成了用户管理系统的开发',
-			'学习了敏捷开发流程',
-			'获得了实习优秀表现奖'
-		],
-		icon: 'material-symbols:work',
-		color: '#EA580C'
-	},
-	{
-		id: 'hackathon-winner',
-		title: '黑客马拉松比赛获奖',
-		description: '在48小时内开发了一个创新的Web应用，获得了最佳技术实现奖。',
-		type: 'achievement',
-		startDate: '2021-11-20',
-		endDate: '2021-11-22',
-		location: '上海',
-		organization: 'TechHackathon 2021',
-		skills: ['React', 'Express.js', 'MongoDB', 'Socket.io'],
-		achievements: [
-			'获得最佳技术实现奖',
-			'团队协作完成复杂项目',
-			'在短时间内学习新技术'
-		],
-		links: [
-			{
-				name: 'Project Demo',
-				url: 'https://hackathon-project.example.com',
-				type: 'project'
-			}
-		],
-		icon: 'material-symbols:emoji-events',
-		color: '#DC2626'
-	},
+	// {
+	// 	id: 'internship-experience',
+	// 	title: '软件开发实习生',
+	// 	description: '在大学期间的实习经历，参与了Web应用开发和数据库设计工作。',
+	// 	type: 'work',
+	// 	startDate: '2021-07-01',
+	// 	endDate: '2021-09-30',
+	// 	location: '北京',
+	// 	organization: 'StartupTech',
+	// 	position: 'Software Development Intern',
+	// 	skills: ['JavaScript', 'Vue.js', 'Node.js', 'MySQL'],
+	// 	achievements: [
+	// 		'完成了用户管理系统的开发',
+	// 		'学习了敏捷开发流程',
+	// 		'获得了实习优秀表现奖'
+	// 	],
+	// 	icon: 'material-symbols:work',
+	// 	color: '#EA580C'
+	// },
+	// {
+	// 	id: 'hackathon-winner',
+	// 	title: '黑客马拉松比赛获奖',
+	// 	description: '在48小时内开发了一个创新的Web应用，获得了最佳技术实现奖。',
+	// 	type: 'achievement',
+	// 	startDate: '2021-11-20',
+	// 	endDate: '2021-11-22',
+	// 	location: '上海',
+	// 	organization: 'TechHackathon 2021',
+	// 	skills: ['React', 'Express.js', 'MongoDB', 'Socket.io'],
+	// 	achievements: [
+	// 		'获得最佳技术实现奖',
+	// 		'团队协作完成复杂项目',
+	// 		'在短时间内学习新技术'
+	// 	],
+	// 	links: [
+	// 		{
+	// 			name: 'Project Demo',
+	// 			url: 'https://hackathon-project.example.com',
+	// 			type: 'project'
+	// 		}
+	// 	],
+	// 	icon: 'material-symbols:emoji-events',
+	// 	color: '#DC2626'
+	// },
 	{
 		id: 'programming-start',
 		title: '开始编程学习',
-		description: '第一次接触编程，从HTML和CSS开始，逐步学习JavaScript和其他技术。',
+		description: '第一次接触编程，从C语言和C++开始，逐步学习Java和其他技术。',
 		type: 'education',
-		startDate: '2018-01-01',
-		skills: ['HTML', 'CSS', 'JavaScript'],
+		startDate: '2024-07-01',
+		skills: ['C语言', 'C++', 'Java'],
 		achievements: [
-			'完成了第一个个人网站',
-			'掌握了Web开发基础',
+			'完成了第一个编程语法学习',
+			'掌握了C/C++基本语法',
 			'培养了对编程的兴趣'
 		],
 		icon: 'material-symbols:code',
