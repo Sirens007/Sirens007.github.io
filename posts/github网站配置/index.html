@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" class="bg-[var(--page-bg)] text-[14px] md:text-[16px]" data-overlayscrollbars-initialize data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 210;--page-width: 90rem;"> <head><title>GitHub Pages配置 - Sirens007&#39;s</title><meta charset="UTF-8"><meta name="description" content="一篇关于建立GitHub Pages博客的文章."><meta name="author" content="Sirens007"><script defer src="https://cloud.umami.is/script.js" data-website-id="ea489d16-26ca-4e9e-a6d5-f0abb1e32193"></script><meta property="og:site_name" content="Sirens007's"><meta property="og:url" content="https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/"><meta property="og:title" content="GitHub Pages配置 - Sirens007's"><meta property="og:description" content="一篇关于建立GitHub Pages博客的文章."><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/"><meta name="twitter:title" content="GitHub Pages配置 - Sirens007's"><meta name="twitter:description" content="一篇关于建立GitHub Pages博客的文章."><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.13.2"><link rel="icon" href="/favicon/favicon-light-32.png" sizes="32x32" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-128.png" sizes="128x128" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-180.png" sizes="180x180" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-192.png" sizes="192x192" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-dark-32.png" sizes="32x32" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-128.png" sizes="128x128" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-180.png" sizes="180x180" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-192.png" sizes="192x192" media="(prefers-color-scheme: dark)"><!-- Set the theme before the page is rendered to avoid a flash --><script>(function(){const DEFAULT_THEME = "auto";
+<!DOCTYPE html><html lang="zh-CN" class="bg-[var(--page-bg)] text-[14px] md:text-[16px]" data-overlayscrollbars-initialize data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 210;--page-width: 90rem;"> <head><title>GitHub Pages配置 - Sirens007&#39;s</title><meta charset="UTF-8"><meta name="description" content="一篇关于建立GitHub Pages博客的文章."><meta name="author" content="Sirens007"><script defer src="https://eu.umami.is/script.js" data-website-id="ea489d16-26ca-4e9e-a6d5-f0abb1e32193"></script><meta property="og:site_name" content="Sirens007's"><meta property="og:url" content="https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/"><meta property="og:title" content="GitHub Pages配置 - Sirens007's"><meta property="og:description" content="一篇关于建立GitHub Pages博客的文章."><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://sirens007.github.io/posts/github%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE/"><meta name="twitter:title" content="GitHub Pages配置 - Sirens007's"><meta name="twitter:description" content="一篇关于建立GitHub Pages博客的文章."><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.13.2"><link rel="icon" href="/favicon/favicon-light-32.png" sizes="32x32" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-128.png" sizes="128x128" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-180.png" sizes="180x180" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-light-192.png" sizes="192x192" media="(prefers-color-scheme: light)"><link rel="icon" href="/favicon/favicon-dark-32.png" sizes="32x32" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-128.png" sizes="128x128" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-180.png" sizes="180x180" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon/favicon-dark-192.png" sizes="192x192" media="(prefers-color-scheme: dark)"><!-- Set the theme before the page is rendered to avoid a flash --><script>(function(){const DEFAULT_THEME = "auto";
 const LIGHT_MODE = "light";
 const DARK_MODE = "dark";
 const AUTO_MODE = "auto";
@@ -505,31 +505,59 @@ const umamiRegion = "eu";
                                 const websiteId = shareData.websiteId || shareData.website_id || shareData.id;
                                 console.log('PostMeta token:', token, 'websiteId:', websiteId);
                                 
-                                const url = `https://${region}.umami.is/api/websites/${websiteId}/stats?` +
-                                    new URLSearchParams({
-                                        startAt: '1753333200000',
-                                        endAt: Date.now(),
-                                        unit: 'hour',
-                                        timezone: 'Asia/Shanghai',
-                                        url: pathname,
-                                        compare: 'false',
+                                // 尝试多种 API 调用方式
+                                const tryFetchStats = async (params) => {
+                                    const url = `https://${region}.umami.is/api/websites/${websiteId}/stats?` + new URLSearchParams(params);
+                                    console.log('PostMeta trying statsUrl:', url);
+                                    
+                                    const res = await fetch(url, {
+                                        method: 'GET',
+                                        headers: {
+                                            'x-umami-share-token': token,
+                                        },
                                     });
-                                console.log('PostMeta statsUrl:', url);
+                                    
+                                    const data = await res.json();
+                                    console.log('PostMeta stats response:', { status: res.status, data });
+                                    
+                                    return { ok: res.ok, data };
+                                };
                                 
-                                const res = await fetch(url, {
-                                    method: 'GET',
-                                    headers: {
-                                        'x-umami-share-token': token,
-                                    },
+                                // 方式1：使用 url 参数
+                                let result = await tryFetchStats({
+                                    startAt: '1609459200000', // 2021年1月1日
+                                    endAt: Date.now().toString(),
+                                    unit: 'day',
+                                    timezone: 'Asia/Shanghai',
+                                    url: pathname,
                                 });
-                                console.log('PostMeta stats res status:', res.status);
                                 
-                                const data = await res.json();
-                                console.log('PostMeta stats data:', data);
+                                // 方式2：如果方式1失败，尝试使用 path 参数
+                                if (!result.ok || (result.data?.pageviews?.value === 0 && result.data?.visits?.value === 0)) {
+                                    console.log('PostMeta trying alternative API call with path parameter');
+                                    result = await tryFetchStats({
+                                        startAt: '1609459200000',
+                                        endAt: Date.now().toString(),
+                                        unit: 'day',
+                                        timezone: 'Asia/Shanghai',
+                                        path: pathname,
+                                    });
+                                }
                                 
-                                if (res.ok) {
-                                    const pageviews = data?.pageviews?.value ?? 'N/A';
-                                    const visits = data?.visits?.value ?? 'N/A';
+                                // 方式3：如果还是失败，尝试不带路径参数的总体统计
+                                if (!result.ok || (result.data?.pageviews?.value === 0 && result.data?.visits?.value === 0)) {
+                                    console.log('PostMeta trying general stats without path filter');
+                                    result = await tryFetchStats({
+                                        startAt: '1609459200000',
+                                        endAt: Date.now().toString(),
+                                        unit: 'day',
+                                        timezone: 'Asia/Shanghai',
+                                    });
+                                }
+                                
+                                if (result.ok) {
+                                    const pageviews = result.data?.pageviews?.value ?? 0;
+                                    const visits = result.data?.visits?.value ?? 0;
                                     document.getElementById('post-umami-pageviews').textContent = pageviews;
                                     document.getElementById('post-umami-visits').textContent = visits;
                                 } else {
@@ -542,7 +570,13 @@ const umamiRegion = "eu";
                                 document.getElementById('post-umami-visits').textContent = 'Error';
                             }
                         };
-                        fetchUmamiStats();
+                        
+                        // 延迟执行，确保页面完全加载
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', fetchUmamiStats);
+                        } else {
+                            fetchUmamiStats();
+                        }
                     })();</script>  </div> <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div> </div> <!-- always show cover as long as it has one -->  <div data-pagefind-body class="prose dark:prose-invert prose-base !max-w-none custom-md mb-6 markdown-content onload-animation"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="环境依赖">环境依赖<a class="anchor" href="#环境依赖"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>在开始使用 Mizuki 之前，您需要确保系统满足以下要求：</p><ul>
 <li><strong>Node.js >= 20</strong></li>
 <li><strong>pnpm >= 9</strong></li>
