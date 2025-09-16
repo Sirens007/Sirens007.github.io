@@ -1,4 +1,304 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java-part1</title><link>https://sirens007.github.io/posts/java-3/java-3/</link><guid isPermaLink="true">https://sirens007.github.io/posts/java-3/java-3/</guid><description>初步学习Java语法.</description><pubDate>Wed, 03 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;第一节.标识符&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java SE2</title><link>https://sirens007.github.io/posts/javase2/</link><guid isPermaLink="true">https://sirens007.github.io/posts/javase2/</guid><description>初步学习Java语法.</description><pubDate>Tue, 16 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;第四节.运算符&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;1.仅补充%&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;System.out.println(10%3);//1
+System.out.println(-10%3);//-1
+System.out.println(10%-3);//1
+System.out.println(-10%-3);//-1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2.前置++与后置++&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以理解为+号在前面就先加，加号在后面就不加&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;int a = 1;
+int b = ++a;
+int c = a++;
+
+System.out.println(b);	//2
+System.out.println(c);	//1
+
+//但要注意
+a=a++;	//1,与c++不同
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3.关系运算符&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;lt; , &amp;gt; , &amp;lt;= , &amp;gt;= ,==  返回值：true or false;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;4.逻辑运算符&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;th&gt;结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;逻辑与（都为真才真）&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true &amp;amp;&amp;amp; false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;`&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;`&lt;/td&gt;
+&lt;td&gt;逻辑或（有一个真就真）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;逻辑非（取反）&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;!true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;逻辑与&lt;/p&gt;
+&lt;p&gt;1.两个表达式必须都是布尔表达式&lt;/p&gt;
+&lt;p&gt;2.如果第一个表达式为假，那么就不会执行第二个表达式&lt;/p&gt;
+&lt;p&gt;逻辑或&lt;/p&gt;
+&lt;p&gt;1.两个表达式必须都是布尔表达式&lt;/p&gt;
+&lt;p&gt;2.只要有一个为真，那么整体为真&lt;/p&gt;
+&lt;p&gt;3.假设第一个为真，那么第二个就不会执行&lt;/p&gt;
+&lt;p&gt;逻辑非&lt;/p&gt;
+&lt;p&gt;1.作用在布尔表达式&lt;/p&gt;
+&lt;p&gt;&amp;amp; 和 | 如果表达式结果为 boolean 时，也表示逻辑运算，但与 &amp;amp;&amp;amp; || 相比，他们不支持短路求值，&lt;/p&gt;
+&lt;p&gt;如果两边不是布尔表达式，那么还是按位与 按位或操作&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;System.out.println(10 &amp;gt; 20 &amp;amp; 10 / 0 ==0)l;		//程序输出异常
+System.out.println(10 &amp;lt; 20 | 10 / 0 ==0)l;		//程序输出异常
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;他们逻辑符号两侧都会执行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5.位运算符&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按位与&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;00001010
+00010100
+---------
+00000000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;按位或&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;00001010
+00010100
+---------
+00011110
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;按位异或：如果该位为 0 则转为 1，如果该位为 1 则转为 0&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;1.左移1位，相当于原数字 *2，左移N位，相当于原数字 *2 的N次方.&lt;/p&gt;
+&lt;p&gt;2.右移1位，相当于原数字 /2，右移N位，相当于原数字 /2 的N次方.&lt;/p&gt;
+&lt;p&gt;3.偶遇计算机计算位移效率高于计算乘除，当某个代码正好乘除 2 的N次方的时候可以用位移运算代替.&lt;/p&gt;
+&lt;p&gt;4.移动负数位或者移位位数过大都没有意义.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;第五节.循环语句&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;for&lt;/code&gt; 循环&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;适合：已知次数的循环&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int i = 1; i &amp;lt;= 5; i++) {
+    System.out.println(&quot;第 &quot; + i + &quot; 次执行&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;执行结果：打印 1 到 5。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;while&lt;/code&gt; 循环&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;适合：不知道循环次数，但有一个条件控制&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int i = 1;
+while (i &amp;lt;= 5) {
+    System.out.println(&quot;第 &quot; + i + &quot; 次执行&quot;);
+    i++;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;和上面的效果一样。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;do...while&lt;/code&gt; 循环&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;至少执行一次&lt;/strong&gt;，再判断条件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int i = 1;
+do {
+    System.out.println(&quot;第 &quot; + i + &quot; 次执行&quot;);
+    i++;
+} while (i &amp;lt;= 5);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;和 &lt;code&gt;while&lt;/code&gt; 的区别是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- `while`：先判断，再执行。
+- `do...while`：先执行，再判断。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;switch&lt;/code&gt;语句&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;适合选项&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;switch(表达式){
+    case 常量值1:{
+        语句1;
+        [break;]
+    }
+    case 常量值2:{
+        语句2;
+        [break;]
+    }
+    ...
+    default:{
+        内容都不满足时执行语句;
+        [break;]
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;多个&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;case&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;后的常量值不可以重复 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;switch&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;的括号内只能是以下类型的表达式： &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;基本类型：byte、char、short、int，注意不能是long类型 &amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;引用类型：String常量串、枚举类型&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;第六节.数组（Array）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;什么是数组？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;数组就是 &lt;strong&gt;一组相同类型的数据&lt;/strong&gt; 的集合。&lt;/li&gt;
+&lt;li&gt;它可以用一个名字存放多个数据，并通过 &lt;strong&gt;下标（索引）&lt;/strong&gt; 来访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] scores = {95, 88, 76, 100};
+System.out.println(scores[0]); // 输出第一个元素 95
+System.out.println(scores[3]); // 输出第四个元素 100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👉 注意：数组的下标是 &lt;strong&gt;从 0 开始&lt;/strong&gt; 的。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数组的声明与初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;数组的初始化主要分为&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;动态初始化以及静态初始化&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;。 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1. &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;动态初始化：在创建数组时，直接指定数组中元素的个数 &amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] array = new int[10];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;2. &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;静态初始化：在创建数组时不直接指定数据元素个数，而直接将具体的数据内容进行指定 &amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;语法格式： T[] 数组名称 = {data1, data2, data3, ..., datan};&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] array1 = new int[]{0,1,2,3,4,5,6,7,8,9};
+double[] array2 = new double[]{1.0, 2.0, 3.0, 4.0, 5.0};
+String[] array3 = new String[]{&quot;hell&quot;, &quot;Java&quot;, &quot;!!!&quot;};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;【注意事项】 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;静态初始化虽然没有指定数组的长度，编译器在编译时会根据&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;{}&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;中元素个数来确定数组的长度。 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;静态初始化时&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;, {}&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;中数据类型必须与&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;[]&amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;前数据类型一致。 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;静态初始化可以简写，省去后面的new T[]。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;3.数组初始化内容&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;默认值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;byte&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;short&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;long&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float&lt;/td&gt;
+&lt;td&gt;0.0f&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;double&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;char&lt;/td&gt;
+&lt;td&gt;/u0000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;遍历数组&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;用循环来访问数组的所有元素：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] arr = {10, 20, 30, 40, 50};
+for (int i = 0; i &amp;lt; arr.length; i++) {
+    System.out.println(&quot;第 &quot; + (i+1) + &quot; 个元素：&quot; + arr[i]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里 &lt;code&gt;arr.length&lt;/code&gt; 表示数组的长度。&lt;/p&gt;
+&lt;p&gt;5.二维数组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;数据类型[][] 数组名称 = new 数据类型 [行数][列数];
+数据类型[][] 数组名称 = new 数据类型 [][] { 初始化数据 };
+数据类型[][] 数组名称 = new 数据类型 [行数][];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;补充对二维数组是一维数组的深度理解&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[][] array ={{1,2,3},{4,5,6}};
+System.out.println(array.length); //2
+System.out.println(array[0].length);//3
+System.out.println(Arrays.toString(array[1])); //[4, 5, 6]
+String ret = System.out.println(Arrays.deepToString(array));
+System.out.println(ret);	//[[1,2,3],[4,5,6]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中array的底层为图中所示&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/image.CBPApiEO_Z1BCPfK.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;数组补充内容&lt;/h3&gt;
+&lt;h4&gt;1. 找最大值和最小值&lt;/h4&gt;
+&lt;p&gt;思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;假设第一个元素是最大/最小值。&lt;/li&gt;
+&lt;li&gt;遍历数组，依次比较更新。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;int[] arr = {12, 45, 7, 89, 23};
+int max = arr[0];
+int min = arr[0];
+
+for (int i = 1; i &amp;lt; arr.length; i++) {
+    if (arr[i] &amp;gt; max) {
+        max = arr[i];
+    }
+    if (arr[i] &amp;lt; min) {
+        min = arr[i];
+    }
+}
+System.out.println(&quot;最大值：&quot; + max);
+System.out.println(&quot;最小值：&quot; + min);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;2. 倒序输出数组&lt;/h4&gt;
+&lt;p&gt;有时我们希望反过来输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] arr = {1, 2, 3, 4, 5};
+for (int i = arr.length - 1; i &amp;gt;= 0; i--) {
+    System.out.print(arr[i] + &quot; &quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👉 这个思路也能用于「数组反转」。&lt;/p&gt;
+&lt;h4&gt;3. for each遍历（增强 for 循环）&lt;/h4&gt;
+&lt;p&gt;Java 提供了简化的遍历写法（但不能改变数组里的值）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[] arr = {10, 20, 30};
+for (int num : arr) {
+    System.out.println(num);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;4. 多维数组（二维数组）&lt;/h4&gt;
+&lt;p&gt;二维数组 = 表格。&lt;br /&gt;
+比如存放学生成绩（3 个学生，每人 2 门课）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int[][] scores = {
+    {90, 85},
+    {70, 88},
+    {100, 95}
+};
+System.out.println(scores[0][1]); // 第1个学生的第2门课成绩 85
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Java SE1</title><link>https://sirens007.github.io/posts/javase/</link><guid isPermaLink="true">https://sirens007.github.io/posts/javase/</guid><description>初步学习Java语法.</description><pubDate>Wed, 03 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;第一节.标识符&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;即：在程序中由用户给类名、方法名或者变量所取的名字。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;有效字符：数字、字母、下划线、美元符号&lt;/p&gt;
 &lt;p&gt;其中&amp;lt;span style=&quot;color:red&quot;&amp;gt;&lt;strong&gt;不能以数字开头，不能是关键字除（main），可以以下划线、美元符号开头&lt;/strong&gt;&amp;lt;/span&amp;gt;&lt;/p&gt;
@@ -119,7 +419,7 @@
 &lt;/table&gt;
 &lt;h2&gt;第三节.数据类型与变量&lt;/h2&gt;
 &lt;h3&gt;数据类型&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/java-3.Bh4VUuPZ_Z24P4gU.webp&quot; alt=&quot;photo&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/JavaSE.Bh4VUuPZ_2oFpfU.webp&quot; alt=&quot;photo&quot; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
