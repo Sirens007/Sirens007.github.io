@@ -1,4 +1,690 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java 类与对象</title><link>https://sirens007.github.io/posts/class-and-object/</link><guid isPermaLink="true">https://sirens007.github.io/posts/class-and-object/</guid><description>深度学习Java的类与对象.</description><pubDate>Mon, 22 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.定义类&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java多态 学习笔记</title><link>https://sirens007.github.io/posts/polymorphism/</link><guid isPermaLink="true">https://sirens007.github.io/posts/polymorphism/</guid><description>用实例讲解多态思想</description><pubDate>Sat, 27 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1.多态&amp;lt;/font&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;对一个事物产生不同的态度&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;1.1多态实现条件&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;多态实现的三个必要条件&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必须在父类的继承体系下&lt;/li&gt;
+&lt;li&gt;子类必须要对父类中方法进行重写&lt;/li&gt;
+&lt;li&gt;通过父类的引用调用重写的方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当使用多态方式调用方法时，首先检查父类中是否有该方法，如果没有，则编译错误。&lt;strong&gt;如果有，再去调用子类的同名方法&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;1.2向上转型和向下转型&lt;/h3&gt;
+&lt;h4&gt;1.2.1向上转型&lt;/h4&gt;
+&lt;p&gt;概念：创建一个子类对象，将其当成父类对象来使用。&lt;/p&gt;
+&lt;p&gt;语法格式：父类类型 对象名 = new 子类类型()&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Animal animal = new Cat(&quot;元宝&quot;,2);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;animal是父类类型，但可以引用一个子类对象，因为是从小范围向大范围的转换。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;向上转型的几种方法：&amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;直接赋值&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;方法的传参&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;方法的返回值&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过父类的引用，调用子类特有的方法是无法直接调用的，这里只能调用父类自己的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class Animal{
+    public String name;
+    public Animal(String name){
+        this.name = name;
+    }
+}
+
+class Dog extends Animal{
+    public Dog(String name){
+        super(name);
+    }
+}
+
+class Cat extends Animal{
+    public Cat(String name){
+        super(name);
+    }
+}
+
+public class Test {
+    //方法二：方法的传参
+    public static void function(Animal animal){
+    }
+    //方法三：返回值
+    public static Animal function2(){
+        Dog dog = new Dog(&quot;Papy Dog&quot;);
+        return dog;
+    }
+    public static void main(String[] args) {
+        //方法一：直接赋值
+        Animal dog = new Dog(&quot;Papy Dog&quot;);
+        Cat cat = new Cat(&quot;Papy Cat&quot;);
+        //方法二：方法的传参
+        function(cat);
+        //方法三：返回值
+        Animal dog2 = function2();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;1.2.2向下转型&lt;/h4&gt;
+&lt;p&gt;将一个子类对象经过向上转型之后当成父类方法使用，再无法调用子类的方法，但有时候可能需要调用子类特有的方法，此时：将父类引用再还原为子类对象即可，即向下转换。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758953629320-740b2a05-5f37-4575-84ec-8afb2949448e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;继续根据向上转型的类举例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Animal{
+    public String name;
+    public Animal(String name){
+        this.name = name;
+    }
+}
+
+class Dog extends Animal{
+    public Dog(String name){
+        super(name);
+    }
+}
+
+class Cat extends Animal{
+    public Cat(String name){
+        super(name);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Dog dog = new Dog(&quot;Papy Dog&quot;);
+        Cat cat = new Cat(&quot;Papy Cat&quot;);
+        Animal animal = new Dog(&quot;Papy Dog&quot;);	//向上转型
+        Dog dog = (Dog)animal;		//合法的向下转型
+        //cat = (Cat)animal;		//非法的向下转型
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意向下转型的要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必须先有向上转型（前提）&lt;/li&gt;
+&lt;li&gt;对象的真实类型必须是目标子类或者其子类&lt;/li&gt;
+&lt;li&gt;需要强制类型转换（Cast）&lt;/li&gt;
+&lt;li&gt;推荐&lt;code&gt;instanceof&lt;/code&gt;检查类型（安全转型方式）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;if (a instanceof Dog) {
+    Dog d = (Dog) a;
+    d.bark();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来个比喻呢就是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;向上转型：你把 “iPhone” 当成 “手机” 来用，没问题。&lt;/li&gt;
+&lt;li&gt;向下转型：你把 “手机” 强行当成 “iPhone” 用，只有当它本来就是 iPhone 才行，如果本来是 “小米”，那么立马报错。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.3重写与重载&lt;/h3&gt;
+&lt;h4&gt;1.3.1重写&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;class Animal{
+    public String name;
+    public Animal(String name){
+        this.name = name;
+    }
+    public void eat(){
+        System.out.println(&quot;Animal在吃饭&quot;);
+    }
+}
+
+class Dog extends Animal{
+    public Dog(String name){
+        super(name);
+    }
+    public void eat(){
+        System.out.println(&quot;Dog在吃饭&quot;);
+    }
+}
+
+//输出结果：Dog在吃饭
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以上例子构成了重写，按规则是要调用父类的eat的，但是构成了&lt;strong&gt;动态绑定（&lt;/strong&gt;&amp;lt;font style=&quot;color:#DF2A3F;&quot;&amp;gt;伏笔&amp;lt;/font&amp;gt;&lt;strong&gt;）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;重写(override)&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;：也称为覆盖。重写是子类对父类非静态、非private修饰，非final修饰，非构造方法等的实现过程进行重新编写, &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;形参列表与被重写方法的参数列表必须完全相同&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;方法重写的规则：&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;子类在重写父类的方法时，一般必须与父类方法原型一致： 返回值类型方法名 (参数列表) 要完全一致 &amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;被重写的方法返回值类型可以不同，&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;但是必须是具有父子关系&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;的&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;访问权限&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;不能比父类中被重写的方法的访问权限更低&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;。例如：如果父类方法被public修饰，则子类中重写该方法就不能声明为 protected &amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;父类&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;被static、private修饰的方法&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;、&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;构造方法&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;都不能被重写。 &amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;li&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;重写的方法, 可以使用 @Override 注解来显式指定. 有了这个注解能帮我们进行一些合法性校验. 例如不小心将方法名字拼写错了 (比如写成 aet), 那么此时编译器就会发现父类中没有 aet 方法, 就会编译报错, 提示无法构成重写.&amp;lt;/font&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;对第二点解释：&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Parent {
+    Number getValue() { return 1; }
+}
+class Child extends Parent {
+    @Override
+    Integer getValue() { return 2; } // OK，Integer 是 Number 的子类
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;1.3.2重写与重载的区别&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;区别点&lt;/th&gt;
+&lt;th&gt;重载Overload&lt;/th&gt;
+&lt;th&gt;重写Override&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;参数列表&lt;/td&gt;
+&lt;td&gt;必须修改&lt;/td&gt;
+&lt;td&gt;一定不能修改&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;返回类型&lt;/td&gt;
+&lt;td&gt;可以修改&lt;/td&gt;
+&lt;td&gt;一定不能修改[除非构成父子类关系]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;访问限定符&lt;/td&gt;
+&lt;td&gt;可以修改&lt;/td&gt;
+&lt;td&gt;可以减少或删除，一定不能抛出新的或者更广的异常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;访问&lt;/td&gt;
+&lt;td&gt;可以修改&lt;/td&gt;
+&lt;td&gt;一定不能做更严格的限制（可以降低限制）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;重写的原则：&lt;/p&gt;
+&lt;p&gt;对于已经投入使用的类，尽量不要进行修改。最好的方式是：重新定义一个新的类，来重复利用其中共性的内容，并且添加或者改动新的内容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;父类：DrinkMachine（饮料机）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class DrinkMachine {
+    public void makeDrink() {
+        System.out.println(&quot;制作普通饮料&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;子类：CoffeeMachine（咖啡机）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class CoffeeMachine extends DrinkMachine {
+    @Override
+    public void makeDrink() {
+        System.out.println(&quot;制作咖啡&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;eg：比如饮料机。父类：DrinkMachine 子类：咖啡机CoffeeMachine，如果直接改&lt;code&gt;DrinkMachine&lt;/code&gt;的&lt;code&gt;makeDrink()&lt;/code&gt;方法把“普通饮料“换成”咖啡“，那以后所有买饮料的人都只能喝咖啡了， 果汁党就会抗议 😂。&lt;/p&gt;
+&lt;p&gt;正确做法应该就是新建&lt;code&gt;CoffeeMachine&lt;/code&gt;，只改子类逻辑，不影响父类&lt;/p&gt;
+&lt;h4&gt;1.3.3动态绑定与静态绑定&lt;/h4&gt;
+&lt;p&gt;**&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;静&amp;lt;/font&amp;gt;**&lt;strong&gt;态绑定&lt;/strong&gt;：也称为前期绑定(早绑定)，即在编译时，根据用户所传递实参类型就确定了具体调用那个方法。典型代表函数重载。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;动态绑定&lt;/strong&gt;：也称为后期绑定(晚绑定)，即在编译时，不能确定方法的行为，需要等到程序运行时，才能够确定具体调用那个类的方法。&lt;/p&gt;
+&lt;p&gt;解释如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Parent {
+    void hello() {
+        System.out.println(&quot;Parent hello&quot;);
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void hello() {
+        System.out.println(&quot;Child hello&quot;);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent p = new Child();  // 向上转型
+        p.hello();               // 打印什么？
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(1)编译期&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编译器只知道 &lt;code&gt;p&lt;/code&gt; 的静态类型是 &lt;code&gt;Parent&lt;/code&gt;，所以它会去 &lt;code&gt;Parent&lt;/code&gt; 类中查找有没有 &lt;code&gt;hello()&lt;/code&gt; 方法。&lt;/li&gt;
+&lt;li&gt;查到以后，编译器就说：“行，这个调用是合法的。”&lt;/li&gt;
+&lt;li&gt;但 &lt;strong&gt;它不会决定最终调用哪个版本&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;👉 所以编译期只检查 &lt;strong&gt;方法是否存在&lt;/strong&gt;，但不绑定到具体实现。&lt;/p&gt;
+&lt;p&gt;(2)运行期&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行时，&lt;code&gt;p&lt;/code&gt; 实际上引用的是一个 &lt;code&gt;Child&lt;/code&gt; 对象。&lt;/li&gt;
+&lt;li&gt;Java 虚拟机（JVM）在调用 &lt;code&gt;p.hello()&lt;/code&gt; 的时候，会根据 &lt;strong&gt;对象的真实类型（运行时类型）&lt;/strong&gt; 来决定到底执行 &lt;code&gt;Parent.hello()&lt;/code&gt; 还是 &lt;code&gt;Child.hello()&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;因为 &lt;code&gt;Child&lt;/code&gt; 重写了 &lt;code&gt;hello()&lt;/code&gt;，所以 JVM 调用的是 &lt;code&gt;Child&lt;/code&gt; 的版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这就是动态绑定（Dynamic Dispatch）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JVM底层原理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在JVM的方法区（Java8后都是元空间Metaspace）里，每个类都会有一张&lt;strong&gt;方法表&lt;/strong&gt; &lt;strong&gt;（Method Table，类似 C++ 的 vtable）  。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.类加载时&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JVM 为 &lt;code&gt;Parent&lt;/code&gt; 类建立方法表，里面有 &lt;code&gt;hello -&amp;gt; Parent.hello&lt;/code&gt; 的映射。&lt;/li&gt;
+&lt;li&gt;JVM 为 &lt;code&gt;Child&lt;/code&gt; 类建立方法表，发现 &lt;code&gt;hello&lt;/code&gt; 被重写了，就把 &lt;code&gt;hello -&amp;gt; Child.hello&lt;/code&gt; 替换掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.对象创建时&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当&lt;code&gt;new Child()&lt;/code&gt;执行时，对象头里会有一个指针，指向&lt;code&gt;Child&lt;/code&gt;的类信息（包括方法表）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3.方法调用时&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;执行 &lt;code&gt;p.hello()&lt;/code&gt;，JVM 并不会直接调用 &lt;code&gt;Parent.hello()&lt;/code&gt;，而是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;看 &lt;code&gt;p&lt;/code&gt; 的运行时类型 → 发现它指向 &lt;code&gt;Child&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在 &lt;code&gt;Child&lt;/code&gt; 的方法表里查找 &lt;code&gt;hello()&lt;/code&gt; → 找到 &lt;code&gt;Child.hello()&lt;/code&gt; → 调用它。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;👉 因此，真正起作用的是 &lt;strong&gt;运行时对象的类信息 + 方法表查找&lt;/strong&gt;，而不是变量的声明类型 。&lt;/p&gt;
+&lt;p&gt;我们可以类比为：&lt;/p&gt;
+&lt;p&gt;编译期：老师点名检查-&amp;gt;”这个学生‘回答问题’的功能吗？“（有）&lt;/p&gt;
+&lt;p&gt;运行期：真正回答问题的是具体学生，可能每个人回答的方式不同。&lt;/p&gt;
+&lt;h3&gt;1.4回顾多态&lt;/h3&gt;
+&lt;h4&gt;1.4.1多态思想&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;class Animal{
+    public String name;
+    public Animal(String name){
+        this.name = name;
+    }
+    public void eat(){
+        System.out.println(this.name+&quot;在吃饭&quot;);
+    }
+}
+
+class Dog extends Animal{
+    public Dog(String name){
+        super(name);
+    }
+    @Override
+    public void eat(){
+        System.out.println(this.name+&quot;在吃饭&quot;);
+    }
+}
+
+class Cat extends Animal{
+    public Cat(String name){
+        super(name);
+    }
+    @Override
+    public void eat(){
+        System.out.println(this.name+&quot;在吃饭&quot;);
+    }
+}
+
+public class Test{
+    public static void func(Animal animal){
+        animal.eat();
+    }
+    public static void main(String[] args) {
+        Dog dog = new Dog(&quot;Papy Dog&quot;);
+        Cat cat = new Cat(&quot;Papy Cat&quot;);
+        func(dog);
+        func(cat);
+    }
+}
+
+输出结果：
+Papy Dog在吃饭
+Papy Cat在吃饭
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;调用同一个方法，得到不同的结果（多态思想）&lt;/p&gt;
+&lt;h4&gt;1.4.2多态的优缺点&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;优点：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public static void drawShapes() {
+    Rect rect = new Rect();
+    Cycle cycle = new Cycle();
+    Flower flower = new Flower();
+    String[] shapes = {&quot;cycle&quot;, &quot;rect&quot;, &quot;cycle&quot;, &quot;rect&quot;, &quot;flower&quot;};
+    for (String shape : shapes) {
+        if (shape.equals(&quot;cycle&quot;)) {
+            cycle.draw();
+        } else if (shape.equals(&quot;rect&quot;)) {
+            rect.draw();
+        } else if (shape.equals(&quot;flower&quot;)) {
+            flower.draw();
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们使用多态的话，就能优化一下我们的代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public static void drawShapes() {
+// 我们创建了一个 Shape 对象的数组.
+    Shape[] shapes = {new Cycle(), new Rect(), new Cycle(),
+            new Rect(), new Flower()};
+    for (Shape shape : shapes) {
+        shape.draw();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;p&gt;多态的缺陷--代码的运行效率降低&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.属性没有多态性&lt;/p&gt;
+&lt;p&gt;当父类和子类都有同名属性的时候，通过父类引用，只能引用父类自己的成员属性&lt;/p&gt;
+&lt;p&gt;2.构造方法没有多态性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以上是我关于Java多态的笔记分享，&lt;/p&gt;
+&lt;p&gt;感谢你读到这里，这也是我学习路上的一个小小记录。希望以后回头看时，能看到自己的成长~&lt;/p&gt;
+</content:encoded></item><item><title>Java继承 学习笔记</title><link>https://sirens007.github.io/posts/inheritance/</link><guid isPermaLink="true">https://sirens007.github.io/posts/inheritance/</guid><description>深度解析，详细了解Java继承</description><pubDate>Sat, 27 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.继承&lt;/h2&gt;
+&lt;h3&gt;1.1类的继承&lt;/h3&gt;
+&lt;h4&gt;1.1.1 继承格式&lt;/h4&gt;
+&lt;p&gt;Java 中通过 &lt;code&gt;extends&lt;/code&gt;关键字可以声明一个类是从另外一个类继承而来的，形式如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class 父类 {
+}
+
+class 子类 extends 父类 {
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;继承的目的是为了降低代码的重复，避免代码量大且臃肿。通过提取出代码的共性，实现代码的复用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.子类会将父类中的成员变量或者成员方法继承到子类中&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.子类继承父类后，要添加自己特有成员，体现出与父类不同，否则没必要经行继承。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;1.1.1 extends关键字&lt;/h4&gt;
+&lt;p&gt;在 Java 中，类的继承是单一继承的，也就是说，&lt;strong&gt;一个子类只能拥有一个父类，所以 extends 只能继承一个类&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;1.2继承类型&lt;/h3&gt;
+&lt;p&gt;注继承，但支持多重继承。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758545194540-9a73d658-5cdd-467e-8f0d-353b2547e05a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;要知道，事实上我们并不需要过多的继承关系，这会导致向上追踪过于复杂。如果需要继承层次太多，就需要考虑对代码进行重构了。&lt;strong&gt;一般我们不希望超过三层的继承关系。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果想从语法上进行限制继承，就可以使用**&amp;lt;font style=&quot;color:#DF2A3F;&quot;&amp;gt;final &amp;lt;/font&amp;gt;关键字**了&lt;/p&gt;
+&lt;h3&gt;1.3继承的特性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;子类拥有父类非private 的属性、方法&lt;/li&gt;
+&lt;li&gt;子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。&lt;/li&gt;
+&lt;li&gt;子类可以用自己的方式实现父类的方法&lt;/li&gt;
+&lt;li&gt;Java 的继承是单继承，但是可以多重继承，单继承就是一个子类只能继承一个父类，多重继承就是，例如 B 类继承 A 类，C 类继承 B 类，所以按照关系就是 B 类是 C 类的父类，A 类是 B 类的父类，这是 Java 继承区别于 C++ 继承的一个特性。&lt;/li&gt;
+&lt;li&gt;提高了类之间的耦合性（继承的缺点，耦合度高就会造成代码之间的联系越紧密，代码独立性越差）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.4子类访问父类&lt;/h3&gt;
+&lt;h4&gt;1.4.1 子类访问父类成员变量&lt;/h4&gt;
+&lt;p&gt;通常子类在继承父类之后，父类的成员变量就会依附在子类中。但是如果&lt;strong&gt;子类重新定义了与父类同名的成员变量&lt;/strong&gt;时，那么访问该变量时，会&lt;strong&gt;优先访问子类的变量&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;eg:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class TestA {
+    int a = 1;
+    int b = 2;
+}
+class TestB extends TestA{
+    int a = 1111;
+}
+
+//实例化 TestB b 
+//此时System.out.println(b.a);得到的结果会是 1111
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总结：&lt;strong&gt;成员变量访问遵循就近原则，自己有优先自己的，如果没有则向父类中找&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4&gt;1.4.2 子类访问父类的成员方法&lt;/h4&gt;
+&lt;p&gt;与访问成员变量，如果名字相同以及参数相同，那么会优先访问子类的。&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;通过派生类对象访问父类与子类同名方法时，如果父类&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;和子类同名方法的参数列表不同(重载)&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;，根据调用 &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;方法适传递的参数选择合适的方法访问，如果没有则报错；&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;因此引出了一个问题，如果我偏偏想要访问父类的方法呢？ 那么就需要我们学习下面这个关键字了(&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;super&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;)&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;h3&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1.5 super 与 this 关键字&amp;lt;/font&amp;gt;&lt;/h3&gt;
+&lt;h4&gt;1.5.1 super &amp;amp; this&lt;/h4&gt;
+&lt;p&gt;该关键字主要作用：&lt;strong&gt;在子类方法中访问父类的成员&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;**super 关键字：**我们可以通过 super 关键字来实现对父类成员的访问，用来引用当前对象的父类。&lt;/p&gt;
+&lt;p&gt;**this关键字：**指向自己的引用，引用当前对象，即它所在的方法或构造函数所属的对象实例。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Animal {
+    void eat() {
+        System.out.println(&quot;animal : eat&quot;);
+    }
+}
+ 
+class Dog extends Animal {
+    void eat() {
+        System.out.println(&quot;dog : eat&quot;);
+    }
+    void eatTest() {
+        this.eat();   // this 调用自己的方法
+        super.eat();  // super 调用父类方法
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.eat();
+        Dog d = new Dog();
+        d.eatTest();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出结果为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;animal : eat
+dog : eat
+animal : eat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758593490376-43c1e075-cf81-4f87-94cd-f38cd93aec10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;​									&lt;strong&gt;类以及变量都存放如图位置（jdk8之后）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;注意：&amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1. &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;只能在非静态方法中使用 &amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;2. &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;在子类方法中，访问父类的成员变量和方法&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;h4&gt;1.5.2 final 关键字&lt;/h4&gt;
+&lt;p&gt;final 可以用来修饰变量 （包括类属性、对象属性、局部变量和形参）、方法（包括类方法和对象方法）和类。&lt;/p&gt;
+&lt;p&gt;使用final 关键字声明类，就是把类定义为最终类，不能被继承，或者用于修饰方法，该方法不能被子类重写（密封类）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;声明类：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;final class 类名 {}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;声明方法：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;修饰符(public/private/default/protected) final 返回值类型 方法名(){//方法体}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.final 定义的类，其中的属性、方法不是final 的&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;1.6 子类构造方法&lt;/h3&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;父子父子，先有父再有子，即：子类对象构造时，需要先调用基类构造方法，然后执行子类的构造方法。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;注意：是在父类显示构造方法时。子类需要去调用。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;父子父子肯定是先有父再有子，所以在构造子类对象时候 ，&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;先要调用基类的构造方法&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;，将从基类继承下来的成员构造完整，然后&amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;再调用子类自己的构造方法&amp;lt;/font&amp;gt;&lt;/strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;，将子类自己新增加的成员初始化完整。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Base{
+    int age;
+    String name;
+    double length;
+
+    public Base(int age, String name) {
+        this.age = age;
+        this.name  = name;
+        System.out.println(&quot;Base constructor called&quot;);
+    }
+}
+
+public class Derived extends Base {
+    public Derived(int age, String name) {
+        super(1,&quot;1&quot;);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Derived d = new Derived(1,&quot;1&quot;);
+    }
+}
+
+//输出结果为：Base constructor called
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;1.若父类显示定义无参或者默认的构造方法，在子类构造方法第一行默认由隐含的super()调用，即调用基类构造方法&lt;/p&gt;
+&lt;p&gt;2.如果父类构造方法是带有参数的，此时需要用户为子类显式定义构造方法，并在子类构造方法中选择合适的父类构造方法调用，否则编译失败。&lt;/p&gt;
+&lt;p&gt;3.在子类构造方法中，super(...)只能在子类构造方法中出现一次，并且不能和this同时出现&lt;/p&gt;
+&lt;h3&gt;1.7 再谈初始化&lt;/h3&gt;
+&lt;h4&gt;1.7.1 代码块的执行顺序&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;class Base {
+    public String name;
+    public int age;
+
+    public Base(String name,int age){
+        this.name=name;
+        this.age=age;
+        System.out.println(&quot;Base构造方法&quot;);
+    }
+    {
+        System.out.println(&quot;Base实例代码块&quot;);
+    }
+    static{
+        System.out.println(&quot;Base静态代码块&quot;);
+    }
+}
+
+class Derived extends Base {
+    public Derived(){
+        super(&quot;Derived&quot;,20);
+        System.out.println(&quot;Derived构造方法&quot;);
+    }
+    {
+        System.out.println(&quot;Derived实例代码块&quot;);
+    }
+    static{
+        System.out.println(&quot;Derived静态代码块&quot;);
+    }
+}
+
+public class Main{
+    public static void main(String[] args) {
+        Derived d = new Derived();
+        System.out.println(&quot;==============&quot;);
+        Derived e = new Derived();
+    }
+}
+
+//输出结果：
+Base静态代码块
+Derived静态代码块
+Base实例代码块
+Base构造方法
+Derived实例代码块
+Derived构造方法
+==============
+Base实例代码块
+Base构造方法
+Derived实例代码块
+Derived构造方法
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们可以得到该结论：&lt;/p&gt;
+&lt;p&gt;1、父类静态代码块优先于子类静态代码块执行，且是最早执行的&lt;/p&gt;
+&lt;p&gt;2、&lt;strong&gt;父类实例代码块和父类构造方法&lt;/strong&gt;紧接着执行&lt;/p&gt;
+&lt;p&gt;3、&lt;strong&gt;子类的实例代码块和子类构造方法&lt;/strong&gt;紧接着在执行&lt;/p&gt;
+&lt;p&gt;4、第二次实例化子对象时，父类和子类的静态代码块都将不会再执行&lt;/p&gt;
+&lt;h4&gt;1.7.1 构造方法的执行顺序&lt;/h4&gt;
+&lt;h5&gt;顺序一：&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;class Y {
+    public Y() {
+        System.out.print(&quot;Y&quot;);
+    }
+}
+
+class X {
+    Y y = new Y();  // 成员变量的初始化
+    public X() {
+        System.out.print(&quot;X&quot;);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        X x = new X();
+    }
+}
+
+//执行结果：YX
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;🔑&lt;strong&gt;Java 对象的初始化顺序(记住：先成员，后构造）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Java 中，当你 &lt;code&gt;new X()&lt;/code&gt; 时，发生的步骤是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;分配内存&lt;/strong&gt;&lt;br /&gt;
+JVM 为 &lt;code&gt;X&lt;/code&gt; 对象分配空间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化成员变量（包括显式赋值）&lt;/strong&gt;&lt;br /&gt;
+在执行构造方法体之前，&amp;lt;font style=&quot;color:#DF2A3F;&quot;&amp;gt;先对所有 实例成员变量（包括 &amp;lt;/font&amp;gt;&lt;code&gt;new Y()&lt;/code&gt;&amp;lt;font style=&quot;color:#DF2A3F;&quot;&amp;gt;）进行初始化&amp;lt;/font&amp;gt;。&lt;br /&gt;
+所以会先执行 &lt;code&gt;Y&lt;/code&gt; 的构造方法，打印 &lt;code&gt;&quot;Y&quot;&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行构造方法体&lt;/strong&gt;&lt;br /&gt;
+然后才会进入 &lt;code&gt;X&lt;/code&gt; 的构造方法，打印 &lt;code&gt;&quot;X&quot;&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;顺序二：&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;class Y{
+    public Y(){
+        System.out.print(&quot;Y&quot;);
+    }
+}
+class X extends Y{
+    Y y = new Y();
+    public X(){
+        System.out.print(&quot;X&quot;);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        X x = new X();
+    }
+}
+
+//执行结果：YYX
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;执行顺序是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;因为是继承父类，所以先调用父类构造&lt;/li&gt;
+&lt;li&gt;其次才是子类字段&lt;code&gt;Y y = new Y();&lt;/code&gt;可看作是实例代码块执行顺序&lt;/li&gt;
+&lt;li&gt;最后才是子类自己的构造方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;顺序三：&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;class X {
+    Y y = new Y(); // (1)
+    public X() {   // (2)
+        System.out.print(&quot;X&quot;);
+    }
+}
+
+class Y {
+    public Y() {   // (3)
+        System.out.print(&quot;Y&quot;);
+    }
+}
+
+public class Z extends X {
+    Y y = new Y(); // (4)
+    public Z() {   // (5)
+        System.out.print(&quot;Z&quot;);
+    }
+    public static void main(String[] args) {
+        new Z();
+    }
+}
+
+//执行结果：YXYZ
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;执行&lt;code&gt;new Z();&lt;/code&gt;顺序说明：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;执行 &lt;code&gt;X&lt;/code&gt; 里的 &lt;code&gt;Y y = new Y(); // (1)&lt;/code&gt;， 调用 &lt;code&gt;Y()&lt;/code&gt; 构造器&lt;/li&gt;
+&lt;li&gt;👉 进入 &lt;code&gt;X()&lt;/code&gt; 构造器&lt;/li&gt;
+&lt;li&gt;执行 &lt;code&gt;Z&lt;/code&gt; 里的 &lt;code&gt;Y y = new Y(); // (4)&lt;/code&gt;， 调用 &lt;code&gt;Y()&lt;/code&gt; 构造器&lt;/li&gt;
+&lt;li&gt;👉 进入 &lt;code&gt;Z()&lt;/code&gt; 构造器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;调用说明：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;JVM 给 &lt;code&gt;Z&lt;/code&gt; 对象分配内存，成员变量先设为默认值（此时 &lt;code&gt;X.y = null&lt;/code&gt;, &lt;code&gt;Z.y = null&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Z&lt;/code&gt; extends &lt;code&gt;X&lt;/code&gt;，所以先去构造 &lt;code&gt;X&lt;/code&gt;。   但在调用 &lt;code&gt;X()&lt;/code&gt; 构造方法体前，必须先初始化 &lt;code&gt;X&lt;/code&gt; 的成员变量。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;**总结： “父变量 → 父构造 → 子变量 → 子构造”  **&lt;/p&gt;
+&lt;h3&gt;1.8protected关键字&lt;/h3&gt;
+&lt;p&gt;主要限制：类或类中成员能否在类外或者其他包中被访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758648446773-3b54f51a-82d0-49ec-9ff1-1f97d65b9ec3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;注意：父类中private成员变量虽然在子类中不能直接访问，但是也继承到子类中了&lt;/p&gt;
+&lt;h3&gt;1.9 继承与组合&lt;/h3&gt;
+&lt;p&gt;组合，组合并没有涉及到特殊的语法，仅仅是将一个类的实例作为另一个类的字段。&lt;/p&gt;
+&lt;p&gt;继承表示对象间is-a的关系：狗是动物，猫是动物&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;组合表示对象间has-a的关系：汽车（包含轮子，车座...）&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Tire{
+    ...
+}
+class Engine{
+    ..
+}
+class VehicleSystem{
+    ...
+}
+
+class Car{
+    private Tire tire;
+    private Engine engine;
+    private VehicleSystem vs;
+    ...
+}
+
+class Benz extends Car{
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;一般建议：能用组合尽量用组合。&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;以上是我关于Java继承的笔记分享，&lt;/p&gt;
+&lt;p&gt;感谢你读到这里，这也是我学习路上的一个小小记录。希望以后回头看时，能看到自己的成长~&lt;/p&gt;
+</content:encoded></item><item><title>Java 类与对象</title><link>https://sirens007.github.io/posts/class-and-object/</link><guid isPermaLink="true">https://sirens007.github.io/posts/class-and-object/</guid><description>深度学习Java的类与对象.</description><pubDate>Mon, 22 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.定义类&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/java-object.ChjM1FGS_wOiaq.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;public class Dog {
     String breed;
