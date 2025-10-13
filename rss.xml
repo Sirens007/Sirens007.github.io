@@ -684,7 +684,7 @@ class Benz extends Car{
 &lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;一般建议：能用组合尽量用组合。&amp;lt;/font&amp;gt;&lt;/p&gt;
 &lt;p&gt;以上是我关于Java继承的笔记分享，&lt;/p&gt;
 &lt;p&gt;感谢你读到这里，这也是我学习路上的一个小小记录。希望以后回头看时，能看到自己的成长~&lt;/p&gt;
-</content:encoded></item><item><title>Java 类与对象</title><link>https://sirens007.github.io/posts/class-and-object/</link><guid isPermaLink="true">https://sirens007.github.io/posts/class-and-object/</guid><description>深度学习Java的类与对象.</description><pubDate>Mon, 22 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.定义类&lt;/h2&gt;
+</content:encoded></item><item><title>Java 类与对象</title><link>https://sirens007.github.io/posts/class-object/</link><guid isPermaLink="true">https://sirens007.github.io/posts/class-object/</guid><description>深度学习Java的类与对象.</description><pubDate>Mon, 22 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.定义类&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/java-object.ChjM1FGS_wOiaq.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;public class Dog {
     String breed;
