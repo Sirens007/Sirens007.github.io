@@ -152,7 +152,7 @@ export const timelineData: TimelineItem[] = [
 	},
 	{
 		id: 'computer-science-degree',
-		title: '计算机科学与技术学士学位(在学)',
+		title: '信息安全学士学位(在学)',
 		description: '系统学习计算机科学基础理论，包括数据结构、算法、操作系统、数据库等核心课程。',
 		type: 'education',
 		startDate: '2024-09-01',
@@ -176,11 +176,11 @@ export const timelineData: TimelineItem[] = [
 		startDate: '2025-05-01',
 		endDate: '2025-07-02',
 		location: '长春',
-		organization: '北京理工大学',
+		organization: '中国兵工学会、北京理工大学、中国兵工学会信息安全与对抗专业委员会',
 		position: 'Web direction.',
 		skills: ['PHP反序列化', 'Python', 'C++', 'MySQL', '图片上传'],
 		achievements: [
-			'调试脚本与分析源码',
+			'荣获信息安全竞赛国家级三等奖',
 			'积累了信息搜集、加密算法绕过与身份认证测试',
 			'带领团队拿到web方向题目的flag'
 		],
@@ -188,6 +188,26 @@ export const timelineData: TimelineItem[] = [
 		color: '#2563EB',
 		featured: true
 	},
+	{
+		id: 'edusrc-first-vulnerability',
+		title: '第一次挖到教育SRC漏洞',
+		description: '通过信息收集与接口分析，成功提交第一个教育SRC漏洞。',
+		type: 'achievement',
+		startDate: '2024-11-15',
+		endDate: '2024-11-15',
+		location: '线上',
+		organization: '教育行业SRC平台',
+		skills: ['Burpsuite应用','参数构造', '弱口令利用'],
+		achievements: [
+			'成功挖掘并提交首个教育SRC漏洞',
+			'掌握了 sign、timestamp 等参数分析与模拟请求方法',
+			'提升了对接口认证绕过和验证码爆破的理解'
+		],
+		icon: 'mdi:shield-search',
+		color: '#10B981',
+		featured: true
+	},
+
 	{
 		id: 'programming-start',
 		title: '开始编程学习',
@@ -208,8 +228,8 @@ export const timelineData: TimelineItem[] = [
 		title: "英语四级证书",
 		description: "通过了大学英语四级考试，具备了基本的英语读写能力。",
 		type: "achievement",
-		startDate: '2024-06-27',
-		endDate: '2024-12-27',
+		startDate: '2024-12-27',
+		endDate: '2025-01-27',
 		organization: "全国大学英语四、六级考试委员会",
 		achievements: [
 			"四级成绩：470分",

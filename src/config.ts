@@ -27,7 +27,7 @@ export const siteConfig: SiteConfig = {
 	lang: SITE_LANG,
 
 	themeColor: {
-		hue: 210, // 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
+		hue: 95, // 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
 		fixed: false, // 对访问者隐藏主题色选择器
 	},
 	translate: {
@@ -65,7 +65,7 @@ export const siteConfig: SiteConfig = {
 		position: "center", // 等同于 object-position，仅支持 'top', 'center', 'bottom'。默认为 'center'
 
 		carousel: {
-			enable: true, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
+			enable: true, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片89
 
 			interval: 1.5, // 轮播间隔时间（秒）
 		},
@@ -105,7 +105,7 @@ export const siteConfig: SiteConfig = {
 		depth: 3, // 目录深度，1-6，1 表示只显示 h1 标题，2 表示显示 h1 和 h2 标题，依此类推
 	},
 	favicon: [
-		// 留空以使用默认 favicon
+		//留空以使用默认 favicon
 		// {
 		//   src: '/favicon/icon.png',    // 图标文件路径
 		//   theme: 'light',              // 可选，指定主题 'light' | 'dark'
@@ -154,22 +154,22 @@ export const navBarConfig: NavBarConfig = {
 			icon: "material-symbols:link",
 			children: [
 				{
-					name: "GitHub",
-					url: "https://github.com/Sirens007",
+					name: "CSDN",
+					url: "https://blog.csdn.net/2402_87978990", // 改成你的 CSDN 地址
 					external: true,
-					icon: "fa6-brands:github",
-				},
-				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/1964676664",
-					external: true,
-					icon: "fa6-brands:bilibili",
+					icon: "simple-icons:csdn",
 				},
 				{
 					name: "Gitee",
 					url: "https://gitee.com/Sirens007",
 					external: true,
 					icon: "mdi:git",
+				},
+				{
+					name: "GitHub",
+					url: "https://github.com/Sirens007",
+					external: true,
+					icon: "fa6-brands:github",
 				},
 			],
 		},
@@ -224,9 +224,9 @@ export const profileConfig: ProfileConfig = {
 	bio: "一名技术小白",
 	links: [
 		{
-			name: "Bilibli",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/1964676664",
+			name: "CSDN",
+			icon: "simple-icons:csdn",
+			url: "https://blog.csdn.net/2402_87978990",
 		},
 		{
 			name: "Gitee",
@@ -241,8 +241,8 @@ export const profileConfig: ProfileConfig = {
 	],
 	// Umami统计部份，记得在layout插入Umami的head标签
 	umami: {
-		enable: true, // 是否显示umami统计
-		shareId: "UupIdbCApTrRJkR9", //填入共享URL最后面那一串  比如：https://eu.umami.is/api/share/2dKQ5T0WrUn6AYtr 你就填入2dKQ5T0WrUn6AYtr
+		enable: false, // 是否显示umami统计
+		shareId: "UDTjQVhVs5AxJ14H", //填入共享URL最后面那一串  比如：https://eu.umami.is/api/share/2dKQ5T0WrUn6AYtr 你就填入2dKQ5T0WrUn6AYtr
 		region: "eu", //Umami有两个区域，按需选择即可  比如：https://eu.umami.is 你就填入eu
 	},
 };
@@ -260,7 +260,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	twikoo: {
 		envId: "https://twikoo.vercel.app",
 	},
@@ -404,7 +404,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 };
 
 export const sakuraConfig: SakuraConfig = {
-	enable: true, // 默认关闭樱花特效
+	enable: false, // 默认关闭樱花特效
 	sakuraNum: 21, // 樱花数量
 	limitTimes: -1, // 樱花越界限制次数，-1为无限循环
 	size: {
