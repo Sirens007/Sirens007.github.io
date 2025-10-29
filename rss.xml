@@ -1,7 +1,650 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java核心概念：抽象类、接口、Object类	深度剖析</title><link>https://sirens007.github.io/posts/abstractclass-interface/</link><guid isPermaLink="true">https://sirens007.github.io/posts/abstractclass-interface/</guid><description>深度了解抽象类、接口的应用，补充对Object的了解.</description><pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.抽象类&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>深入理解Java String：不可变性、内存机制与高效操作</title><link>https://sirens007.github.io/posts/stringclass/</link><guid isPermaLink="true">https://sirens007.github.io/posts/stringclass/</guid><description>重识String类，运用String类.</description><pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.字符串构造&lt;/h2&gt;
+&lt;h3&gt;1.1 再识 String&lt;/h3&gt;
+&lt;p&gt;String 类常用构造方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = &quot;Hello Sirens&quot;;					//直接创建
+System.out.println(s1);
+
+String s2 = new String(&quot;Hello Sirens&quot;);		//对象创建
+System.out.println(s1);
+
+char[] array = {&apos;S&apos;,&apos;i&apos;,&apos;r&apos;,&apos;e&apos;,&apos;n&apos;,&apos;s&apos;};
+String s3 = new String(array);				//对象创建
+System.out.println(s3);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.String 是引用类型，内部并不存储字符串，而是像静态方法一样，通过引用去调用堆区的 value（JDK9 之后 value 由 char[] 类型改为了 byte[] 类型，）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass1.CDxxK9Am_1Xs3EW.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;1.2 String 直接创建与对象创建&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = &quot;Hello&quot;;
+String s2 = &quot;Sirens&quot;;
+String s3 = s1;
+String s4 = new String(&quot;Hello&quot;);
+String s5 = new String(&quot;World&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以上为 String &lt;code&gt;直接创建&lt;/code&gt;和&lt;code&gt;对象创建&lt;/code&gt;内存示意图（画起来真累&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass2.Djhb-XO8_6gyXK.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;整个过程：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1️⃣ &lt;code&gt;String s1 = &quot;Hello&quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JVM 检查字符串常量池：是否已有 &lt;code&gt;&quot;Hello&quot;&lt;/code&gt;？&lt;/li&gt;
+&lt;li&gt;如果没有，就在堆里创建一个 &lt;strong&gt;String对象#1001&lt;/strong&gt;，内容为 &lt;code&gt;&quot;Hello&quot;&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;常量池记录一条映射 &lt;code&gt;&quot;Hello&quot; → #1001&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;局部变量表中的 &lt;code&gt;s1&lt;/code&gt; 存放引用 &lt;code&gt;#1001&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2️⃣ &lt;code&gt;String s2 = &quot;Sirens&quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;常量池查找 &lt;code&gt;&quot;Sirens&quot;&lt;/code&gt;，没有；&lt;/li&gt;
+&lt;li&gt;在堆中创建一个新的 String 对象 &lt;strong&gt;#1002&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;常量池记录 &lt;code&gt;&quot;Sirens&quot; → #1002&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;s2 引用 #1002。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3️⃣ &lt;code&gt;String s3 = s1;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是&lt;strong&gt;引用赋值&lt;/strong&gt;，不是新建。&lt;/li&gt;
+&lt;li&gt;s3 和 s1 引用完全相同的对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4️⃣ &lt;code&gt;String s4 = new String(&quot;Hello&quot;);&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&quot;Hello&quot;&lt;/code&gt; 是常量池字面量，已存在，指向堆中 #1001；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;new String(&quot;Hello&quot;)&lt;/code&gt; 表示：
+&lt;ol&gt;
+&lt;li&gt;读取常量池引用 #1001；&lt;/li&gt;
+&lt;li&gt;在堆中再创建一个新的 String 对象 #2001；&lt;/li&gt;
+&lt;li&gt;把 #1001 的字符数组内容复制到 #2001；&lt;/li&gt;
+&lt;li&gt;s4 引用的是 #2001。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;5️⃣ &lt;code&gt;String s5 = new String(&quot;World&quot;);&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;常量池中查找 &lt;code&gt;&quot;World&quot;&lt;/code&gt;，发现没有；&lt;/li&gt;
+&lt;li&gt;在堆中创建 &lt;code&gt;&quot;World&quot;&lt;/code&gt; 的常量池条目 &lt;code&gt;&quot;World&quot; → #1003&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;new String(&quot;World&quot;)&lt;/code&gt; 又在堆中创建一个新的对象 #2002；&lt;/li&gt;
+&lt;li&gt;s5 引用 #2002。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;1.3 编译器优化&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;重点补充&lt;/strong&gt;：这是我在学校的课上遇到的代码，说到这我就想提提这个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String hello = &quot;你好&quot;;
+String testOne = &quot;你&quot; + &quot;好&quot;;    // [代码1]
+System.out.println(hello == testOne); //输出结果是 true
+System.out.println(&quot;你好&quot; == testOne); //输出结果是 true
+System.out.println(&quot;你好&quot; == hello); //输出结果是 true
+String you = &quot;你&quot;;
+String hi = &quot;好&quot;;
+String testTwo = you + hi;    // [代码2]
+System.out.println(hello == testTwo); //输出结果是 false
+String testThree = you + hi;
+System.out.println(testTwo == testThree); //输出结果是 false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;首先我们要知道：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;常量+常量=常量&lt;/p&gt;
+&lt;p&gt;常量+变量=变量&lt;/p&gt;
+&lt;p&gt;变量+变量=变量&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们分成三部分分析：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;部分一：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String hello = &quot;你好&quot;;
+String testOne = &quot;你&quot; + &quot;好&quot;;		//编译器优化
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在编译时，Java 编译器发现 &lt;code&gt;&quot;你&quot;&lt;/code&gt; 和 &lt;code&gt;&quot;好&quot;&lt;/code&gt; 都是&lt;strong&gt;常量字符串&lt;/strong&gt;，于是它直接在编译阶段就做了优化：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String testOne = &quot;你好&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;也就是说——&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量&lt;/th&gt;
+&lt;th&gt;存放内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;hello&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;指向字符串常量池中 &lt;code&gt;&quot;你好&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;testOne&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;也指向同一个常量池中的 &lt;code&gt;&quot;你好&quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;因为字符串常量池中，&quot;你好&quot; 只有一份副本&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hello == testOne   // true
+&quot;你好&quot; == testOne   // true
+&quot;你好&quot; == hello     // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;它们的“==”都在比较&lt;strong&gt;同一个引用地址（常量池中同一个对象）&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;部分二&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String you = &quot;你&quot;;
+String hi = &quot;好&quot;;
+String testTwo = you + hi;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里的关键在于：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;you&lt;/code&gt; 和 &lt;code&gt;hi&lt;/code&gt; 是&lt;strong&gt;变量&lt;/strong&gt;，不是编译时的常量。&lt;/p&gt;
+&lt;p&gt;所以，编译器&lt;strong&gt;无法在编译期确定 you + hi 的值&lt;/strong&gt;。&lt;br /&gt;
+只能在&lt;strong&gt;运行时&lt;/strong&gt;由 &lt;code&gt;StringBuilder&lt;/code&gt; 拼接生成新字符串对象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;编译器其实会把上面的代码翻译成：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String testTwo = new StringBuilder()
+                    .append(you)
+                    .append(hi)
+                    .toString();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这时候：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;&quot;你&quot;&lt;/code&gt; 和 &lt;code&gt;&quot;好&quot;&lt;/code&gt; 各自仍然在&lt;strong&gt;常量池&lt;/strong&gt;中；&lt;/p&gt;
+&lt;p&gt;但拼接产生的 &lt;code&gt;&quot;你好&quot;&lt;/code&gt; 是在&lt;strong&gt;堆&lt;/strong&gt;里新创建的对象；&lt;/p&gt;
+&lt;p&gt;它没有放回常量池。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;于是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hello == testTwo   // false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为两者引用的地址不同：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;hello&lt;/code&gt; → 常量池&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;testTwo&lt;/code&gt; → 堆中新对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;部分三&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;为什么 testTwo 和 testThree 也不相等&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String testThree = you + hi;
+System.out.println(testTwo == testThree); // false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;理由同上，每次拼接：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;都会通过 &lt;code&gt;StringBuilder&lt;/code&gt; 重新 new 出一个新的字符串对象；&lt;/p&gt;
+&lt;p&gt;虽然内容相同，但内存地址不同。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;testTwo == testThree   // false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;除非你手动调用 &lt;code&gt;.intern()&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;testTwo.intern() == testThree.intern()   // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;intern()&lt;/code&gt; 会把字符串放进常量池里，如果常量池已有相同内容的，就直接返回那份引用。&lt;/p&gt;
+&lt;h2&gt;2.String 对象直接的比较&lt;/h2&gt;
+&lt;p&gt;1.&lt;code&gt;==&lt;/code&gt;比较所引用的是否同属一个地址&lt;/p&gt;
+&lt;p&gt;我们知道，当&lt;code&gt;==&lt;/code&gt;两边都为基本数据类型变量时，比较的是两值之间是否相等而不是地址。&lt;/p&gt;
+&lt;p&gt;但 String 不一样，首先 String 不是基本数据类型，而是引用数据类型，这在我们的 Java SE 基础提及过。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = new String(&quot;hello&quot;);
+String s2 = new String(&quot;hello&quot;);
+String s3 = new String(&quot;world&quot;);
+String s4 = s1;
+System.out.println(s1 == s2); // false
+System.out.println(s2 == s3); // false
+System.out.println(s1 == s4); // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.&lt;code&gt;boolean equals(Object anObject)&lt;/code&gt;方法去按照字典顺序比较&lt;/p&gt;
+&lt;p&gt;字典序--字符大小的顺序（类比 ascii）&lt;/p&gt;
+&lt;p&gt;方法库中 String 类本身重写了父类 Object 中的 equals 方法，String 类重写后 equals 方法由比较地址改为了如下规则&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass3.DmlA1ZhB_Za65OE.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;System.out.println(s1.equals(s2)); // true
+System.out.println(s1.equals(s3)); // false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3.&lt;code&gt;int compareTo(String s)&lt;/code&gt;方法去按照字典序进行比较&lt;/p&gt;
+&lt;p&gt;虽然与 equals 同为按照字典序比较，但其返回值不同。equals 返回 boolean 类型，而 compareTo 返回的是 int 类型。&lt;/p&gt;
+&lt;p&gt;这也和我们之前的文章谈 compareTo 的时候提到过，&lt;code&gt;(s1.compareTo(s2)&lt;/code&gt;如果 s1 比 s2 大，那么返回正数；反之。&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;但也有要点要注意：&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = &quot;abcd&quot;;
+String s2 = &quot;abe&quot;;
+String s3 = &quot;ab&quot;;
+String s4 = &quot;abcd&quot;;
+
+System.out.println(s1.compareTo(s2));   //此时都为第三位不同，仅比较到第三位
+System.out.println(s3.compareTo(s4));   //此时仅比较长度，因为前面都相同
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;4.&lt;code&gt;int compareToIgnoreCase(String str)&lt;/code&gt;方法，与 compareTo 方式相同，但忽略大小写比较&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = new String(&quot;abc&quot;);
+String s2 = new String(&quot;ac&quot;);
+String s3 = new String(&quot;ABc&quot;);
+String s4 = new String(&quot;abcdef&quot;);
+System.out.println(s1.compareToIgnoreCase(s2)); // 不同输出字符差值-1
+System.out.println(s1.compareToIgnoreCase(s3)); // 相同输出 0
+System.out.println(s1.compareToIgnoreCase(s4)); // 前k个字符完全相同，输出长度差值 -3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.字符串查找&lt;/h2&gt;
+&lt;p&gt;查找，我们用到的思想就是索引了，String 类提供的常用查找的方法：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;功能&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;char charAt(int index)&lt;/td&gt;
+&lt;td&gt;返回 index 位置上字符，如果 index 为负数或者越界，抛出 IndexOutOfBoundsException 异常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int indexOf(int ch)&lt;/td&gt;
+&lt;td&gt;返回 ch 第一次出现的位置，没有返回 -1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int indexOf(int ch,int fromIndex)&lt;/td&gt;
+&lt;td&gt;从 fromindex 位置开始找 ch 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int indexOf(String str,int fromIndex)&lt;/td&gt;
+&lt;td&gt;返回 str 第一次出现的位置，没有返回 -1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int lastIndexOf(int ch)&lt;/td&gt;
+&lt;td&gt;从 fromindex 位置开始找 str 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int lastIndexOf(int ch,int fromIndex)&lt;/td&gt;
+&lt;td&gt;从后往前找，返回 ch 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int lastIndexOf(int ch,int fromIndex)&lt;/td&gt;
+&lt;td&gt;从 fromIndex 位置开始找，从后往前找 ch 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int lastIndexOf(String str)&lt;/td&gt;
+&lt;td&gt;从后往前找，返回 str 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int lastIndexOf(String str,int fromIndex)&lt;/td&gt;
+&lt;td&gt;从 fromIndex 位置开始找，从后往前找 str 第一次出现的位置，没有返回-1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;public static void main(String[] args) {
+        String s1 = &quot;Hello SSiirrieeSns&quot;;	
+        //S  S  i  i  r  r  i  e  e  S  n  s
+        //0  1  2  3  4  5  6  7  8  9  10 11
+        System.out.println(s1.charAt(2));				//l
+        System.out.println(s1.indexOf(&quot;r&quot;));			//10
+        System.out.println(s1.indexOf(&quot;l&quot;,3));			//3
+        System.out.println(s1.lastIndexOf(&quot;S&quot;));		//15
+        System.out.println(s1.lastIndexOf(&quot;S&quot;,13));		//7
+        System.out.println(s1.lastIndexOf(&quot; &quot;,13));		//5
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以上所调用到的方法产生的 String 类型结果都是方法中 &lt;code&gt;return new String&lt;/code&gt;；&lt;/p&gt;
+&lt;h2&gt;4.String 方法&lt;/h2&gt;
+&lt;h3&gt;4.1 转换&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;数值和字符串转换&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = String.valueOf(1234);
+String s2 = String.valueOf(12.34);
+String s3 = String.valueOf(true);
+String s4 = String.valueOf(new Student(&quot;Sirens&quot;, 19));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;同样其他类型也能转为 String 类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int data1 = Integer.parseInt(&quot;1234&quot;);
+double data2 = Double.parseDouble(&quot;12.34&quot;);
+//Integer、Double等是Java中的包装类型
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法名&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;描述&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;String toUpperCase()&lt;/td&gt;
+&lt;td&gt;小写转大写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String toLowerCase()&lt;/td&gt;
+&lt;td&gt;大写转小写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String toCharArray()&lt;/td&gt;
+&lt;td&gt;字符串转数组&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;format(格式,数值)&lt;/td&gt;
+&lt;td&gt;格式化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;4.2 字符串调整&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;替换&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法名&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;功能&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;String replaceAll(String regex,String replace)&lt;/td&gt;
+&lt;td&gt;替换所有的指定内容&amp;lt;br/&amp;gt;(匹配此字符串的正则表达式,用来替换每个匹配项的字符串)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String replaceFirst(String regex,String replacement)&lt;/td&gt;
+&lt;td&gt;替换首个内容&amp;lt;br/&amp;gt;(匹配此字符串的正则表达式,&amp;lt;font style=&quot;color:rgb(51, 51, 51);background-color:rgb(250, 252, 253);&quot;&amp;gt;用来替换第一个匹配项的字符串)&amp;lt;/font&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;注意:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于字符串是不可变对象, 替换不修改当前字符串, 而是产生一个新的字符串.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;拆分&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;功能&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;String[] split(String regex)&lt;/td&gt;
+&lt;td&gt;将字符串全部拆分&amp;lt;br/&amp;gt;(正则表达式分隔符)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String[] split(String regex,int limit)&lt;/td&gt;
+&lt;td&gt;将字符串以指定的格式，拆分为 limit 组&amp;lt;br/&amp;gt;(正则表达式分隔符,分割的份数)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;像拆分 IP 地址，有的需要转义字符&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1. 字符&quot;|&quot;,&quot;*&quot;,&quot;+&quot;都得加上转义字符，前面加上 &quot;\&quot; . &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;2. &amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;而如果是 &amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;&quot;&quot; &amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;，那么就得写成 &amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;&quot;\\&quot; &amp;lt;/font&amp;gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;. &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;3. 如果一个字符串中有多个分隔符，可以用&quot;|&quot;作为连字符.&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;String site = &quot;https://sirens007.github.io&quot;;
+String[] s = site.split(&quot;\\.|://&quot;);
+for (int i = 0; i &amp;lt; s.length; i++) {
+    System.out.print(s[i]+&quot; &quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;拆分&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;描述&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;String[] substring(int beginIndex)&lt;/td&gt;
+&lt;td&gt;从指定索引截取到结尾&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String[] substring(int beginIndex, int endIndex)&lt;/td&gt;
+&lt;td&gt;截取部分内容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.索引是从 0 开始的&lt;/p&gt;
+&lt;p&gt;2.Java 中默认都是左闭右开区间，所以如果截取部分内容的话 [beginIndex, endIndex),不取右值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;补充方法&lt;/strong&gt;：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;描述&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean contains(CharSequence chars)&lt;/td&gt;
+&lt;td&gt;contains() 方法用于判断字符串中是否包含指定的字符或字符串&amp;lt;br/&amp;gt;chars -- 要判断的字符或字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;String trim()&lt;/td&gt;
+&lt;td&gt;返回字符串的副本，忽略前导空白和尾部空白&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;使用案例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; String Str = new String(&quot;    sirens007.gtihub.io    &quot;);
+ System.out.print(&quot;原始值 :&quot; );
+ System.out.println( Str );
+
+ System.out.print(&quot;删除头尾空白 :&quot; );
+ System.out.println( Str.trim() );
+
+//执行结果
+//原始值 :    sirens007.github.io        
+//删除头尾空白 :sirens007.github.io
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;5.字符串的不可变性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;一、String 是一种不可变对象，字符串中的内容是不可改变的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass4.DLw0X1Bh_Z1Brw2i.webp&quot; alt=&quot;&quot; /&gt;为了求证官方文件，我们打开 jdk 源码可以看到该核心定义&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class String&lt;/code&gt;首先被声明为&lt;code&gt;final&lt;/code&gt;，表示不能被继承&lt;/li&gt;
+&lt;li&gt;其次&lt;code&gt;value&lt;/code&gt;数组被声明为&lt;code&gt;private final&lt;/code&gt;--表明 value 自身的值不能改变，即不能引用其它字符数组，但是其引用空间中的内容可以修改。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这说明了以内容：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.外部无法访问；&lt;/p&gt;
+&lt;p&gt;2.初始化后不可再被修改引用；&lt;/p&gt;
+&lt;p&gt;3.数组内容虽可变，但外部没有访问入口。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以上说明意味着：&lt;/p&gt;
+&lt;p&gt;String 对象一旦创建，就固定绑定了内部&lt;code&gt;value[]&lt;/code&gt;;&lt;/p&gt;
+&lt;p&gt;修改字符串（如&lt;code&gt;&quot;abc&quot;.replace(&quot;a&quot;,&quot;x&quot;)&lt;/code&gt;）时，实际上是新创建了一个 String 对象。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;举例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可能很多人认为是 final 修饰了 value 导致 value 不能改变，其实不然&lt;/p&gt;
+&lt;p&gt;那我们就举一个例子找找是谁限制住了不可修改，&lt;strong&gt;如下&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass5.Bz-XWSEA_ZJfjs0.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我们在 Test5 文件 &lt;code&gt;default final&lt;/code&gt; 定义了数组 str，使用 Test3 去访问修改，可知编译器没有报错&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass6.H6Gfr4YD_ZLRbXb.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;当我们修改为了 private 后&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass7.UyECf_T6_2kt2AQ.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass8.CAeOpMms_Z1MDFqf.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;显然爆红了，于此我们得到验证应该是 private 限制了你去访问。&lt;/p&gt;
+&lt;p&gt;二、所有涉及到可能修改字符串内容的操作都是创建一个新对象，改变的是新对象&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass9.DdgCLRCC_251FRu.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我们就拿 String 类里的 replace 方法，可以看到的是只有”结果不变“的情况才返回&lt;code&gt;this&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;即：当字符串内容没有发生任何变化时，直接返回原对象。&lt;/p&gt;
+&lt;h2&gt;6. 字符串修改&lt;/h2&gt;
+&lt;p&gt;我们要尽量避免直接对 String 类型对象进行修改，因为 String 类是不能修改的，所有的修改都会创建新对象，效率很低下，就比如下面这种变量拼接（常量拼接没有问题，零开销）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String s1 = &quot;hello&quot;;
+String s2 = &quot; world&quot;;
+String s3 = s1 + s2;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时编译器会在字节码层面生成：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;new StringBuilder()
+    .append(s1)
+    .append(s2)
+    .toString();
+//也就是下面这样
+StringBuilder stringbuilder = new StringBuilder();
+stringbuilder.append(&quot;hello&quot;);
+stringbuilder.append(&quot;world&quot;);
+String ret = stringbuilder.toString();
+System.out.println(ret);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所以在运行时：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建一个新的 &lt;code&gt;StringBuilder&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;两次 &lt;code&gt;append()&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;再调用 &lt;code&gt;toString()&lt;/code&gt; 创建新字符串。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这就是为什么 &lt;code&gt;&quot;hello&quot; + &quot; world&quot;&lt;/code&gt; 和 &lt;code&gt;s1 + s2&lt;/code&gt;虽然语法一样，但性能差距巨大。&lt;/p&gt;
+&lt;p&gt;我们还可以用代码来粗略比较一下 StringBuffer 和 StringBuilder&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public static void main(String[] args) {
+        long start = System.currentTimeMillis();
+        String s = &quot;&quot;;
+        for(int i = 0; i &amp;lt; 10000; ++i){
+            s += i;
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        start = System.currentTimeMillis();
+        StringBuffer sbf = new StringBuffer(&quot;&quot;);
+        for(int i = 0; i &amp;lt; 10000; ++i){
+            sbf.append(i);
+        }
+        end = System.currentTimeMillis();
+        System.out.println(end - start);
+        start = System.currentTimeMillis();
+        StringBuilder sbd = new StringBuilder();
+        for(int i = 0; i &amp;lt; 10000; ++i){
+            sbd.append(i);
+        }
+        end = System.currentTimeMillis();
+        System.out.println(end - start);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到的结果依此是 70 、1、1，可以看出在对 String 进行修改时，效率是非常慢的。因此，如果要修改的话我们尽量使用 StringBuffer 或者 StringBuilder&lt;/p&gt;
+&lt;h2&gt;7.StringBuilder 和 StringBuffer&lt;/h2&gt;
+&lt;h3&gt;7.1 二者区别&lt;/h3&gt;
+&lt;p&gt;当对字符串进行修改的时候，需要使用 StringBuffer 和 StringBuilder 类。&lt;/p&gt;
+&lt;p&gt;和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/StringClass10.DONiIJc7_Z1lFtoP.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;StringBuilder&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public final class StringBuilder extends AbstractStringBuilder
+implements java.io.Serializable, CharSequence {
+
+    public StringBuilder append(String str) {
+        super.append(str);
+        return this;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;StringBuffer&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public final class StringBuffer extends AbstractStringBuilder
+implements java.io.Serializable, CharSequence {
+
+    public synchronized StringBuffer append(String str) {
+        super.append(str);
+        return this;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;唯一的区别就在于：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;StringBuffer&lt;/code&gt; 的方法前多了一个 &lt;code&gt;synchronized&lt;/code&gt; 关键字。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;StringBuffer&lt;/strong&gt;：多线程情况下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;StringBuffer 类比公共厕所，&lt;/p&gt;
+&lt;p&gt;每次只能进去一人；&lt;/p&gt;
+&lt;p&gt;门口有锁（&lt;code&gt;synchronized&lt;/code&gt;同步锁），别人必须等前一个人出来才能进去。&lt;/p&gt;
+&lt;p&gt;确保每次使用都“安全”，不会出现混乱（数据不一致）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你可以这么理解：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假如你和同事都要上厕所（多个线程操作字符串），&lt;br /&gt;
+&lt;code&gt;StringBuffer&lt;/code&gt; 就像门上了锁的公共厕所：&lt;br /&gt;
+一个用完另一个再用，虽然慢一点，但不会出事故。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;StringBuilder&lt;/strong&gt;：单线程情况下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;没有锁，谁抢到谁用&lt;/p&gt;
+&lt;p&gt;设计时假设“你家就你一个人”，所以没必要加锁&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你也可以这么理解：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果你自己住（单线程程序），&lt;br /&gt;
+当然不用给厕所门上锁，加锁反而浪费时间。&lt;br /&gt;
+所以 &lt;code&gt;StringBuilder&lt;/code&gt; 就是单人卫生间，速度飞快，但只适合自己用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;7.2 StringBuilder 和 StringBuffer&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;方法&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer append(String str)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;在尾部追加，相当于 &lt;code&gt;String&lt;/code&gt; 的 &lt;code&gt;+=&lt;/code&gt;，可以追加：&lt;code&gt;boolean&lt;/code&gt;、&lt;code&gt;char&lt;/code&gt;、&lt;code&gt;char[]&lt;/code&gt;、&lt;code&gt;double&lt;/code&gt;、&lt;code&gt;float&lt;/code&gt;、&lt;code&gt;int&lt;/code&gt;、&lt;code&gt;long&lt;/code&gt;、&lt;code&gt;Object&lt;/code&gt;、&lt;code&gt;String&lt;/code&gt;、&lt;code&gt;StringBuffer&lt;/code&gt;变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;char charAt(int index)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;获取 &lt;code&gt;index&lt;/code&gt;位置的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int length()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;获取字符串的长度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int capacity()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;获取底层保存字符串空间的大小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;void ensureCapacity(int minimumCapacity)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;扩容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;void setCharAt(int index, char ch)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将 &lt;code&gt;index&lt;/code&gt;位置的字符设置为 &lt;code&gt;ch&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int indexOf(String str)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;返回 &lt;code&gt;str&lt;/code&gt;第一次出现的位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int indexOf(String str, int fromIndex)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;从 &lt;code&gt;fromIndex&lt;/code&gt;位置开始找 &lt;code&gt;str&lt;/code&gt;第一次出现的位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int lastIndexOf(String str)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;返回最后一次出现 &lt;code&gt;str&lt;/code&gt;的位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;int lastIndexOf(String str, int fromIndex)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;从 &lt;code&gt;fromIndex&lt;/code&gt;位置开始找 &lt;code&gt;str&lt;/code&gt;最后一次出现的位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer insert(int offset, String str)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;在 &lt;code&gt;offset&lt;/code&gt;位置插入各种基本类型、&lt;code&gt;String&lt;/code&gt;类型或 &lt;code&gt;Object&lt;/code&gt;类型数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer deleteCharAt(int index)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;删除 &lt;code&gt;index&lt;/code&gt;位置的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer delete(int start, int end)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;删除 &lt;code&gt;[start, end)&lt;/code&gt;区间内的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer replace(int start, int end, String str)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将 &lt;code&gt;[start, end)&lt;/code&gt;区间的字符替换为 &lt;code&gt;str&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;String substring(int start)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;从 &lt;code&gt;start&lt;/code&gt;开始一直到末尾的子串以 &lt;code&gt;String&lt;/code&gt;方式返回&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;String substring(int start, int end)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将 &lt;code&gt;[start, end)&lt;/code&gt;范围内的子串以 &lt;code&gt;String&lt;/code&gt;方式返回&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;StringBuffer reverse()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;反转字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;String toString()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将所有字符按 &lt;code&gt;String&lt;/code&gt;的方式返回&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content:encoded></item><item><title>Java核心概念：抽象类、接口、Object类	深度剖析</title><link>https://sirens007.github.io/posts/abstractclass-interface/</link><guid isPermaLink="true">https://sirens007.github.io/posts/abstractclass-interface/</guid><description>深度了解抽象类、接口的应用，补充对Object的了解.</description><pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.抽象类&lt;/h2&gt;
 &lt;h3&gt;1.1啥是抽象类？&lt;/h3&gt;
 &lt;p&gt;在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有足够的信息来描绘一个具体的对象，这样的类就是抽象类。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1759073472455-5db3c214-7324-4b39-a70f-1ba15190fd4b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/abstractclass-interface1.Dkj3loL6_Z1gmOuB.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;像这样的Animal类一般只为服务创建Dog类和Cat类的，我们就可以直接定义为抽象类&lt;code&gt;（abstract class）&lt;/code&gt;，以及animal类的&lt;code&gt;bark()&lt;/code&gt;方法我们通常不调用，所以我们同样可以写为抽象方法&lt;code&gt;（abstract function）&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;像这样子的抽象类和抽象方法就是为了让子类去重写再描述具体对象而产生的。&lt;/p&gt;
 &lt;p&gt;并且我们同样合理的利用编译器的语法规则去校验我们的代码，以防错误的创建和访问。&lt;/p&gt;
@@ -117,7 +760,7 @@ System.out.println(&quot;static method&quot;);
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;但是如果该具体动物类没有实现对应接口，那么就会报错&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1759830013896-3585b2c1-9934-4a0c-82ab-f9105d0e66ea.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/abstractclass-interface2.DMcxgUja_14Gr7k.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;2.5接口间的继承&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;interface IA{
     public void ia();
@@ -136,7 +779,7 @@ interface IC extends IA,IB{
 &lt;/blockquote&gt;
 &lt;h2&gt;3.Object类&lt;/h2&gt;
 &lt;h3&gt;3.1初步了解Object类&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1759831572722-8e472edd-5a88-49ea-acd6-708e57e7b793.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/abstractclass-interface3.B41a3Pml_Z1bOW9k.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;首先，我们要知道Object类是Java默认提供的一个类，Java里除了Object类，所有的类都是存在继承关系的。默认继承Object父类。即所有类的对象都可以使用Object的引用进攻接收。&lt;/p&gt;
 &lt;p&gt;eg:我们用Object接受所有类的对象&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Dog{}
@@ -203,7 +846,7 @@ public class Test {
 //运行结果为 1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;有人会好奇，为什么用名字比较会这么写 &lt;code&gt;return this.name.compareTo(o.name);&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1760193518734-f8963d50-f8c1-4848-b667-23b5622228bf.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/Interface-theFuncOfObject1.v8D2dXy9_Z28H1qB.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;可以发现，String 类型中也有 compareTo()方法，因此我们直接调用即可&lt;/p&gt;
 &lt;p&gt;当我们将&lt;strong&gt;用到数组对对象进行排序&lt;/strong&gt;时，中间的对比过程正是运用了类似这个步骤&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Student /*implements Comparable&amp;lt;Student&amp;gt;*/{
@@ -237,10 +880,10 @@ public class Test {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;我们继续使用上面那个例子，将 &lt;code&gt;compareTo()&lt;/code&gt;方法以及接口屏蔽 会发现运行到&lt;code&gt;Arrays.sort(std);&lt;/code&gt;这里的时候发生异常&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1760202489315-7a64ad76-03bb-421d-834d-cb84022f8966.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/Interface-theFuncOfObject2.BCT_oTxH_ZGv3IP.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;**ClassCastException **报错信息中 为类型转换异常&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;class demo3.Student cannot be cast to class java.lang.Comparable&lt;/code&gt;也就是说 Student 不能被转换为 Comparable 型，&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1760203128620-323b1719-b014-49c1-8118-b140d0af51f2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/Interface-theFuncOfObject3.Djs00vEC_1Jbe9E.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;图片中的意思是：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;这是报错信息中的一个方法，Object[] a 是我们传 Student std[] 的形参&lt;/strong&gt;&lt;/p&gt;
@@ -456,7 +1099,7 @@ public class Person implements Cloneable{
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;此时在栈和堆中是这样的，引用同一个 m 对象，我们因此称之为&lt;strong&gt;浅拷贝&lt;/strong&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1760282418089-969c9541-c910-4f67-a900-efed967405d2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;此时在栈和堆中是这样的，引用同一个 m 对象，我们因此称之为&lt;strong&gt;浅拷贝&lt;/strong&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/Interface-theFuncOfObject4.DwuENM9e_1DqoiG.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;如果 m 对象也被拷贝了，那就是深拷贝&lt;/p&gt;
 &lt;p&gt;所以我们就进行如下操作变为&lt;strong&gt;深拷贝&lt;/strong&gt;吧&lt;/p&gt;
 &lt;ol&gt;
@@ -661,7 +1304,7 @@ public class Test {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4&gt;1.2.2向下转型&lt;/h4&gt;
 &lt;p&gt;将一个子类对象经过向上转型之后当成父类方法使用，再无法调用子类的方法，但有时候可能需要调用子类特有的方法，此时：将父类引用再还原为子类对象即可，即向下转换。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758953629320-740b2a05-5f37-4575-84ec-8afb2949448e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/polymorphism1.Cz2kQdyQ_GGkH2.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;继续根据向上转型的类举例：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Animal{
     public String name;
@@ -968,8 +1611,8 @@ class 子类 extends 父类 {
 &lt;h4&gt;1.1.1 extends关键字&lt;/h4&gt;
 &lt;p&gt;在 Java 中，类的继承是单一继承的，也就是说，&lt;strong&gt;一个子类只能拥有一个父类，所以 extends 只能继承一个类&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;1.2继承类型&lt;/h3&gt;
-&lt;p&gt;注继承，但支持多重继承。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758545194540-9a73d658-5cdd-467e-8f0d-353b2547e05a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;注意的是 java 不支持多继承，但支持多重继承。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/inheritance1.Ca4HlIiV_ZWbFsO.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;要知道，事实上我们并不需要过多的继承关系，这会导致向上追踪过于复杂。如果需要继承层次太多，就需要考虑对代码进行重构了。&lt;strong&gt;一般我们不希望超过三层的继承关系。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如果想从语法上进行限制继承，就可以使用**&amp;lt;font style=&quot;color:#DF2A3F;&quot;&amp;gt;final &amp;lt;/font&amp;gt;关键字**了&lt;/p&gt;
 &lt;h3&gt;1.3继承的特性&lt;/h3&gt;
@@ -1036,7 +1679,7 @@ public class Test {
 dog : eat
 animal : eat
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758593490376-43c1e075-cf81-4f87-94cd-f38cd93aec10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/inheritance2.CiH3NCh9_22nldO.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;​									&lt;strong&gt;类以及变量都存放如图位置（jdk8之后）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;注意：&amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;1. &amp;lt;/font&amp;gt;&lt;strong&gt;&amp;lt;font style=&quot;color:rgb(51,51,51);&quot;&amp;gt;只能在非静态方法中使用 &amp;lt;/font&amp;gt;&lt;/strong&gt;&lt;/p&gt;
@@ -1249,7 +1892,7 @@ public class Z extends X {
 &lt;p&gt;**总结： “父变量 → 父构造 → 子变量 → 子构造”  **&lt;/p&gt;
 &lt;h3&gt;1.8protected关键字&lt;/h3&gt;
 &lt;p&gt;主要限制：类或类中成员能否在类外或者其他包中被访问。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2025/png/49819380/1758648446773-3b54f51a-82d0-49ec-9ff1-1f97d65b9ec3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/inheritance3.D7UsE4ud_Z22SwdT.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;注意：父类中private成员变量虽然在子类中不能直接访问，但是也继承到子类中了&lt;/p&gt;
 &lt;h3&gt;1.9 继承与组合&lt;/h3&gt;
 &lt;p&gt;组合，组合并没有涉及到特殊的语法，仅仅是将一个类的实例作为另一个类的字段。&lt;/p&gt;
