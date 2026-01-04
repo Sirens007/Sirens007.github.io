@@ -1,4 +1,465 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>深入理解Java String：不可变性、内存机制与高效操作</title><link>https://sirens007.github.io/posts/stringclass/</link><guid isPermaLink="true">https://sirens007.github.io/posts/stringclass/</guid><description>重识String类，运用String类.</description><pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.字符串构造&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sirens007</title><description>Blog</description><link>https://sirens007.github.io/</link><language>zh_CN</language><item><title>Java异常处理解析：从防御式编程到自定义异常类</title><link>https://sirens007.github.io/posts/learningexception/</link><guid isPermaLink="true">https://sirens007.github.io/posts/learningexception/</guid><description>初识异常，掌握异常.</description><pubDate>Mon, 17 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.了解异常&lt;/h2&gt;
+&lt;h3&gt;1.1 初步认识异常，了解 Exception 家族&lt;/h3&gt;
+&lt;p&gt;在任何代码中，错误以及意外是不可避免的——除数为零，文件路径不正确，非法输入...既然知道存在这种情况，我们就需要提前预防。&lt;/p&gt;
+&lt;p&gt;因此 Java 的异常处理机制就应运而生。通过&lt;strong&gt;抛出异常（throw）&lt;/strong&gt;、&lt;strong&gt;声明异常（throws）&lt;strong&gt;和&lt;/strong&gt;捕获异常（try-catch）&lt;/strong&gt;，实现从错误检测到错误恢复的完整流程。&lt;/p&gt;
+&lt;p&gt;常见异常：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;System.out.println(10/0);
+//ArithmeticException 算数异常
+
+int[] arr = {1,2,3,4,5};
+System.out.println(arr[10]);
+//ArrayIndexOutOfBoundsException 数组越界异常
+
+int arr = null;
+System.out.println(arr.length);
+//NullPointerException 空指针异常...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;事实上，异常又分为&lt;strong&gt;编译时异常（受检异常 &lt;strong&gt;CheckedException&lt;/strong&gt;)&lt;/strong&gt;，&lt;strong&gt;运行时异常（非受检异常 &lt;strong&gt;UncheckedException&lt;/strong&gt;）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;编译时异常：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.编译阶段就会被检查，必须显式处理，否则编译不通过。&lt;/p&gt;
+&lt;p&gt;2.表示“可预料错误”，如：“文件不存在”、“网络中断”、“数据库连接失败”...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;p&gt;编译器要求：要么 &lt;code&gt;try-catch&lt;/code&gt; 捕获，要么在方法上 &lt;code&gt;throws&lt;/code&gt; 声明&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;运行时异常：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.运行时才可能发生，编译器不会强制要求处理。&lt;/p&gt;
+&lt;p&gt;2.表示“程序包逻辑错误或无法预料的问题”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;p&gt;通常是开发者的逻辑错误导致的，不建议用 try-catch 去包，而是应修正逻辑。&lt;/p&gt;
+&lt;p&gt;这里我们先了解下他们的继承关系，如下图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sirens007.github.io/_astro/LearningException1.0EgIMKGS_ZLwnbg.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我们可以了解到：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Throwable&lt;/code&gt;是异常体系的根，他继承自&lt;code&gt;Object&lt;/code&gt;。&lt;code&gt;Throwable&lt;/code&gt;有两个体系：&lt;code&gt;Error&lt;/code&gt;和&lt;code&gt;Exception&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Error&lt;/code&gt;&lt;strong&gt;表示严重的错误，程序对此一般无能为力&lt;/strong&gt;，错误不是异常，而是脱离程序控制的问题 eg：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;OutOfMemoryError&lt;/code&gt;：内存耗尽&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;NoClassDefFoundError&lt;/code&gt;：无法加载某个 Class&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;StackOverflowError&lt;/code&gt;：栈溢出&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Exception&lt;/code&gt;&lt;strong&gt;则是运行时的错误，它可以被捕获并处理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;某些异常是应用程序逻辑处理的一部分，应该捕获并处理。eg：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;NumberFormatException&lt;/code&gt;：数值类型的格式错误&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;FileNotFoundException&lt;/code&gt;：未找到文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SocketException&lt;/code&gt;：读取网络失败&lt;/p&gt;
+&lt;h2&gt;2. 处理异常&lt;/h2&gt;
+&lt;h3&gt;2.1 防御式编程&lt;/h3&gt;
+&lt;p&gt;先了解一下什么是防御式编程，以便让我们更好的了解如何处理异常&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;防御式编程（Defensive Programming）&lt;/strong&gt; 是一种编程思想，指在写代码时&lt;strong&gt;假设“可能出错”&lt;/strong&gt;，并提前在程序中&lt;strong&gt;检测、预防、或妥善处理这些潜在错误&lt;/strong&gt;，以防止程序在异常情况下崩溃或产生错误结果&lt;/p&gt;
+&lt;p&gt;简单理解：&lt;br /&gt;
+👉 就像司机开车时随时准备刹车，而不是等撞上去再想办法&lt;/p&gt;
+&lt;p&gt;我们可以举一个例子进行对比：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;普通写法（无防御）&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import java.io.*;
+
+public class Example1 {
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader(&quot;data.txt&quot;);  // 假设文件存在
+        BufferedReader br = new BufferedReader(fr);
+        System.out.println(&quot;第一行内容是：&quot; + br.readLine());
+        br.close();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;防御式编程&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import java.io.*;
+
+public class Example2 {
+    public static void main(String[] args) {
+        String filePath = &quot;data.txt&quot;;
+        File file = new File(filePath);
+
+        // ① 防御：检查文件是否存在
+        if (!file.exists()) {
+            System.err.println(&quot;错误：文件不存在 → &quot; + filePath);
+            return;
+        }
+
+        // ② 防御：检查是否是普通文件（防止是目录）
+        if (!file.isFile()) {
+            System.err.println(&quot;错误：&quot; + filePath + &quot; 不是一个有效文件&quot;);
+            return;
+        }
+
+        // ③ 使用 try-with-resources，自动关闭流
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String firstLine = br.readLine();
+
+            // ④ 防御：检查文件是否为空
+            if (firstLine == null) {
+                System.err.println(&quot;提示：文件为空，没有任何内容。&quot;);
+                return;
+            }
+
+            System.out.println(&quot;第一行内容是：&quot; + firstLine);
+
+        } catch (IOException e) {
+            // ⑤ 防御：捕获所有IO错误并给出友好提示
+            System.err.println(&quot;读取文件时出错：&quot; + e.getMessage());
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总结一句话就是： 防御式编程就是“&lt;strong&gt;预先假设问题会发生，并设计好应对措施&lt;/strong&gt;”，而不是“等异常爆炸再修”。&lt;/p&gt;
+&lt;p&gt;因此，我们开始踏入 Java 的异常使用啦，先初步了解五个异常常用关键字：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关键字&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;th&gt;位置&lt;/th&gt;
+&lt;th&gt;举例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;throw&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;抛出一个具体的异常对象&lt;/td&gt;
+&lt;td&gt;方法体内&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;throw new Exception(&quot;出错了&quot;);&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;throws&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;声明该方法可能抛出哪些异常&lt;/td&gt;
+&lt;td&gt;方法声明上&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;public void readFile() throws IOException&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;try&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;可能出错的代码块&lt;/td&gt;
+&lt;td&gt;方法体内&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;try { riskyCode(); }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;catch&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;捕获并处理异常&lt;/td&gt;
+&lt;td&gt;紧跟 try 后&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;catch(Exception e) { ... }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;finally&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;无论是否异常都执行&lt;/td&gt;
+&lt;td&gt;可选&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;finally { cleanUp(); }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;2.2 抛出异常&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;追踪本源&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当发生错误时，比如用户输入非法字符，那么就可以抛出异常。&lt;/p&gt;
+&lt;p&gt;抛出异常分为两步，我们可以参考 &lt;code&gt;Integer.parseInt()&lt;/code&gt;方法&lt;/p&gt;
+&lt;p&gt;1.创建&lt;code&gt;Exception&lt;/code&gt;的实例&lt;/p&gt;
+&lt;p&gt;2.用 &lt;code&gt;throw&lt;/code&gt;语句抛出&lt;/p&gt;
+&lt;p&gt;eg:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void example(String s){
+    if(s == null){
+        NullPointerException e = new NullPointerException();
+    throw e;
+    //通常写为一条语句，用匿名对象
+    //throw new NullPointerException();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;但是&lt;/strong&gt;，如果一个方法捕获了某个异常后，又在&lt;code&gt;catch&lt;/code&gt;子句中抛出新的异常，就相当于把抛出的异常类型“转型”了:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void example1(String s) {
+    try {
+        example2();
+    } catch (NullPointerException e) {
+        throw new IllegalArgumentException();
+    }
+}
+
+void example2(String s) {
+    if (s==null) {
+        throw new NullPointerException();
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这段代码展示的就是将&lt;code&gt;NullPointerException&lt;/code&gt;异常转为了&lt;code&gt;IllegalArgumentException&lt;/code&gt;，最终展示报错结果只有&lt;code&gt;IllegalArgumentException&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我们补为 static 方法放在 main 方法中打印出异常栈看看：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class TestDemo3 {
+    public static void main(String[] args) {
+        try {
+            example1();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    static void example1() {
+        try {
+            example2();
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    static void example2() {
+        throw new NullPointerException();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打印出的异常栈信息即为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;java.lang.IllegalArgumentException
+	at demo2.TestDemo3.example1(TestDemo3.java:23)
+	at demo2.TestDemo3.main(TestDemo3.java:13)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;说明了新的异常丢失了原始异常信息，即看不到了原本的&lt;code&gt;NullPointerException&lt;/code&gt;的信息了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以&lt;/strong&gt;，为了追踪完整的异常栈，我们在构造异常的时候就&lt;strong&gt;把原始的&lt;/strong&gt;&lt;code&gt;Exception&lt;/code&gt;&lt;strong&gt;实例传进去(&lt;strong&gt;将 e 对象进行&lt;/strong&gt;异常包装/异常链)&lt;/strong&gt;，新的&lt;code&gt;Exception&lt;/code&gt;就可持有原来的&lt;code&gt;Exception&lt;/code&gt;信息。代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class TestDemo3 {
+    public static void main(String[] args) {
+        try {
+            example1();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void example1() {
+        try {
+            example2();
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static void example2() {
+        throw new NullPointerException();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样我们就保留下来最开始抛出的异常类型了，以方便我们直接溯源根源&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;java.lang.IllegalArgumentException: java.lang.NullPointerException
+	at demo2.TestDemo3.example1(TestDemo3.java:23)
+	at demo2.TestDemo3.main(TestDemo3.java:13)
+Caused by: java.lang.NullPointerException
+	at demo2.TestDemo3.example2(TestDemo3.java:28)
+	at demo2.TestDemo3.example1(TestDemo3.java:21)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在代码中获取原始异常可以使用&lt;code&gt;Throwable.getCause()&lt;/code&gt;方法。若返回 null，说明已经是“根异常”了。&lt;/p&gt;
+&lt;h4&gt;Throwable.getCause()方法使用&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;Throwable cause = e.getCause();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;-&amp;gt;返回触发当前异常的“原始异常”&lt;/p&gt;
+&lt;p&gt;-&amp;gt;如果返回 null，说明当前异常没有再包裹别的异常，是“根异常”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基本使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;try {
+    someMethod();
+} catch (Exception e) {
+    Throwable cause = e.getCause();
+    System.out.println(&quot;当前异常是：&quot; + e);
+    System.out.println(&quot;原始原因是：&quot; + cause);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;实际开发中常用：遍历整条异常链&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;若异常被包装多次，可以使用循环一直调用 getCause()；&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;static void printChain(Throwable t) {
+    while (t != null) {
+        System.out.println(&quot;异常: &quot; + t);
+        t = t.getCause();  // ⭐关键：向上查找
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2.3 捕获异常&lt;/h3&gt;
+&lt;h4&gt;2.3.1 异常声明 throws&lt;/h4&gt;
+&lt;p&gt;throws 处在方法声明参数列表之后，当方法中抛出编译时异常，用户不想处理该异常，此时就可以借助 throws 将异常抛出给方法的调用者来处理。&lt;strong&gt;即当前方法不处理异常，提醒方法的调用者处理异常。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;修饰词 返回值类型 方法名(参数列表) throws 异常类型1,异常类型2...{}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们举个例子看看 throws 用法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void OpenConfig(String filename) throws FileNotFoundException{
+    if(filename.equals(&quot;config.ini&quot;)){
+        throw new FileNotFountException(&quot;配置文件名字不对&quot;);
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;语法点注意&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.throws 必须更在方法的参数列表之后&lt;/p&gt;
+&lt;p&gt;2.声明的异常必须是 Exception 或者 Exception 的子类&lt;/p&gt;
+&lt;p&gt;3.方法内部如果抛出多个异常，throws 之后必须跟多个异常类型，之间用逗号隔开，如果抛出多个异常型具有父子关系，直接声明父类即可。&lt;/p&gt;
+&lt;p&gt;4.调用声明抛出异常的方法时，调用者必须对该异常进行处理，或者继续使用 throws 抛出&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;2.3.2 try-catch 捕获并处理&lt;/h4&gt;
+&lt;p&gt;throws 对异常并没有真正处理，而是将异常报告给抛出异常方法的调用者，由调用者处理。如果真正要对异常进行处理，就需要 try-catch。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;try{
+// 将可能出现异常的代码放在这里
+    } catch(要捕获的异常类型 e){
+// 如果try中的代码抛出异常了，此处catch捕获时异常类型与try中抛出的异常类型一致时，或者是try中抛出异常的基类
+//时，就会被捕获到
+// 对异常就可以正常处理，处理完成后，跳出try-catch结构，继续执行后序代码
+    } catch(异常类型 e){
+// 对异常进行处理
+    } finally{
+// 此处代码一定会被执行到
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.try 块内抛出异常位置，&lt;strong&gt;之后的代码将不会被执行&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;2.如果抛出异常类型与 catch 时异常类型不匹配，即异常不会被成功捕获，也就不会被处理，继续往外抛，知道 JVM 收到后中断程序----异常是按照类型来捕获的&lt;/p&gt;
+&lt;p&gt;3.try 中可能会抛出多个不同的异常对象，则必须使用多个 catch 来捕获----多种异常，多次捕获&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;2.3.3finally&lt;/h4&gt;
+&lt;p&gt;像在代码中，当程序需要中断并且需要我们关闭资源避免浪费的时候，finally 很好的帮我们解决了这个问题。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;语法格式：
+        try{
+// 可能会发生异常的代码
+        }catch(异常类型 e){
+// 对捕获到的异常进行处理
+        }finally{
+// 此处的语句无论是否发生异常，都会被执行到
+        }
+// 如果没有抛出异常，或者异常被捕获处理了，这里的代码也会执行
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;举个范例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class TestFinally {
+    public static int getData(){
+        Scanner sc = null;
+        try{
+            sc = new Scanner(System.in);
+            int data = sc.nextInt();
+            return data;
+        }catch (InputMismatchException e){
+            e.printStackTrace();
+        }finally {
+            System.out.println(&quot;finally中代码&quot;);
+        }
+        System.out.println(&quot;try-catch-finally之后代码&quot;);
+        if(null != sc){
+            sc.close();
+        }
+        return 0;
+    }
+    public static void main(String[] args) {
+        int data = getData();
+        System.out.println(data);
+    }
+}
+// 正常输入时程序运行结果：
+100
+finally中代码
+100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上述程序，如果正常输入，成功接收输入后程序就返回了，try-catch-finally 之后的代码根本就没有被释放，造成资源泄漏。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;finally 中的代码一定会执行的，一般在 finally 中进行一些资源清理的扫尾工作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;// 下面程序输出什么？
+public static void main(String[] args) {
+    System.out.println(func());
+}
+public static int func() {
+    try {
+        return 10;
+    } finally {
+        return 20;
+    }
+}
+A: 10 B: 20 C: 30 D: 编译失败
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;答案解析：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;java 规则：&lt;/p&gt;
+&lt;p&gt;1.try 中遇到 return 时，先把返回值记录下来，但不立即返回&lt;/p&gt;
+&lt;p&gt;2.finally 会在 return 执行前运行&lt;/p&gt;
+&lt;p&gt;3.如果 finally 中也写了 return，他会覆盖 try 的返回值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此建议：不在 finally 中写 return（被编译器当作一个警告）&lt;/p&gt;
+&lt;p&gt;【面试题】：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;throw 和 throws 的区别？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;finally中的语句一定会执行吗？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;throws 用于方法声明处，表示该方法可能抛出某类异常，让调用者处理。&lt;br /&gt;
+throw 用于方法内部，创建并抛出一个异常对象，中断方法执行。&lt;br /&gt;
+throws 是声明，throw 是动作；throws 后跟异常类型，throw 后跟异常对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2.几乎一定会执行，但有两个例外！&lt;/p&gt;
+&lt;p&gt;JVM 提前退出，eg: 调用 &lt;code&gt;System.exit(0);&lt;/code&gt; JVM 直接停止，不执行 finally&lt;/p&gt;
+&lt;p&gt;finally 执行前被线程杀死，eg: (1)线程再 finally 前被 stop() (2)程序崩溃导致线程终止&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2.4 异常的处理流程&lt;/h3&gt;
+&lt;p&gt;我们先了解一下“调用栈”&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;方法之间是存在互相调用关系的，这种调用关系我们可以用“调用栈”来描述，在 JVM 中有一块内存空间称为“虚拟机栈”专门存储方法之间的调用关系，当代码中出现异常的时候，我们就可以使用&lt;code&gt;e.printStackTrace();&lt;/code&gt;的方式查看出现异常代码的调用栈&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;你（main 方法）→ 去办业务&lt;/li&gt;
+&lt;li&gt;办事人员让你先去窗口 A（调用 methodA）&lt;/li&gt;
+&lt;li&gt;窗口 A 又让你先去窗口 B（调用 methodB）&lt;/li&gt;
+&lt;li&gt;窗口 B 又让你去窗口 C（调用 methodC）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;你去每一个窗口，都会把“你当前在哪一层”记录下来。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这就是——&lt;strong&gt;调用栈（Call Stack）&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;然后呢，了解调用栈之后我们能更好的理解异常处理流程了&lt;/p&gt;
+&lt;p&gt;1.代码运行时发生错误 -&amp;gt; JVM 创建异常对象&lt;/p&gt;
+&lt;p&gt;2.JVM 将异常抛出到当前方法（throw）&lt;/p&gt;
+&lt;p&gt;3.JVM 查找匹配的 catch（当前方法内查找）&lt;/p&gt;
+&lt;p&gt;4.当前方法没有处理 -&amp;gt; 异常向上抛给调用者（throws）&lt;/p&gt;
+&lt;p&gt;5.异常层层向上，知道被某层 catch 处理&lt;/p&gt;
+&lt;p&gt;6.如果最终无人处理 -&amp;gt; JVM 答应异常栈 -&amp;gt; 程序终止&lt;/p&gt;
+&lt;p&gt;如果有匹配的 catch -&amp;gt; catch 执行&lt;/p&gt;
+&lt;p&gt;7.finally 总会执行&lt;/p&gt;
+&lt;p&gt;8.若 catch 中再次 throw -&amp;gt; 异常类型被“转换”继续向上抛&lt;/p&gt;
+&lt;h2&gt;3.自定义异常类&lt;/h2&gt;
+&lt;p&gt;当我们在代码中需要抛出异常时，尽量使用 JDK 已定义的异常类型。例如，参数检查不合法，应该抛出&lt;code&gt;IllegalArgumentException&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;static void example1(int age){
+    if(age &amp;lt;= 0){
+        throw new IllegalArgumentException();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;常见做法是自定义一个 &lt;code&gt;BaseException&lt;/code&gt;作为“根异常”，然后，派生出各种业务类型的异常。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BaseException&lt;/code&gt;需要从一个适合的&lt;code&gt;Exception&lt;/code&gt;派生，通常建议从&lt;code&gt;Runtime Exception&lt;/code&gt;派生：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class BaseException extends RuntimeException {
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;也因此，其他业务类型的异常就可以从&lt;code&gt;BaseException&lt;/code&gt;派生：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class UserNotFoundException extends BaseException {
+}
+
+public class LoginFailedException extends BaseException {
+}
+
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;自定义的&lt;code&gt;BaseException&lt;/code&gt;应该提供多个构造方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class BaseException extends RuntimeException {
+    public BaseException() {
+        super();
+    }
+
+    public BaseException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public BaseException(String message) {
+        super(message);
+    }
+
+    public BaseException(Throwable cause) {
+        super(cause);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自定义异常通常会继承自 Exception 或者 RuntimeException&lt;/li&gt;
+&lt;li&gt;继承自 Exception 的异常默认是受查异常&lt;/li&gt;
+&lt;li&gt;继承自 RuntimeException 的异常默认是非受查异常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还需注意受查异常和非受查异常的应用区别&lt;/p&gt;
+</content:encoded></item><item><title>深入理解Java String：不可变性、内存机制与高效操作</title><link>https://sirens007.github.io/posts/stringclass/</link><guid isPermaLink="true">https://sirens007.github.io/posts/stringclass/</guid><description>重识String类，运用String类.</description><pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1.字符串构造&lt;/h2&gt;
 &lt;h3&gt;1.1 再识 String&lt;/h3&gt;
 &lt;p&gt;String 类常用构造方式：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;String s1 = &quot;Hello Sirens&quot;;					//直接创建
