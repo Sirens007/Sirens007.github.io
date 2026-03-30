@@ -641,6 +641,13 @@ export function setWallpaperMode(mode: WALLPAPER_MODE): void {
 	}
 	localStorage.setItem("wallpaperMode", mode);
 	applyWallpaperModeToDocument(mode);
+	if (typeof window !== "undefined") {
+		window.dispatchEvent(
+			new CustomEvent("wallpaperModeChange", {
+				detail: { mode },
+			}),
+		);
+	}
 }
 
 export function initWallpaperMode(): void {
@@ -873,6 +880,13 @@ export function getDefaultBannerTitleEnabled(): boolean {
 	return backgroundWallpaper.banner?.homeText?.enable ?? true;
 }
 
+<<<<<<< HEAD
+=======
+export function getDefaultBannerCarouselEnabled(): boolean {
+	return backgroundWallpaper.banner?.carousel?.enable ?? false;
+}
+
+>>>>>>> upstream/master
 export function getStoredBannerTitleEnabled(): boolean {
 	if (
 		typeof localStorage === "undefined" ||
@@ -887,6 +901,28 @@ export function getStoredBannerTitleEnabled(): boolean {
 	return stored === "true";
 }
 
+<<<<<<< HEAD
+=======
+export function getStoredBannerCarouselEnabled(): boolean {
+	const isSwitchable =
+		backgroundWallpaper.banner?.carousel?.switchable ?? false;
+	if (!isSwitchable) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	if (
+		typeof localStorage === "undefined" ||
+		typeof localStorage.getItem !== "function"
+	) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	const stored = localStorage.getItem("bannerCarouselEnabled");
+	if (stored === null) {
+		return getDefaultBannerCarouselEnabled();
+	}
+	return stored === "true";
+}
+
+>>>>>>> upstream/master
 export function setBannerTitleEnabled(enabled: boolean): void {
 	if (
 		typeof localStorage === "undefined" ||
@@ -898,6 +934,30 @@ export function setBannerTitleEnabled(enabled: boolean): void {
 	applyBannerTitleEnabledToDocument(enabled);
 }
 
+<<<<<<< HEAD
+=======
+export function setBannerCarouselEnabled(enabled: boolean): void {
+	const safeEnabled = !!enabled;
+	const isSwitchable =
+		backgroundWallpaper.banner?.carousel?.switchable ?? false;
+	if (
+		isSwitchable &&
+		typeof localStorage !== "undefined" &&
+		typeof localStorage.setItem === "function"
+	) {
+		localStorage.setItem("bannerCarouselEnabled", String(safeEnabled));
+	}
+	applyBannerCarouselEnabledToDocument(safeEnabled);
+	if (typeof window !== "undefined") {
+		window.dispatchEvent(
+			new CustomEvent("bannerCarouselChange", {
+				detail: { enabled: safeEnabled },
+			}),
+		);
+	}
+}
+
+>>>>>>> upstream/master
 export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
 	if (typeof document === "undefined") {
 		return;
@@ -919,3 +979,16 @@ export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
 		}
 	}
 }
+<<<<<<< HEAD
+=======
+
+export function applyBannerCarouselEnabledToDocument(enabled: boolean): void {
+	if (typeof document === "undefined") {
+		return;
+	}
+	document.documentElement.setAttribute(
+		"data-banner-carousel-enabled",
+		String(enabled),
+	);
+}
+>>>>>>> upstream/master

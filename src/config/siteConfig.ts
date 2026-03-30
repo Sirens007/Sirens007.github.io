@@ -7,6 +7,7 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
+<<<<<<< HEAD
 	title: "Sirens",
 
 	// 站点副标题
@@ -14,6 +15,15 @@ export const siteConfig: SiteConfig = {
 
 	// 站点 URL
 	site_url: "https://blog.sirens007.cn",
+=======
+	title: "Firefly",
+
+	// 站点副标题
+	subtitle: "Demo site",
+
+	// 站点 URL
+	site_url: "https://firefly.cuteleaf.cn",
+>>>>>>> upstream/master
 
 	// 站点描述
 	description:
@@ -48,7 +58,11 @@ export const siteConfig: SiteConfig = {
 	// 网站Card样式配置
 	card: {
 		// 是否开启卡片边框和阴影，开启后让网站更有立体感
+<<<<<<< HEAD
 		border: false,
+=======
+		border: true,
+>>>>>>> upstream/master
 		// 是否让卡片风格跟随主题色相
 		followTheme: false,
 	},
@@ -79,6 +93,7 @@ export const siteConfig: SiteConfig = {
 			alt: "🍀",
 		},
 		// 导航栏标题
+<<<<<<< HEAD
 		title: "Sirens",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
@@ -86,12 +101,25 @@ export const siteConfig: SiteConfig = {
 		menuAlign: "left",
 		// 导航栏图标和标题是否跟随主题色
 		followTheme: true,
+=======
+		title: "Firefly",
+		// 全宽导航栏，导航栏是否占满屏幕宽度
+		widthFull: false,
+		// 导航菜单对齐方式，left：左对齐，center：居中
+		menuAlign: "center",
+		// 导航栏图标和标题是否跟随主题色
+		followTheme: false,
+>>>>>>> upstream/master
 		// 导航栏是否固定在顶部并始终可见
 		stickyNavbar: true,
 	},
 
 	// 站点开始日期，用于统计运行天数
+<<<<<<< HEAD
 	siteStartDate: "2025-09-30",
+=======
+	siteStartDate: "2025-01-01",
+>>>>>>> upstream/master
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
@@ -131,7 +159,11 @@ export const siteConfig: SiteConfig = {
 		// 友链页面开关
 		friends: true,
 		// 赞助页面开关
+<<<<<<< HEAD
 		sponsor: false,
+=======
+		sponsor: true,
+>>>>>>> upstream/master
 		// 留言板页面开关，需要配置评论系统
 		guestbook: true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐，dev调试时只获取一页数据，build才会获取全部数据
@@ -146,14 +178,28 @@ export const siteConfig: SiteConfig = {
 	// 文章列表布局配置
 	postListLayout: {
 		// 默认布局模式："list" 列表模式（单列布局），"grid" 网格模式（多列布局）
+<<<<<<< HEAD
 		defaultMode: "grid",
+=======
+		defaultMode: "list",
+		// 移动端默认布局模式，不设置则跟随 defaultMode
+		mobileDefaultMode: "list",
+		// 是否在文章列表中显示标签
+		showTags: true,
+		// 文章简介显示行数，设为 0 则不截断
+		descriptionLines: 2,
+>>>>>>> upstream/master
 		// 是否允许用户切换布局
 		allowSwitch: true,
 		// 网格布局配置，仅在 defaultMode 为 "grid" 或允许切换布局时生效
 		grid: {
 			// 是否开启瀑布流布局，同时有封面图和无封面图的混合文章推荐开启
 			masonry: false,
+<<<<<<< HEAD
 			// 网格模式卡片最小宽度(px)，浏览器根据容器宽度自动计算列数，默认 280
+=======
+			// 网格模式卡片最小宽度(px)，浏览器根据容器宽度自动计算列数
+>>>>>>> upstream/master
 			columnWidth: 320,
 		},
 	},
@@ -173,7 +219,11 @@ export const siteConfig: SiteConfig = {
 		// Umami 统计配置
 		umamiAnalytics: {
 			// Umami Website ID
+<<<<<<< HEAD
 			websiteId: "8952bfd6-95ab-4a99-819e-cf1cda1c2814",
+=======
+			websiteId: "",
+>>>>>>> upstream/master
 			// Umami JS地址，支持使用自建
 			scriptUrl: "https://cloud.umami.is/script.js",
 		},

@@ -220,6 +220,10 @@ export const ru: Translation = {
 	// Настройки баннера
 	[Key.bannerSettings]: "Настройки баннера",
 	[Key.bannerTitle]: "Заголовок главного баннера",
+<<<<<<< HEAD
+=======
+	[Key.bannerCarousel]: "Карусель баннера",
+>>>>>>> upstream/master
 	[Key.wavesAnimation]: "Анимация волн",
 	[Key.overlaySettings]: "Настройки прозрачности",
 	[Key.overlayOpacity]: "Прозрачность обоев",
@@ -294,8 +298,13 @@ export const ru: Translation = {
 	[Key.scanToRead]: "Сканируйте, чтобы прочитать",
 
 	// Конфигурация блоков коллапсируемого кода
+<<<<<<< HEAD
 	[Key.codeCollapsibleShowMore]: "Показать больше",
 	[Key.codeCollapsibleShowLess]: "Показать меньше",
+=======
+	[Key.codeCollapsibleShowMore]: "Развернуть",
+	[Key.codeCollapsibleShowLess]: "Свернуть",
+>>>>>>> upstream/master
 	[Key.codeCollapsibleExpanded]: "Блок кода развернут",
 	[Key.codeCollapsibleCollapsed]: "Блок кода свернут",
 
