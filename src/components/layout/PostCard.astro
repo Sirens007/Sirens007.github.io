@@ -4,10 +4,7 @@ import { render } from "astro:content";
 import { Icon } from "astro-icon/components";
 import CoverImage from "@/components/common/CoverImage.astro";
 import PostMetadata from "@/components/layout/PostMeta.astro";
-<<<<<<< HEAD
-=======
 import { siteConfig } from "@/config";
->>>>>>> upstream/master
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import { getApiUrlList, processCoverImageSync } from "@/utils/image-utils";
@@ -35,10 +32,6 @@ const {
 	title,
 	url,
 	published,
-<<<<<<< HEAD
-	updated,
-=======
->>>>>>> upstream/master
 	tags,
 	category,
 	image,
@@ -60,9 +53,6 @@ const hasCover =
 
 const coverWidth = "30%";
 
-<<<<<<< HEAD
-const { remarkPluginFrontmatter } = await render(entry);
-=======
 const showTags = siteConfig.postListLayout.showTags;
 const descriptionLines = Math.max(
 	0,
@@ -73,7 +63,6 @@ const shouldClampDescription = descriptionLines > 0;
 
 const { remarkPluginFrontmatter } = await render(entry);
 const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
->>>>>>> upstream/master
 ---
 
 <div
@@ -81,11 +70,7 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
     "post-card-wrapper",
     hasCover ? "has-cover" : "no-cover",
     pinned ? "pinned" : "",
-<<<<<<< HEAD
-    "card-base flex flex-col-reverse md:flex-col w-full rounded-(--radius-large) overflow-hidden relative",
-=======
     "card-base flex flex-col-reverse w-full rounded-(--radius-large) overflow-hidden relative",
->>>>>>> upstream/master
     className,
   ]}
   style={style}
@@ -94,11 +79,7 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
   <div
     class:list={[
       "post-card-content",
-<<<<<<< HEAD
-      "pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 md:pb-7 relative flex flex-col h-full",
-=======
       "pl-4 md:pl-9 pr-4 md:pr-2 pt-4 md:pt-7 pb-4 md:pb-7 relative flex flex-col h-full",
->>>>>>> upstream/master
       {
         "w-full md:w-[calc(100%-52px-12px)]": !hasCover,
         "w-full md:w-[calc(100%-var(--coverWidth)-1.5rem)]": hasCover,
@@ -117,42 +98,20 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
 
       {
         password && (
-<<<<<<< HEAD
-          <Icon name="material-symbols:lock-outline" class="inline text-2xl align-middle -translate-y-px" />
-        )
-      }
-
-      <Icon
-        class="inline text-[2rem] text-(--primary) md:hidden align-middle -translate-y-[2px] -ml-1"
-        name="material-symbols:chevron-right-rounded"
-      />
-=======
           <Icon
             name="material-symbols:lock-outline"
             class="inline text-2xl align-middle -translate-y-px"
           />
         )
       }
->>>>>>> upstream/master
     </a>
 
     <!-- metadata -->
     <PostMetadata
       published={published}
-<<<<<<< HEAD
-      updated={updated}
-      tags={tags}
-      category={category || undefined}
-      hideTagsForMobile={true}
-      hideUpdateDate={true}
-      words={remarkPluginFrontmatter.words}
-      minutes={remarkPluginFrontmatter.minutes}
-      showWordCount={true}
-=======
       tags={tags}
       showTags={false}
       category={category || undefined}
->>>>>>> upstream/master
       pinned={pinned}
       password={password}
       className="mb-4 post-meta"
@@ -161,43 +120,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
     <!-- description -->
     <div
       class:list={[
-<<<<<<< HEAD
-        "transition text-75 mb-3.5 md:pr-4 description grow",
-        { "line-clamp-2 md:line-clamp-1": !description },
-      ]}
-    >
-      {description || remarkPluginFrontmatter.excerpt}
-    </div>
-
-    <!-- tags -->
-    <div
-      class="text-sm text-black/30 dark:text-white/30 flex flex-wrap gap-2 transition stats mt-auto"
-    >
-      {
-        tags &&
-          tags.length > 0 &&
-          tags.map((tag, _i) => (
-            <a
-              href={getTagUrl(tag)}
-              aria-label={`View all posts with the ${tag.trim()} tag`}
-              class="btn-regular h-6 text-xs px-2 py-1 rounded-md 
-                    transition-all duration-200 hover:scale-105 active:scale-95"
-            >
-              #{tag.trim()}
-            </a>
-          ))
-      }
-      {
-        !(tags && tags.length > 0) && (
-          <span class="text-(--content-meta) text-xs">
-            #{i18n(I18nKey.noTags)}
-          </span>
-        )
-      }
-    </div>
-  </div>
-
-=======
         "transition text-75 md:pr-4 description grow",
         { "description-clamped": shouldClampDescription },
       ]}
@@ -231,7 +153,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
       )
     }
   </div>
->>>>>>> upstream/master
   {
     hasCover && (
       <a
@@ -243,11 +164,7 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
           "w-full md:w-(--coverWidth)",
           "aspect-2/1 md:aspect-auto",
           "relative md:absolute md:top-4 md:bottom-4 md:right-4",
-<<<<<<< HEAD
-          "rounded-t-(--radius-large) md:rounded-xl overflow-hidden",
-=======
           "rounded-(--radius-large) md:rounded-xl overflow-hidden",
->>>>>>> upstream/master
         ]}
       >
         <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition" />
@@ -277,11 +194,7 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
         aria-label={title}
         class:list={[
           "post-card-enter-btn",
-<<<<<<< HEAD
-          "hidden md:flex btn-regular w-13",
-=======
           "flex btn-regular w-13",
->>>>>>> upstream/master
           "absolute right-3 top-3 bottom-3 rounded-xl bg-(--enter-btn-bg)",
           "hover:bg-(--enter-btn-bg-hover) active:bg-(--enter-btn-bg-active) active:scale-95",
         ]}
@@ -295,10 +208,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
   }
 </div>
 
-<<<<<<< HEAD
-<style define:vars={{ coverWidth }}>
-  /* Grid Mode Styles */
-=======
 <style define:vars={{ coverWidth, descriptionClampLines }}>
   .description-clamped {
     display: -webkit-box;
@@ -410,7 +319,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
 
   /* === Grid Mode Styles === */
   /* 网格模式：封面在顶部（移动端和桌面端一致） */
->>>>>>> upstream/master
   :global(.grid-mode) .post-card-wrapper {
     flex-direction: column-reverse !important;
     height: 100% !important;
@@ -449,9 +357,6 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
   :global(.grid-mode) .has-cover .post-card-title::before {
     top: 1.3rem !important;
   }
-<<<<<<< HEAD
-  
-=======
 
   :global(.grid-mode) .no-cover .post-card-content {
     width: calc(100% - 52px - 12px) !important;
@@ -460,5 +365,4 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
   :global(.grid-mode) .post-card-enter-btn {
     display: flex !important;
   }
->>>>>>> upstream/master
 </style>

@@ -71,28 +71,15 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否允许用户通过控制面板切换横幅标题显示
 			switchable: true,
 			// 主页横幅主标题
-<<<<<<< HEAD
 			title: "美好即將發生!",
-=======
-			title: "Lovely firefly!",
->>>>>>> upstream/master
 			// 主页横幅主标题字体大小
 			titleSize: "3.8rem",
 			// 主页横幅副标题
 			subtitle: [
-<<<<<<< HEAD
 				"Welcome to my Blog",
 				"這裏記錄我的日常與心情",
 				"也有一些技術和學習的點滴",
 				"願我們都在成長的路上閃閃發光！",
-=======
-				"In Reddened Chrysalis, I Once Rest",
-				"From Shattered Sky, I Free Fall",
-				"Amidst Silenced Stars, I Deep Sleep",
-				"Upon Lighted Fyrefly, I Soon Gaze",
-				"From Undreamt Night, I Thence Shine",
-				"In Finalized Morrow, I Full Bloom",
->>>>>>> upstream/master
 			],
 			// 主页横幅副标题字体大小
 			subtitleSize: "1.5rem",
@@ -139,8 +126,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 毛玻璃模糊度
 			blur: 10,
 		},
-<<<<<<< HEAD
-=======
 		// 横幅图片轮播配置，仅在当配置多张图片时生效
 		carousel: {
 			// 是否启用横幅图片轮播；关闭时保持每次刷新随机显示一张
@@ -150,7 +135,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否允许用户通过控制面板切换横幅轮播
 			switchable: true,
 		},
->>>>>>> upstream/master
 		// 水波纹动画效果配置，开启会影响页面性能，请根据自己的喜好开启
 		waves: {
 			enable: {

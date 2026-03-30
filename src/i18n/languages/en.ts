@@ -219,10 +219,7 @@ export const en: Translation = {
 	// Banner Settings
 	[Key.bannerSettings]: "Banner Settings",
 	[Key.bannerTitle]: "Home Banner Title",
-<<<<<<< HEAD
-=======
 	[Key.bannerCarousel]: "Banner Carousel",
->>>>>>> upstream/master
 	[Key.wavesAnimation]: "Waves Animation",
 	[Key.overlaySettings]: "Transparency Settings",
 	[Key.overlayOpacity]: "Wallpaper Opacity",

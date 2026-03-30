@@ -7,10 +7,7 @@ import {
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import {
-<<<<<<< HEAD
-=======
 	getDefaultBannerCarouselEnabled,
->>>>>>> upstream/master
 	getDefaultBannerTitleEnabled,
 	getDefaultHue,
 	getDefaultOverlayBlur,
@@ -18,20 +15,14 @@ import {
 	getDefaultOverlayOpacity,
 	getDefaultWavesEnabled,
 	getHue,
-<<<<<<< HEAD
-=======
 	getStoredBannerCarouselEnabled,
->>>>>>> upstream/master
 	getStoredBannerTitleEnabled,
 	getStoredOverlayBlur,
 	getStoredOverlayCardOpacity,
 	getStoredOverlayOpacity,
 	getStoredWallpaperMode,
 	getStoredWavesEnabled,
-<<<<<<< HEAD
-=======
 	setBannerCarouselEnabled,
->>>>>>> upstream/master
 	setBannerTitleEnabled,
 	setHue,
 	setOverlayBlur,
@@ -51,31 +42,22 @@ let wallpaperMode: WALLPAPER_MODE = $state(backgroundWallpaper.mode);
 const defaultWallpaperMode = backgroundWallpaper.mode;
 let currentLayout: "list" | "grid" = $state("list");
 const defaultLayout = siteConfig.postListLayout.defaultMode;
-<<<<<<< HEAD
-=======
 const mobileDefaultLayout =
 	siteConfig.postListLayout.mobileDefaultMode || defaultLayout;
->>>>>>> upstream/master
 let mounted = $state(false);
 let isSmallScreen = $state(
 	typeof window !== "undefined" ? window.innerWidth < 1200 : false,
 );
-<<<<<<< HEAD
-=======
 let isMobileWidth = $state(
 	typeof window !== "undefined" ? window.innerWidth < 780 : false,
 );
->>>>>>> upstream/master
 let isSwitching = $state(false);
 let wavesEnabled = $state(true);
 const defaultWavesEnabled = getDefaultWavesEnabled();
 let bannerTitleEnabled = $state(true);
 const defaultBannerTitleEnabled = getDefaultBannerTitleEnabled();
-<<<<<<< HEAD
-=======
 let bannerCarouselEnabled = $state(true);
 const defaultBannerCarouselEnabled = getDefaultBannerCarouselEnabled();
->>>>>>> upstream/master
 let overlayOpacity = $state(getDefaultOverlayOpacity());
 const defaultOverlayOpacity = getDefaultOverlayOpacity();
 let overlayBlur = $state(getDefaultOverlayBlur());
@@ -85,12 +67,9 @@ const defaultOverlayCardOpacity = getDefaultOverlayCardOpacity();
 
 const isWallpaperSwitchable = backgroundWallpaper.switchable ?? true;
 const allowLayoutSwitch = siteConfig.postListLayout.allowSwitch;
-<<<<<<< HEAD
-=======
 let effectiveDefaultLayout = $derived(
 	isMobileWidth ? mobileDefaultLayout : defaultLayout,
 );
->>>>>>> upstream/master
 const showThemeColor = !siteConfig.themeColor.fixed;
 // 是否允许用户切换水波纹动画（只看 switchable 配置）
 const isWavesSwitchable =
@@ -102,17 +81,12 @@ const isBannerTitleEnabled =
 const isBannerTitleSwitchable =
 	isBannerTitleEnabled &&
 	(backgroundWallpaper.banner?.homeText?.switchable ?? false);
-<<<<<<< HEAD
-// 是否有任何横幅设置可显示（后续添加新设置时在此处添加条件）
-const hasBannerSettings = isWavesSwitchable || isBannerTitleSwitchable;
-=======
 // 是否允许用户切换横幅轮播
 const isBannerCarouselSwitchable =
 	backgroundWallpaper.banner?.carousel?.switchable ?? false;
 // 是否有任何横幅设置可显示（后续添加新设置时在此处添加条件）
 const hasBannerSettings =
 	isWavesSwitchable || isBannerTitleSwitchable || isBannerCarouselSwitchable;
->>>>>>> upstream/master
 const overlaySwitchableConfig =
 	backgroundWallpaper.overlay?.switchable ?? false;
 const isOverlaySettingsSwitchable =
@@ -144,13 +118,9 @@ let overlaySettingsIsDefault = $derived(
 let bannerSettingsIsDefault = $derived(
 	(!isBannerTitleSwitchable ||
 		bannerTitleEnabled === defaultBannerTitleEnabled) &&
-<<<<<<< HEAD
-		(!isWavesSwitchable || wavesEnabled === defaultWavesEnabled),
-=======
 		(!isWavesSwitchable || wavesEnabled === defaultWavesEnabled) &&
 		(!isBannerCarouselSwitchable ||
 			bannerCarouselEnabled === defaultBannerCarouselEnabled),
->>>>>>> upstream/master
 );
 const hasAnyContent =
 	showThemeColor ||
@@ -170,21 +140,12 @@ function resetWallpaperMode() {
 }
 
 function resetLayout() {
-<<<<<<< HEAD
-	currentLayout = defaultLayout;
-	localStorage.setItem("postListLayout", defaultLayout);
-
-	// 触发自定义事件，通知页面布局已改变
-	const event = new CustomEvent("layoutChange", {
-		detail: { layout: defaultLayout },
-=======
 	currentLayout = effectiveDefaultLayout;
 	localStorage.removeItem("postListLayout");
 
 	// 触发自定义事件，通知页面布局已改变
 	const event = new CustomEvent("layoutChange", {
 		detail: { layout: effectiveDefaultLayout },
->>>>>>> upstream/master
 	});
 	window.dispatchEvent(event);
 }
@@ -206,8 +167,6 @@ function resetBannerSettings() {
 		wavesEnabled = defaultWavesEnabled;
 		setWavesEnabled(defaultWavesEnabled);
 	}
-<<<<<<< HEAD
-=======
 	if (
 		isBannerCarouselSwitchable &&
 		bannerCarouselEnabled !== defaultBannerCarouselEnabled
@@ -215,7 +174,6 @@ function resetBannerSettings() {
 		bannerCarouselEnabled = defaultBannerCarouselEnabled;
 		setBannerCarouselEnabled(defaultBannerCarouselEnabled);
 	}
->>>>>>> upstream/master
 }
 
 function resetOverlaySettings() {
@@ -248,14 +206,11 @@ function toggleBannerTitleEnabled() {
 	setBannerTitleEnabled(bannerTitleEnabled);
 }
 
-<<<<<<< HEAD
-=======
 function toggleBannerCarouselEnabled() {
 	bannerCarouselEnabled = !bannerCarouselEnabled;
 	setBannerCarouselEnabled(bannerCarouselEnabled);
 }
 
->>>>>>> upstream/master
 function switchWallpaperMode(newMode: WALLPAPER_MODE) {
 	wallpaperMode = newMode;
 	setWallpaperMode(newMode);
@@ -267,10 +222,6 @@ function switchWallpaperMode(newMode: WALLPAPER_MODE) {
 
 function checkScreenSize() {
 	isSmallScreen = window.innerWidth < 1200;
-<<<<<<< HEAD
-	if (isSmallScreen) {
-		currentLayout = "list";
-=======
 	isMobileWidth = window.innerWidth < 780;
 	// 低于380px强制网格模式
 	if (window.innerWidth < 380 && currentLayout === "list") {
@@ -279,7 +230,6 @@ function checkScreenSize() {
 			detail: { layout: "grid" },
 		});
 		window.dispatchEvent(event);
->>>>>>> upstream/master
 	}
 }
 
@@ -308,11 +258,7 @@ function refreshAllRangeProgress() {
 }
 
 function switchLayout() {
-<<<<<<< HEAD
-	if (!mounted || isSmallScreen || isSwitching) return;
-=======
 	if (!mounted || isSwitching) return;
->>>>>>> upstream/master
 
 	isSwitching = true;
 	currentLayout = currentLayout === "list" ? "grid" : "list";
@@ -343,12 +289,9 @@ onMount(() => {
 	// 从localStorage读取横幅标题状态
 	bannerTitleEnabled = getStoredBannerTitleEnabled();
 
-<<<<<<< HEAD
-=======
 	// 从localStorage读取横幅轮播状态
 	bannerCarouselEnabled = getStoredBannerCarouselEnabled();
 
->>>>>>> upstream/master
 	// 从localStorage读取全屏透明设置状态
 	overlayOpacity = getStoredOverlayOpacity();
 	overlayBlur = getStoredOverlayBlur();
@@ -359,12 +302,8 @@ onMount(() => {
 	if (savedLayout && (savedLayout === "list" || savedLayout === "grid")) {
 		currentLayout = savedLayout;
 	} else {
-<<<<<<< HEAD
-		currentLayout = siteConfig.postListLayout.defaultMode;
-=======
 		currentLayout =
 			window.innerWidth < 780 ? mobileDefaultLayout : defaultLayout;
->>>>>>> upstream/master
 	}
 
 	// 监听窗口大小变化
@@ -608,8 +547,6 @@ $effect(() => {
                     </div>
                 </button>
                 {/if}
-<<<<<<< HEAD
-=======
                 <!-- Banner Carousel Switch -->
                 {#if isBannerCarouselSwitchable}
                 <button
@@ -628,7 +565,6 @@ $effect(() => {
                     </div>
                 </button>
                 {/if}
->>>>>>> upstream/master
                 <!-- Waves Animation Switch -->
                 {#if isWavesSwitchable}
                 <button
@@ -652,11 +588,7 @@ $effect(() => {
     {/if}
 
     <!-- Layout Switch Section -->
-<<<<<<< HEAD
-    {#if allowLayoutSwitch && !isSmallScreen}
-=======
     {#if allowLayoutSwitch}
->>>>>>> upstream/master
         <div class="mt-2 mb-2">
             <div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 mb-2
                 before:w-1 before:h-4 before:rounded-md before:bg-(--primary)
@@ -664,11 +596,7 @@ $effect(() => {
             >
                 {i18n(I18nKey.postListLayout)}
                 <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md  active:scale-90"
-<<<<<<< HEAD
-                        class:opacity-0={currentLayout === defaultLayout} class:pointer-events-none={currentLayout === defaultLayout} onclick={resetLayout}>
-=======
                         class:opacity-0={currentLayout === effectiveDefaultLayout} class:pointer-events-none={currentLayout === effectiveDefaultLayout} onclick={resetLayout}>
->>>>>>> upstream/master
                     <div class="text-(--btn-content)">
                         <Icon icon="fa7-solid:arrow-rotate-left" class="text-[0.875rem]"></Icon>
                     </div>

@@ -35,10 +35,7 @@ import {
 	getResponsiveSidebarConfig,
 	type ResponsiveSidebarConfig,
 } from "@/utils/responsive-utils";
-<<<<<<< HEAD
-=======
 import { url } from "@/utils/url-utils";
->>>>>>> upstream/master
 import Layout from "./Layout.astro";
 
 import "@/styles/markdown.css";
@@ -130,8 +127,6 @@ const creditUrlMobile =
 // 检查是否为首页
 const isHomePageCheck = isHomePage(Astro.url.pathname);
 
-<<<<<<< HEAD
-=======
 // 分类导航仅在首页、首页分页和归档页进行服务端渲染，避免非列表页首屏闪烁
 const currentPathname = Astro.url.pathname.replace(/\/$/, "");
 const homePath = url("/").replace(/\/$/, "");
@@ -150,7 +145,6 @@ const shouldRenderCategoryBar =
 	!!siteConfig.categoryBar &&
 	(isHomeRoute || isHomePaginationRoute || isArchiveRoute);
 
->>>>>>> upstream/master
 // 检查是否在文章详情页
 const isPostPage = !!postSlug;
 
@@ -296,8 +290,6 @@ const stickyNavbar = siteConfig.navbar.stickyNavbar ?? false;
 // 获取图片质量配置
 const configQuality = getImageQuality();
 const mobileQuality = Math.round(configQuality * 0.9);
-<<<<<<< HEAD
-=======
 const bannerCarouselEnabledDefault =
 	backgroundWallpaper.banner?.carousel?.enable ?? false;
 const bannerCarouselSwitchable =
@@ -306,7 +298,6 @@ const bannerCarouselInterval = Math.max(
 	backgroundWallpaper.banner?.carousel?.interval ?? 5000,
 	3000,
 );
->>>>>>> upstream/master
 ---
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug}>
@@ -355,14 +346,10 @@ const bannerCarouselInterval = Math.max(
     <!-- 背景图片显示 -->
     <div class="relative h-full w-full" id="banner-images-container"
          data-mobile-count={backgroundImages.mobile.length}
-<<<<<<< HEAD
-         data-desktop-count={backgroundImages.desktop.length}>
-=======
          data-desktop-count={backgroundImages.desktop.length}
          data-carousel-enabled={bannerCarouselEnabledDefault}
          data-carousel-switchable={bannerCarouselSwitchable}
          data-carousel-interval={bannerCarouselInterval}>
->>>>>>> upstream/master
         <!-- Mobile: 默认渲染第一张，其余放入 template 避免浏览器预加载 -->
         {backgroundImages.mobile.length > 0 && (
             <div class="banner-image-slot-mobile absolute inset-0 block lg:hidden">
@@ -440,8 +427,6 @@ const bannerCarouselInterval = Math.max(
 
             if (mobileCount <= 1 && desktopCount <= 1) return;
 
-<<<<<<< HEAD
-=======
             // 保存 SSR 初始第一张图的 HTML，供后续轮播收集完整帧序列使用
             if (typeof window.__bannerInitialFrameHtml === 'undefined') {
                 window.__bannerInitialFrameHtml = {};
@@ -458,7 +443,6 @@ const bannerCarouselInterval = Math.max(
             rememberInitialFrame('banner-image-slot-mobile');
             rememberInitialFrame('banner-image-slot-desktop');
 
->>>>>>> upstream/master
             // F5 刷新重置，Swup 切换保留
             if (typeof window.__bannerRandomIndex === 'undefined') {
                 window.__bannerRandomIndex = {
@@ -483,8 +467,6 @@ const bannerCarouselInterval = Math.max(
             applyRandom('banner-image-slot-desktop', 'banner-tpl-desktop', window.__bannerRandomIndex.desktop);
         })();
     </script>
-<<<<<<< HEAD
-=======
 
     <!-- 横幅轮播 Ken Burns 样式（放在 body 中，不受 Swup head 替换影响） -->
     <Fragment set:html={`<style>
@@ -650,7 +632,6 @@ const bannerCarouselInterval = Math.max(
             startCarousel();
         })();
     </script>
->>>>>>> upstream/master
     
     <div id="banner-dim-container" class="absolute inset-0 z-0 pointer-events-none">
         {showBannerDim && <div class="banner-dim-overlay absolute inset-0"></div>}
@@ -774,11 +755,7 @@ const bannerCarouselInterval = Math.max(
     <div class={`waves absolute -bottom-px h-[10vh] max-h-37.5 min-h-12.5 w-full md:h-[15vh]
         ${!wavesEnabledOnMobile ? 'hidden' : ''} ${!wavesEnabledOnDesktop ? 'md:hidden' : ''} ${wavesEnabledOnDesktop ? 'md:block' : ''}`}
         id="header-waves"
-<<<<<<< HEAD
-        style="transform: translateZ(0); will-change: fill;">
-=======
         style="transform: translateZ(0);">
->>>>>>> upstream/master
         <svg
             class="waves"
             xmlns="http://www.w3.org/2000/svg"
@@ -914,13 +891,8 @@ const bannerCarouselInterval = Math.max(
                     
             {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
             <div class={staticBarClass}>
-<<<<<<< HEAD
-                {/* 分类导航栏 - 在所有页面渲染，由客户端JS控制显隐 */}
-                {siteConfig.categoryBar && <CategoryBar />}
-=======
                 {/* 分类导航栏 - 仅在首页、首页分页和归档页渲染 */}
                 {shouldRenderCategoryBar && <CategoryBar />}
->>>>>>> upstream/master
 
                 {/* 主内容区 - 始终渲染，确保 Swup 容器存在 */}
                 <main id="swup-container" class="transition-main">

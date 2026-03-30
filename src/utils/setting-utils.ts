@@ -880,13 +880,10 @@ export function getDefaultBannerTitleEnabled(): boolean {
 	return backgroundWallpaper.banner?.homeText?.enable ?? true;
 }
 
-<<<<<<< HEAD
-=======
 export function getDefaultBannerCarouselEnabled(): boolean {
 	return backgroundWallpaper.banner?.carousel?.enable ?? false;
 }
 
->>>>>>> upstream/master
 export function getStoredBannerTitleEnabled(): boolean {
 	if (
 		typeof localStorage === "undefined" ||
@@ -901,8 +898,6 @@ export function getStoredBannerTitleEnabled(): boolean {
 	return stored === "true";
 }
 
-<<<<<<< HEAD
-=======
 export function getStoredBannerCarouselEnabled(): boolean {
 	const isSwitchable =
 		backgroundWallpaper.banner?.carousel?.switchable ?? false;
@@ -922,7 +917,6 @@ export function getStoredBannerCarouselEnabled(): boolean {
 	return stored === "true";
 }
 
->>>>>>> upstream/master
 export function setBannerTitleEnabled(enabled: boolean): void {
 	if (
 		typeof localStorage === "undefined" ||
@@ -934,8 +928,6 @@ export function setBannerTitleEnabled(enabled: boolean): void {
 	applyBannerTitleEnabledToDocument(enabled);
 }
 
-<<<<<<< HEAD
-=======
 export function setBannerCarouselEnabled(enabled: boolean): void {
 	const safeEnabled = !!enabled;
 	const isSwitchable =
@@ -957,7 +949,6 @@ export function setBannerCarouselEnabled(enabled: boolean): void {
 	}
 }
 
->>>>>>> upstream/master
 export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
 	if (typeof document === "undefined") {
 		return;
@@ -979,8 +970,6 @@ export function applyBannerTitleEnabledToDocument(enabled: boolean): void {
 		}
 	}
 }
-<<<<<<< HEAD
-=======
 
 export function applyBannerCarouselEnabledToDocument(enabled: boolean): void {
 	if (typeof document === "undefined") {
@@ -991,4 +980,3 @@ export function applyBannerCarouselEnabledToDocument(enabled: boolean): void {
 		String(enabled),
 	);
 }
->>>>>>> upstream/master

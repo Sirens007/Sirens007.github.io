@@ -15,13 +15,8 @@ const archiveUrl = url("/archive/");
   <div class="category-bar-inner flex gap-2">
     <a
       href={homeUrl}
-<<<<<<< HEAD
-      class="category-pill text-sm px-2 py-1 rounded-lg flex-shrink-0
-             transition-colors duration-200 flex items-center justify-center"
-=======
       class="category-pill text-sm px-2 py-1 rounded-lg shrink-0
              transition-colors duration-150 ease-out flex items-center justify-center"
->>>>>>> upstream/master
       data-category-name=""
       aria-label={i18n(I18nKey.home)}
     >
@@ -29,23 +24,14 @@ const archiveUrl = url("/archive/");
     </a>
     <a
       href={archiveUrl}
-<<<<<<< HEAD
-      class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap flex-shrink-0
-             transition-colors duration-200 flex items-center justify-center"
-=======
       class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap shrink-0
              transition-colors duration-150 ease-out flex items-center justify-center"
->>>>>>> upstream/master
       data-category-name="__archive__"
     >
       {i18n(I18nKey.archive)}
       <span class="text-xs opacity-60 ml-1">{totalPosts}</span>
     </a>
-<<<<<<< HEAD
-    <div class="category-divider flex-shrink-0"></div>
-=======
     <div class="category-divider shrink-0"></div>
->>>>>>> upstream/master
     <div class="scroll-area relative">
       <div class="scroll-fade scroll-fade-left" aria-hidden="true"></div>
       <div class="category-scroll flex gap-2 overflow-x-auto">
@@ -54,11 +40,7 @@ const archiveUrl = url("/archive/");
             <a
               href={cat.url}
               class="category-pill text-sm px-3 py-1 rounded-lg whitespace-nowrap
-<<<<<<< HEAD
-                     transition-colors duration-200 flex items-center justify-center"
-=======
                      transition-colors duration-150 ease-out flex items-center justify-center"
->>>>>>> upstream/master
               data-category-name={cat.name}
             >
               {cat.name}
@@ -141,25 +123,12 @@ const archiveUrl = url("/archive/");
 </style>
 
 <script>
-<<<<<<< HEAD
-  function updateCategoryBar() {
-    const bar = document.getElementById("category-bar");
-    if (!bar) return;
-
-    const pathname = window.location.pathname.replace(/\/$/, "");
-=======
   function getCategoryBarState(bar: HTMLElement, currentUrl: URL) {
     const pathname = currentUrl.pathname.replace(/\/$/, "");
->>>>>>> upstream/master
     const homePath = (bar.getAttribute("data-home-path") || "/").replace(/\/$/, "");
     const archivePath = (bar.getAttribute("data-archive-path") || "/archive").replace(/\/$/, "");
     const isHome = pathname === homePath || pathname === "" || pathname === "/";
     const isArchive = pathname === archivePath;
-<<<<<<< HEAD
-
-    // 只在首页和归档页显示
-    if (!isHome && !isArchive) {
-=======
     const escapedHomePath = homePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     // 分页页面（如 /2/, /3/）也属于首页的延续
     const isHomePagination =
@@ -182,27 +151,11 @@ const archiveUrl = url("/archive/");
 
     // 在首页、首页分页和归档页显示
     if (!isHome && !isHomePagination && !isArchive) {
->>>>>>> upstream/master
       bar.style.display = "none";
       return;
     }
     bar.style.display = "";
 
-<<<<<<< HEAD
-    // 高亮当前分类
-    const pills = bar.querySelectorAll<HTMLAnchorElement>(".category-pill");
-    const params = new URLSearchParams(window.location.search);
-    const activeCategory = params.get("category") || "";
-    const hasTag = params.has("tag");
-    const hasUncategorized = params.has("uncategorized");
-
-    pills.forEach((pill) => pill.removeAttribute("data-active"));
-
-    if (isHome) {
-      bar.querySelector<HTMLAnchorElement>('.category-pill[data-category-name=""]')
-        ?.setAttribute("data-active", "");
-    } else if (activeCategory) {
-=======
     const pills = bar.querySelectorAll<HTMLAnchorElement>(".category-pill");
     pills.forEach((pill) => pill.removeAttribute("data-active"));
 
@@ -213,34 +166,11 @@ const archiveUrl = url("/archive/");
     }
 
     if (activeCategory) {
->>>>>>> upstream/master
       pills.forEach((pill) => {
         if (pill.getAttribute("data-category-name") === activeCategory) {
           pill.setAttribute("data-active", "");
         }
       });
-<<<<<<< HEAD
-    } else if (isArchive && !hasTag && !hasUncategorized) {
-      bar.querySelector<HTMLAnchorElement>('.category-pill[data-category-name="__archive__"]')
-        ?.setAttribute("data-active", "");
-    }
-
-    // 自动滚动到当前高亮的分类
-    const activePill = bar.querySelector<HTMLAnchorElement>('.category-pill[data-active]');
-    const scroll = bar.querySelector<HTMLElement>(".category-scroll");
-    if (activePill && scroll) {
-      const scrollLeft = activePill.offsetLeft - scroll.offsetLeft - (scroll.clientWidth - activePill.offsetWidth) / 2;
-      scroll.scrollTo({ left: Math.max(0, scrollLeft), behavior: "smooth" });
-    }
-
-    // 更新横幅标题：归档页有分类筛选时显示分类名
-    if (isArchive && activeCategory) {
-      const bannerTitle = document.querySelector(".banner-page-title-text");
-      if (bannerTitle) {
-        bannerTitle.textContent = decodeURIComponent(activeCategory);
-      }
-    }
-=======
       return;
     }
 
@@ -297,7 +227,6 @@ const archiveUrl = url("/archive/");
       setActiveCategory(bar, targetUrl);
       scrollActiveCategoryIntoView(bar, "auto");
     });
->>>>>>> upstream/master
   }
 
   function initScrollFeatures() {
@@ -346,20 +275,13 @@ const archiveUrl = url("/archive/");
   }
 
   updateCategoryBar();
-<<<<<<< HEAD
-=======
   initCategoryBarInteractions();
->>>>>>> upstream/master
   initScrollFeatures();
   document.addEventListener("astro:page-load", () => {
     updateCategoryBar();
     initScrollFeatures();
   });
-<<<<<<< HEAD
-  document.addEventListener("swup:contentReplaced", updateCategoryBar);
-=======
   document.addEventListener("swup:contentReplaced", () => {
     updateCategoryBar();
   });
->>>>>>> upstream/master
 </script>
