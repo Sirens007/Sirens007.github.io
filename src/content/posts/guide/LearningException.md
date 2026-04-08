@@ -2,7 +2,8 @@
 title: Java异常处理解析：从防御式编程到自定义异常类
 published: 2025-11-17
 pinned: false
-description: "初识异常，掌握异常."
+description: "系统讲解 Java 异常机制，从异常体系到 try-catch 实战，结合防御式编程与异常链，掌握高质量错误处理方式."
+image: ./d1.webp
 tags: ["Java SE", "IDEA"]
 category: 开发
 draft: false
@@ -60,7 +61,7 @@ System.out.println(arr.length);
 
 这里我们先了解下他们的继承关系，如下图
 
-![](assets/LearningException1.png)
+![](../assets/LearningException1.png)
 
 我们可以了解到：
 

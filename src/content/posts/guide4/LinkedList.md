@@ -2,19 +2,18 @@
 title: 对顺序表以及双向链表的理解
 published: 2026-03-27
 pinned: false
-description: "系统梳理 Java 中顺序表（ArrayList）与链表（LinkedList）的底层结构与实现原理，并通过手写代码加深理解."
-tags: ["Java SE", "IDEA"]
+description: "结合 Java 源码与图解，通俗理解顺序表（ArrayList）与双向链表（LinkedList）的底层原理，并附带单链表常用核心操作的模拟实现."
+image: ./LinkedList1.gif
+tags: ["数据结构", "Java"]
 category: 开发
 draft: false
 ---
 
-
+图片来自于[菜鸟教程](https://www.runoob.com/java/java-collections.html)
 
 ## 1.List 引入
 
 ### 1.什么是 List
-![](https://cdn.nlark.com/yuque/0/2026/gif/49819380/1773209540756-b0bebb2b-78fd-453c-90df-e8ecd7f5bb08.gif)
-图片来自于[菜鸟教程](https://www.runoob.com/java/java-collections.html)
 
 在了解 `ArrayList`即顺序表 (`Sequential List`) 与 `LinkedList`即 双向链表 (`Doubly Linked List`) 之前，有必要先明 `List`是什么。
 
@@ -29,13 +28,12 @@ List 首先是一个接口（可理解为合同），而 `ArrayList`、`LinkedLi
 ## 2.ArrayList 的理解
 ### 2.1 什么是 ArrayList
 先从图片上引入对 `ArrayList` 的概念，其实就是数组
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773211418112-44d8cb31-27af-490b-b816-8be3be7e2504.png)
+![](../assets/LinkedList2.png)
 
 `ArrayList` 中文称为顺序表，
 
 从物理意义上：它是用一段**连续的物理内存**（数组）来表达线性关系的。
-
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773210822693-e24cb910-ed0d-4b9a-a93e-39d0299d8b87.png)
+![](../assets/LinkedList3.png)
 
 从源码上看主要是这几个常量，包括容量，数组，实际大小`usedSize`...
 
@@ -102,7 +100,7 @@ public class MyArrayList implements IList{
 链表是物理存储结构上非连存储结构，数据元素的逻辑顺序是通过链表中的引用链接次序实现的。每个节点存储了当前节点的 `value` 以及对下一个节点的索引
 
 其结构类似图中内容
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773214112501-17520a0c-6195-4f9e-b549-510c50c8cd04.png)
+![](../assets/LinkedList4.png)
 
 实际中链表结构又是多样的：
 
@@ -141,7 +139,7 @@ public class MySingleList implements IList{
 我们选部分了解：
 
 头插法：
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773215965339-b8396351-75e6-4e0f-8e3f-fc850a7ab27c.png)
+![](../assets/LinkedList5.png)
 
 ```java
 public void addFirst(int data) {
@@ -156,7 +154,7 @@ public void addFirst(int data) {
 ---
 
 尾插法：
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773216027958-18c1053e-9cf8-4a2a-90f9-bcc3a10ddb8a.png)
+![](../assets/LinkedList6.png)
 
 ```java
 public void addLast(int data) {
@@ -182,7 +180,7 @@ public void addLast(int data) {
 ---
 
 删除节点：
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773216551139-32679f43-e1da-449c-8e93-bc97ff8e3f6a.png)
+![](../assets/LinkedList7.png)
 
 ```java
     @Override
@@ -241,10 +239,10 @@ public void addLast(int data) {
 `LinkedList` 的底层是双向链表结构，由于链表没有将元素存储在连续的空间中，元素存储在单独的节点中，然后通过引用将节点连接起来了，因此在任意位置插入或者删除元素时，不需要搬移元素，效率比较高。
 
 以下图片即为双向链表结构，包含了 `val`、`prev` 前驱、`next` 后驱以及 `head` 头指针和尾指针
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773230321245-03f32693-b998-4b0e-855b-31b79ca95d30.png)
+![](../assets/LinkedList8.png)
 
 通过以下集合框架可以发现，`LinkedList` 也同样实现了 List 接口：
-![](https://cdn.nlark.com/yuque/0/2026/png/49819380/1773231575967-3c1ff042-0f7b-46ec-8679-bab606693adc.png)
+![](../assets/LinkedList9.png)
 
 说明：
 
@@ -340,5 +338,7 @@ public void remove(int key) {
 | **<font style="color:rgb(31, 31, 31);">链表</font>** | <font style="color:rgb(31, 31, 31);">线性表的一种实现</font> | <font style="color:rgb(31, 31, 31);">分散</font>**<font style="color:rgb(31, 31, 31);">节点</font>**<font style="color:rgb(31, 31, 31);"> + </font>**<font style="color:rgb(31, 31, 31);">指针</font>** | `<font style="color:rgb(68, 71, 70);">LinkedList</font>` |
 | **<font style="color:rgb(31, 31, 31);">链表节点</font>** | <font style="color:rgb(31, 31, 31);">链表的组成零件</font> | <font style="color:rgb(31, 31, 31);">包含数据和指针的对象</font> | `<font style="color:rgb(68, 71, 70);">ListNode</font>`<font style="color:rgb(31, 31, 31);">类</font> |
 
+以上是我关于Java的笔记分享
 
+<font style="color:rgb(77, 77, 77);">感谢你读到这里，这也是我学习路上的一个小小记录。希望以后回头看时，能看到自己的成长~</font>
 
